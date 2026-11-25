@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Quests - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .quest-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .quest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  .quest-card .card-header {
+    font-weight: bold;
+  }
+  .filter-btn-group .btn {
+    border-radius: 20px;
+    margin: 0 5px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-tasks text-primary"></i> Learning Quests</h1>
+        {% if user.is_authenticated %}
+          <a href="{% url 'quests:my_quests' %}" class="btn btn-outline-primary">
+            <i class="fas fa-history"></i> My Quest History
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Difficulty Filter -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="filter-btn-group text-center">
+        <a href="{% url 'quests:quest_list' %}" class="btn {% if not current_difficulty %}btn-primary{% else %}btn-outline-primary{% endif %}">
+          All Quests
+        </a>
+        {% for diff_key, diff_name in difficulty_choices %}
+          <a href="?difficulty={{ diff_key }}" class="btn {% if current_difficulty == diff_key %}btn-primary{% else %}btn-outline-primary{% endif %}">
+            {{ diff_name }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Quests Grid -->
+  <div class="row">
+    {% for quest in page_obj %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card quest-card h-100 shadow-sm">
+          {% if quest.id in completed_quest_ids %}
+            <div class="card-header bg-success text-white text-center">
+              <i class="fas fa-check-circle"></i> Completed
+            </div>
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ quest.title }}</h5>
+            <p class="card-text">{{ quest.description|truncatewords:20 }}</p>
+            <div class="mb-3">
+              <span class="badge bg-secondary">{{ quest.get_difficulty_display }}</span>
+              <span class="badge bg-warning text-dark"><i class="fas fa-coins"></i> {{ quest.points_reward }} CropCoins</span>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0">
+            {% if quest.id in completed_quest_ids %}
+              <a href="{% url 'quests:quest_detail' quest.id %}" class="btn btn-outline-success w-100">
+                <i class="fas fa-eye"></i> View Details
+              </a>
+            {% else %}
+              <a href="{% url 'quests:quest_detail' quest.id %}" class="btn btn-success w-100">
+                <i class="fas fa-play"></i> Start Quest
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info text-center">
+          <i class="fas fa-search fa-3x mb-3"></i>
+          <h3>No quests found</h3>
+          <p>Try changing your filter criteria.</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  {% if page_obj.has_other_pages %}
+    <div class="row mt-4">
+      <div class="col-12">
+        <nav aria-label="Quests pagination">
+          <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if current_difficulty %}&difficulty={{ current_difficulty }}{% endif %}">
+                  <i class="fas fa-chevron-left"></i> Previous
+                </a>
+              </li>
+            {% endif %}
+
+            {% for page_num in page_obj.paginator.page_range %}
+              {% if page_num == page_obj.number %}
+                <li class="page-item active">
+                  <span class="page-link">{{ page_num }}</span>
+                </li>
+              {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_num }}{% if current_difficulty %}&difficulty={{ current_difficulty }}{% endif %}">{{ page_num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if current_difficulty %}&difficulty={{ current_difficulty }}{% endif %}">
+                  Next <i class="fas fa-chevron-right"></i>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

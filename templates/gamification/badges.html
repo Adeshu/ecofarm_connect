@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Badges - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .badge-card {
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(32, 201, 151, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #f9fefa;
+    padding: 20px 15px;
+    text-align: center;
+  }
+  .badge-card:hover {
+    box-shadow: 0 12px 36px rgba(32, 201, 151, 0.2);
+    transform: translateY(-6px);
+  }
+  .badge-icon {
+    font-size: 4rem;
+    color: #20c997;
+    margin-bottom: 12px;
+  }
+  .badge-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+    color: #007f5f;
+  }
+  .badge-description {
+    font-size: 1rem;
+    color: #555;
+    min-height: 48px;
+    margin-bottom: 10px;
+  }
+  .badge-cropcoins {
+    display: inline-block;
+    background: #007f5f;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    padding: 5px 14px;
+    margin-bottom: 10px;
+  }
+  .badge-earned {
+    color: #28a745;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .filter-row {
+    margin-bottom: 30px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4 fw-bold text-center"><i class="fas fa-award"></i> Badges</h1>
+
+  <!-- Filter Form -->
+  <form method="get" class="row g-3 filter-row justify-content-center">
+    <div class="col-md-4">
+      <label for="category" class="form-label fw-semibold">Category</label>
+      <select id="category" name="category" class="form-select shadow-sm rounded">
+        <option value="">All</option>
+        {% for code, name in categories %}
+          <option value="{{ code }}" {% if current_category == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="rarity" class="form-label fw-semibold">Rarity</label>
+      <select id="rarity" name="rarity" class="form-select shadow-sm rounded">
+        <option value="">All</option>
+        {% for code, name in rarities %}
+          <option value="{{ code }}" {% if current_rarity == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button type="submit" class="btn btn-success w-100 rounded-pill shadow-sm"><i class="fas fa-filter me-2"></i> Filter</button>
+    </div>
+  </form>
+
+  <!-- Badges Display -->
+  {% if badges %}
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    {% for badge in badges %}
+    <div class="col">
+      <div class="badge-card h-100 shadow-sm">
+        <i class="badge-icon {{ badge.icon }}"></i>
+        <h4 class="badge-title">{{ badge.name }}</h4>
+        <p class="badge-description">{{ badge.description }}</p>
+        <div>
+          <span class="badge-cropcoins"><i class="fas fa-coins me-1"></i>CropCoins Required: {{ badge.points_required }}</span>
+        </div>
+        {% if badge.id in earned_badge_ids %}
+          <div class="badge-earned"><i class="fas fa-check-circle me-1"></i> Earned</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center text-muted mt-5">
+    <i class="fas fa-award fa-4x mb-3"></i>
+    <h4>No badges found matching your criteria.</h4>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

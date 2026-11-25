@@ -1,0 +1,688 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}EcoFarm Connect - Sustainable Farming Platform{% endblock %}
+{% block body_class %}home-page{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Modern MNC-Level Home Page Styles */
+html, body, .home-page {
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #ecffe6 0%, #c2f0cb 40%, #6ad47b 95%);
+  font-family: 'Inter', 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.gradient-mesh {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0.23;
+  background:
+    radial-gradient(ellipse at 20% 23%, #b4ffd6 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 80%, #5cd66a 0%, transparent 45%),
+    radial-gradient(ellipse at 45% 50%, #c5eed6 0%, transparent 44%);
+  z-index: 1;
+  animation: meshMove 20s ease-in-out infinite;
+}
+
+@keyframes meshMove {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  33% { transform: translate(24px,-34px) rotate(120deg);}
+  66% { transform: translate(-38px,36px) rotate(270deg);}
+}
+
+.floating-element {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.17;
+  animation: floatAnimation 18s infinite ease-in-out;
+  color: #4caf50;
+}
+
+.floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s;}
+.floating-element:nth-child(2) { top: 20%; right: 12%; animation-delay: 6s;}
+.floating-element:nth-child(3) { bottom: 18%; left: 14%; animation-delay: 12s;}
+
+@keyframes floatAnimation {
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  33%{transform:translateY(-32px) rotate(140deg);}
+  66%{transform:translateY(24px) rotate(260deg);}
+}
+
+.hero-section {
+  min-height: 99vh;
+  background: linear-gradient(135deg, #e3ffe5 10%, #d0f5ce 60%, #59bf75 100%);
+  color: #135c1b;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: 
+    radial-gradient(circle at 18% 82%, rgba(44, 209, 98, 0.16) 0%, transparent 65%),
+    radial-gradient(circle at 80% 24%, rgba(44,209,98,0.15) 0%, transparent 49%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding-top: 24px;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {opacity:0; transform:translateY(60px);}
+  to {opacity:1; transform:translateY(0);}
+}
+.hero-title {
+  color: #17642a;
+  text-shadow: 0 4px 24px rgba(20,80,34,0.19);
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  font-weight: 900;
+  letter-spacing: -1px;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+
+@keyframes titleGlow {
+  0%,100%{filter:brightness(1);}
+  50%{filter:brightness(1.16);}
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2.1rem;
+  opacity: 0.96;
+  line-height: 1.7;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  color: #124824;
+  font-weight: 700;
+}
+
+.hero-buttons .btn {
+  padding: 1.1rem 2.8rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 50px;
+  margin: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary-modern {
+  background: linear-gradient(135deg, #20c997 5%, #5ad87f 65%, #268a49 100%);
+  background-size: 200% auto;
+  border: none;
+  color: #153728;
+  box-shadow: 0 12px 34px rgba(34, 197, 94, 0.16);
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Floating Environmental Icons - Enhanced */
+.floating-icon {
+  position: absolute;
+  z-index: 15;
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.5));
+  pointer-events: none;
+}
+
+.floating-icon i {
+  font-size: 3.2rem;
+  animation: iconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.icon-1 { top: 5%; left: 48%; animation: orbit1 16s ease-in-out infinite; }
+.icon-2 { top: 42%; right: 0%; animation: orbit2 18s ease-in-out infinite; }
+.icon-3 { bottom: 8%; left: 5%; animation: orbit3 20s ease-in-out infinite; }
+.icon-4 { top: 22%; right: 15%; animation: orbit4 17s ease-in-out infinite; }
+.icon-5 { bottom: 22%; right: 8%; animation: orbit5 19s ease-in-out infinite; }
+.icon-6 { top: 12%; left: 12%; animation: orbit6 21s ease-in-out infinite; }
+
+@keyframes orbit1 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate(70px, -50px) scale(1.35) rotate(90deg);}
+  50% { transform: translate(140px, 0) scale(1) rotate(180deg);}
+  75% { transform: translate(70px, 50px) scale(0.85) rotate(270deg);}
+  100% { transform: translate(0, 0) scale(1) rotate(360deg);}
+}
+
+@keyframes orbit2 {
+  0% { transform: translate(0,0) rotate(0deg) scale(1);}
+  50% { transform: translate(-80px,-60px) rotate(180deg) scale(1.3);}
+  100% { transform: translate(0,0) rotate(360deg) scale(1);}
+}
+@keyframes orbit3 {
+  0% { transform: translate(0,0) scale(1);}
+  33% {transform:translate(-60px,-70px) scale(1.25);}
+  66% {transform:translate(-120px,-35px) scale(0.9);}
+  100% { transform: translate(0,0) scale(1);}
+}
+@keyframes orbit4 {
+  0% { transform: translate(0,0) scale(1) rotate(0deg);}
+  50% { transform: translate(-90px,60px) scale(1.35) rotate(180deg);}
+  100% { transform: translate(0,0) scale(1) rotate(360deg);}
+}
+
+@keyframes orbit5 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(80px, -70px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes orbit6 {
+  0% { transform: translate(0,0) scale(1);}
+  50% { transform: translate(60px,60px) scale(1.25);}
+  100% { transform: translate(0,0) scale(1);}
+}
+
+.globe-badge {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 110px;
+  height: 110px;
+  background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 50%, #ffd700 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: badgePulse 3s infinite, gradientShift 3s ease infinite;
+  box-shadow: 0 15px 45px rgba(255, 215, 0, 0.7);
+  z-index: 20;
+  border: 5px solid rgba(255, 255, 255, 0.4);
+  /* Add rotation */
+  animation: rotateBadge 15s linear infinite, badgePulse 3s infinite, gradientShift 3s ease infinite;
+}
+
+@keyframes rotateBadge {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+@keyframes gradientShift {
+  0%,100%{background-position: 0% 50%;}
+  50%{background-position: 100% 50%;}
+}
+
+.btn-primary-modern:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 18px 44px rgba(86,204,100,0.19);
+  color: #17442e;
+  background: linear-gradient(120deg,#1fa167 20%, #84cc93 82%);
+}
+
+.btn-outline-modern {
+  background: rgba(255,255,255,0.12);
+  border: 2.3px solid rgba(18,184,80,0.23);
+  color: #32a852;
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline-modern:hover {
+  background: rgba(255,255,255,0.21);
+  border-color: #59bf75;
+  transform: translateY(-4px);
+  color: #207642;
+  box-shadow: 0 14px 35px rgba(34,197,94,0.11);
+}
+
+.hero-image {
+  position: relative;
+  animation: fadeInRight 1.2s ease-out 0.2s both;
+}
+
+@keyframes fadeInRight {
+  from {opacity:0; transform:translateX(60px);}
+  to {opacity:1; transform:translateX(0);}
+}
+
+/* The following globe, sphere, and feature elements are not shown for brevity but you can keep them the same. */
+
+.features-section {
+  margin-top: 2rem;
+  margin-bottom: 2.8rem;
+  padding: 65px 0 70px 0;
+  background: rgba(210,245,215,0.19);
+  border-radius: 32px;
+  box-shadow: 0 12px 38px 0 rgba(52,178,96,.12);
+  position: relative;
+  z-index: 3;
+}
+
+.section-header, .section-title {
+  font-weight: 900;
+  font-size: 2.5rem;
+  letter-spacing: .01em;
+  color: #269464;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  background: linear-gradient(90deg,#59bf75 5%, #b8e9b7 95%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.12rem;
+  color: #24b857;
+  text-align: center;
+  margin-bottom: 3.1rem;
+  font-weight: 500;
+}
+.feature-card {
+  background: rgba(255,255,255,0.35);
+  border-radius: 22px;
+  padding: 42px 28px;
+  text-align: center;
+  box-shadow: 0 12px 34px rgba(44,199,97,0.12);
+  border: 1.8px solid rgba(18,184,80,0.11);
+  margin-bottom: 1.7rem;
+  transition: transform 0.36s, box-shadow 0.32s;
+  position: relative;
+  min-height: 330px;
+}
+.feature-icon {
+  font-size: 3.2rem;
+  color: #20c997;
+  margin-bottom: 20px;
+}
+.feature-title {
+  font-weight: 800;
+  font-size: 1.37rem;
+  color: #17844c;
+}
+.feature-desc {
+  color: #316d4c;
+  font-size: 1.1rem;
+}
+
+.stats-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg,#1a3929 0%,#254d39 70%,#307045 100%);
+  color: #fff;
+  position: relative;
+}
+
+.stats-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stats-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="%23fff" fill-opacity="0.09"/></pattern></defs><rect width="100" height="100" fill="url(%23stats-pattern)"/></svg>');
+  opacity: 0.33;
+  z-index: 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2.1rem;
+  position: relative;
+  transition: transform 0.3s;
+  z-index: 2;
+}
+.stat-item:hover {
+  transform: translateY(-8px);
+}
+
+.stat-number {
+  font-size: 3.7rem;
+  font-weight: 900;
+  margin-bottom: 0.9rem;
+  color: #fff;
+  text-shadow: 0 3px 12px #073813;
+  animation: countUp 1.3s ease-out;
+}
+.stat-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  opacity: 0.97;
+  color: #c9ffc9;
+}
+
+.cta-section {
+  padding: 105px 0;
+  background: linear-gradient(135deg, #226d41 0%, #51ad79 53%, #b8e9b7 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -55px;
+  left: 0;
+  width: 100vw;
+  height: 110px;
+  background: linear-gradient(135deg, #d0f5ce 0%, #ecffe6 90%);
+  clip-path: ellipse(100% 78% at 50% 0%);
+  z-index: 1;
+}
+
+.cta-title {
+  font-size: 2.55rem;
+  font-weight: 900;
+  margin-bottom: 0.9rem;
+  color: #f8fafc;
+}
+
+.cta-subtitle {
+  font-size: 1.12rem;
+  margin-bottom: 2.3rem;
+  opacity: 0.93;
+  color: #d9ffd8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {font-size:2rem;}
+  .section-title {font-size:1.52rem;}
+  .stat-number {font-size:2.5rem;}
+  .cta-title {font-size:1.62rem;}
+  .feature-card {margin-bottom:1.25rem;}
+  .globe-container {width:240px;height:240px;}
+  .sphere {width:180px;height:180px;margin:24px;}
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease-out;
+}
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
+{{ block.super }}
+{% endblock %}
+{% block content %}
+<div class="gradient-mesh"></div>
+<div class="floating-element">
+  <i class="fas fa-leaf fa-3x"></i>
+</div>
+<div class="floating-element">
+  <i class="fas fa-globe fa-3x"></i>
+</div>
+<div class="floating-element">
+  <i class="fas fa-seedling fa-3x"></i>
+</div>
+
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-6">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Elevate Your Farm with
+            <span style="background: linear-gradient(135deg, #ffd700 0%, #ff6b6b 50%, #ffd700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              EcoFarm Connect
+            </span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover the platform that turns sustainable farming into a rewarding journey.<br>
+            Learn, track, and compete with quests, analytics, and an inspiring green community!
+          </p>
+          <div class="hero-buttons">
+            {% if not user.is_authenticated %}
+              <a href="{% url 'accounts:register' %}" class="btn btn-primary-modern">
+                <i class="fas fa-rocket me-2"></i>Get Started Free
+              </a>
+              <a href="{% url 'courses:course_list' %}" class="btn btn-outline-modern">
+                <i class="fas fa-play me-2"></i>Explore Courses
+              </a>
+            {% else %}
+              <a href="{% url 'core:dashboard' %}" class="btn btn-primary-modern">
+                <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+              </a>
+              <a href="{% url 'courses:course_list' %}" class="btn btn-outline-modern">
+                <i class="fas fa-book me-2"></i>Browse Courses
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image text-center">
+          <div class="globe-container">
+            <div class="globe-3d">
+              <div class="sphere">
+                <div class="sphere-layer layer-back"></div>
+                <div class="sphere-layer layer-continents">
+                  <svg class="globe-continents-3d" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="140" cy="100" rx="45" ry="30" fill="rgba(168,224,99,0.7)" transform="rotate(-15 140 100)"/>
+                    <path d="M100,180 Q125,165 145,180 L165,215 L145,235 L110,210 Z" fill="rgba(79,172,254,0.7)"/>
+                    <ellipse cx="240" cy="210" rx="50" ry="35" fill="rgba(255,215,0,0.7)" transform="rotate(20 240 210)"/>
+                    <path d="M160,275 Q185,260 205,275 L215,305 L185,320 L165,305 Z" fill="rgba(255,107,107,0.7)"/>
+                    <circle cx="295" cy="135" r="28" fill="rgba(168,224,99,0.6)"/>
+                    <ellipse cx="115" cy="310" rx="35" ry="25" fill="rgba(79,172,254,0.6)"/>
+                    <path d="M270,290 Q290,280 305,295 L310,320 L285,330 Z" fill="rgba(168,224,99,0.6)"/>
+                  </svg>
+                </div>
+                <div class="globe-grid"></div>
+                <div class="sphere-layer layer-front"></div>
+              </div>
+            </div>
+            <div class="floating-icon icon-1">
+              <i class="fas fa-leaf" style="color: #a8e063; text-shadow: 0 0 25px #a8e063;"></i>
+            </div>
+            <div class="floating-icon icon-2">
+              <i class="fas fa-water" style="color: #4facfe; text-shadow: 0 0 25px #4facfe;"></i>
+            </div>
+            <div class="floating-icon icon-3">
+              <i class="fas fa-recycle" style="color: #56ab2f; text-shadow: 0 0 25px #56ab2f;"></i>
+            </div>
+            <div class="floating-icon icon-4">
+              <i class="fas fa-sun" style="color: #ffd700; text-shadow: 0 0 25px #ffd700;"></i>
+            </div>
+            <div class="floating-icon icon-5">
+              <i class="fas fa-seedling" style="color: #a8e063; text-shadow: 0 0 25px #a8e063;"></i>
+            </div>
+            <div class="floating-icon icon-6">
+              <i class="fas fa-wind" style="color: #00f2fe; text-shadow: 0 0 25px #00f2fe;"></i>
+            </div>
+            <div class="globe-badge">
+              <i class="fas fa-leaf"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="container">
+    <div class="animate-on-scroll">
+      <h2 class="section-title">Why Choose EcoFarm Connect?</h2>
+      <p class="section-subtitle">Empowering tomorrow's farmers with smart tools and inspired learning</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <i class="fas fa-leaf fa-2x text-white"></i>
+          </div>
+          <h5 class="card-title text-center">Smart Farm Management</h5>
+          <p class="card-text text-muted">
+            Track crops, soil, and farm practices on a visual dashboard—manage your land’s future, digitally and efficiently.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);">
+            <i class="fas fa-book-open fa-2x text-white"></i>
+          </div>
+          <h5 class="card-title text-center">Guided Sustainable Learning</h5>
+          <p class="card-text text-muted">
+            Dive into expert-backed tutorials, interactive lessons, and quizzes on sustainable agriculture and smart farming techniques.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <i class="fas fa-trophy fa-2x text-white"></i>
+          </div>
+          <h5 class="card-title text-center">Gamified Quests & Badges</h5>
+          <p class="card-text text-muted">
+            Complete real-world farming quests, earn digital achievements, and climb the leaderboard to become a sustainability champion!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-number" data-count="{{ stats.total_learners }}">{{ stats.total_learners }}+</div>
+          <div class="stat-label">Progressive Farmers</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-number" data-count="{{ stats.total_courses }}">{{ stats.total_courses }}+</div>
+          <div class="stat-label">Farming Courses</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-number" data-count="{{ stats.total_badges }}">{{ stats.total_badges }}+</div>
+          <div class="stat-label">Badges Earned</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item animate-on-scroll">
+          <div class="stat-number" data-count="{{ stats.total_certificates }}">{{ stats.total_certificates }}+</div>
+          <div class="stat-label">Certificates Won</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta-section">
+  <div class="container text-center">
+    <div class="animate-on-scroll">
+      <h2 class="cta-title">Start Your EcoFarm Connect Journey!</h2>
+      <p class="cta-subtitle">
+        Join the league of sustainable farmers and become a green leader in your community.
+      </p>
+      {% if not user.is_authenticated %}
+        <div class="mt-4">
+          <a href="{% url 'accounts:register' %}" class="btn btn-primary-modern me-3">
+            <i class="fas fa-user-plus me-2"></i>Join Now - It's Free
+          </a>
+          <a href="{% url 'courses:course_list' %}" class="btn btn-outline-modern">
+            <i class="fas fa-eye me-2"></i>Explore Curriculum
+          </a>
+        </div>
+      {% else %}
+        <div class="mt-4">
+          <a href="{% url 'core:dashboard' %}" class="btn btn-primary-modern">
+            <i class="fas fa-tachometer-alt me-2"></i>Continue Learning
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('animate'); }
+    });
+  }, observerOptions);
+  document.querySelectorAll('.animate-on-scroll').forEach(el => { observer.observe(el); });
+});
+document.addEventListener('DOMContentLoaded', function() {
+  // Intersection observer for scroll animations (if not already present)
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('animate'); }
+    });
+  }, observerOptions);
+  document.querySelectorAll('.animate-on-scroll').forEach(el => { observer.observe(el); });
+
+  // Stats animated count up
+  function animateStat(el) {
+    const target = parseInt(el.getAttribute('data-count'), 10);
+    let count = 0;
+    const step = Math.ceil(target / 80);
+    const update = () => {
+      count += step;
+      if (count >= target) {
+        el.textContent = target.toLocaleString() + '+';
+      } else {
+        el.textContent = count.toLocaleString() + '+';
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+  }
+  // Animate only when visible
+  const statObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateStat(entry.target);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+});
+
+</script>
+{% endblock %}

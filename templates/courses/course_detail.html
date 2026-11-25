@@ -1,0 +1,684 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }} - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-green: #28a745;
+        --secondary-teal: #20c997;
+        --accent-blue: #007bff;
+        --warning-yellow: #ffc107;
+        --success-green: #28a745;
+        --border-radius: 12px;
+        --box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        --box-shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .course-header {
+        background: linear-gradient(135deg, {{ course.category.color|default:"#28a745" }} 0%, var(--secondary-teal) 100%);
+        color: white;
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .course-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="1000,100 1000,0 0,100"/></svg>');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .course-header .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .course-badge {
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-weight: 600;
+        font-size: 0.9em;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin: 0 8px 8px 0;
+        transition: var(--transition);
+    }
+
+    .course-badge:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+    }
+
+    .course-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .course-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.1);
+        padding: 10px 16px;
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        transition: var(--transition);
+    }
+
+    .course-stat-item:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-2px);
+    }
+
+    .progress-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: conic-gradient(white {{ progress }}%, rgba(255,255,255,0.3) {{ progress }}%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 0 auto 1rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        transition: var(--transition);
+    }
+
+    .progress-circle:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    }
+
+    .progress-circle::before {
+        content: '';
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        background: white;
+        position: absolute;
+        box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .progress-text {
+        position: relative;
+        z-index: 1;
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--primary-green);
+    }
+
+    .modern-card {
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        border: 1px solid rgba(0,0,0,0.05);
+        overflow: hidden;
+        transition: var(--transition);
+        margin-bottom: 2rem;
+    }
+
+    .modern-card:hover {
+        box-shadow: var(--box-shadow-hover);
+        transform: translateY(-3px);
+    }
+
+    .modern-card-header {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 1.5rem;
+        border-bottom: 2px solid var(--primary-green);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .modern-card-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary-green), var(--secondary-teal));
+    }
+
+    .modern-card-header h5 {
+        margin: 0;
+        font-weight: 700;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .modern-card-body {
+        padding: 2rem;
+    }
+
+    .lesson-item {
+        background: white;
+        border: 2px solid rgba(0,0,0,0.05);
+        border-radius: var(--border-radius);
+        margin-bottom: 15px;
+        transition: var(--transition);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .lesson-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary-green), var(--secondary-teal));
+        transform: scaleY(0);
+        transition: var(--transition);
+    }
+
+    .lesson-item:hover {
+        border-color: var(--primary-green);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.15);
+        transform: translateX(5px);
+    }
+
+    .lesson-item:hover::before {
+        transform: scaleY(1);
+    }
+
+    .lesson-item.completed {
+        background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%);
+        border-color: var(--success-green);
+    }
+
+    .lesson-content {
+        padding: 1.5rem;
+    }
+
+    .lesson-number {
+        background: linear-gradient(135deg, var(--primary-green), var(--secondary-teal));
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .lesson-badge {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        color: #1565c0;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.8em;
+        font-weight: 600;
+        border: 1px solid rgba(21, 101, 192, 0.2);
+    }
+
+    .btn-modern {
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        border: none;
+        box-shadow: var(--box-shadow);
+    }
+
+    .btn-modern:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--box-shadow-hover);
+    }
+
+    .btn-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn-modern:hover::before {
+        left: 100%;
+    }
+
+    .btn-primary-modern {
+        background: linear-gradient(135deg, var(--primary-green), var(--secondary-teal));
+        color: white;
+    }
+
+    .btn-success-modern {
+        background: linear-gradient(135deg, var(--success-green), #20c997);
+        color: white;
+    }
+
+    .btn-outline-modern {
+        background: transparent;
+        border: 2px solid var(--primary-green);
+        color: var(--primary-green);
+    }
+
+    .btn-outline-modern:hover {
+        background: var(--primary-green);
+        color: white;
+    }
+
+    .info-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .info-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+    }
+
+    .info-list li:hover {
+        padding-left: 10px;
+        background: rgba(40, 167, 69, 0.05);
+    }
+
+    .info-list li:last-child {
+        border-bottom: none;
+    }
+
+    .completion-status {
+        background: linear-gradient(135deg, var(--success-green), var(--secondary-teal));
+        color: white;
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: var(--box-shadow);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .completion-status::before {
+        content: '🎉';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 3rem;
+        opacity: 0.3;
+        transform: rotate(15deg);
+    }
+
+    .certificate-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .prerequisites-list a {
+        color: var(--primary-green);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        padding: 8px 0;
+        display: block;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .prerequisites-list a:hover {
+        color: var(--secondary-teal);
+        padding-left: 10px;
+        background: rgba(40, 167, 69, 0.05);
+    }
+
+    .enrollment-card {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        text-align: center;
+        border: 2px solid rgba(255,255,255,0.3);
+        box-shadow: var(--box-shadow);
+    }
+
+    @media (max-width: 768px) {
+        .course-header {
+            padding: 3rem 0;
+        }
+        
+        .course-stats {
+            gap: 1rem;
+        }
+        
+        .course-stat-item {
+            font-size: 0.9em;
+            padding: 8px 12px;
+        }
+        
+        .certificate-buttons {
+            flex-direction: column;
+        }
+        
+        .lesson-item:hover {
+            transform: none;
+        }
+    }
+
+    /* Animation for progress circle */
+    @keyframes fillProgress {
+        from { --progress: 0; }
+        to { --progress: {{ progress }}; }
+    }
+
+    .progress-circle {
+        animation: fillProgress 2s ease-out;
+    }
+
+    /* Pulse animation for completed lessons */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .lesson-item.completed .lesson-number {
+        animation: pulse 2s infinite;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Course Header -->
+<section class="course-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <span class="course-badge">
+                        <i class="fas fa-tag"></i>
+                        {{ course.category.name }}
+                    </span>
+                    <span class="course-badge">
+                        <i class="fas fa-signal"></i>
+                        {{ course.get_difficulty_display }}
+                    </span>
+                </div>
+                
+                <h1 class="display-4 fw-bold mb-4">{{ course.title }}</h1>
+                <p class="lead mb-4" style="font-size: 1.2rem; line-height: 1.6;">{{ course.description }}</p>
+                
+                <div class="course-stats">
+                    <div class="course-stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ course.duration_hours }} hours</span>
+                    </div>
+                    <div class="course-stat-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>{{ course.points_reward }} CropCoins</span>
+                    </div>
+                    <div class="course-stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>{{ total_enrollments }} enrolled</span>
+                    </div>
+                    <div class="course-stat-item">
+                        <i class="fas fa-play-circle"></i>
+                        <span>{{ lessons.count }} lessons</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="enrollment-card">
+                    {% if is_enrolled %}
+                        <div class="progress-circle mb-3">
+                            <div class="progress-text">{{ progress }}%</div>
+                        </div>
+                        <h5 class="mb-3" style="color: #333;">Your Progress</h5>
+                        
+                        {% if progress == 100 %}
+                            <div class="completion-status">
+                                <h4><i class="fas fa-medal"></i> Course Completed!</h4>
+                                <p class="mb-0">Congratulations on finishing this course!</p>
+                            </div>
+
+                            {% if certificate %}
+                                <div class="certificate-buttons">
+                                    <a href="{% url 'courses:certificate_pdf' certificate.id %}" 
+                                       class="btn btn-success-modern btn-modern" target="_blank">
+                                        <i class="fas fa-download"></i> Download Certificate
+                                    </a>
+                                    <a href="{% url 'courses:certificate_verify' certificate.id %}" 
+                                       class="btn btn-outline-modern btn-modern" target="_blank">
+                                        <i class="fas fa-shield-alt"></i> Verify Certificate
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <button onclick="completeCourse('{{ course.id }}')" 
+                                    class="btn btn-success-modern btn-modern btn-lg">
+                                <i class="fas fa-check-circle"></i> Mark as Complete
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'courses:enroll_course' course.id %}" 
+                               class="btn btn-primary-modern btn-modern btn-lg mb-3">
+                                <i class="fas fa-rocket"></i> Enroll Now
+                            </a>
+                            <p class="text-muted">
+                                <i class="fas fa-gift"></i> Free to join • Earn {{ course.points_reward }} CropCoins
+                            </p>
+                        {% else %}
+                            <a href="{% url 'accounts:login' %}" 
+                               class="btn btn-primary-modern btn-modern btn-lg">
+                                <i class="fas fa-sign-in-alt"></i> Login to Enroll
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Course Content -->
+            <div class="modern-card">
+                <div class="modern-card-header">
+                    <h5><i class="fas fa-book-open"></i> Course Overview</h5>
+                </div>
+                <div class="modern-card-body">
+                    <div style="font-size: 1.1rem; line-height: 1.7; color: #2c3e50;">
+                        {{ course.content|linebreaks }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Lessons -->
+            <div class="modern-card">
+                <div class="modern-card-header">
+                    <h5><i class="fas fa-play-circle"></i> Course Lessons ({{ lessons.count }})</h5>
+                </div>
+                <div class="modern-card-body">
+                    {% for lesson in lessons %}
+                        <div class="lesson-item {% if lesson.id in completed_lesson_ids %}completed{% endif %}">
+                            <div class="lesson-content">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="lesson-number">{{ forloop.counter }}</div>
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">
+                                                {{ lesson.title }}
+                                                {% if lesson.is_free %}
+                                                    <span class="badge bg-success ms-2">Free</span>
+                                                {% endif %}
+                                            </h6>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <span class="lesson-badge">
+                                                    <i class="fas fa-{{ lesson.lesson_type|default:'book' }}"></i>
+                                                    {{ lesson.get_lesson_type_display }}
+                                                </span>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-clock"></i> {{ lesson.duration_minutes }} min
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        {% if is_enrolled or lesson.is_free %}
+                                            <a href="{% url 'courses:lesson_detail' lesson.id %}" 
+                                               class="btn btn-outline-modern btn-modern btn-sm">
+                                                <i class="fas fa-play"></i> Start Lesson
+                                            </a>
+                                        {% else %}
+                                            <i class="fas fa-lock text-muted" style="font-size: 1.2rem;"></i>
+                                        {% endif %}
+                                        
+                                        {% if lesson.id in completed_lesson_ids %}
+                                            <div class="text-success" style="display: flex; align-items: center; gap: 5px;">
+                                                <i class="fas fa-check-circle" style="font-size: 1.2rem;"></i>
+                                                <small class="fw-bold">Completed</small>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Course Information -->
+            <div class="modern-card">
+                <div class="modern-card-header">
+                    <h6><i class="fas fa-info-circle"></i> Course Details</h6>
+                </div>
+                <div class="modern-card-body">
+                    <ul class="info-list">
+                        <li>
+                            <strong><i class="fas fa-tag me-2"></i>Category:</strong>
+                            <span class="text-primary fw-bold">{{ course.category.name }}</span>
+                        </li>
+                        <li>
+                            <strong><i class="fas fa-signal me-2"></i>Level:</strong>
+                            <span>{{ course.get_difficulty_display }}</span>
+                        </li>
+                        <li>
+                            <strong><i class="fas fa-clock me-2"></i>Duration:</strong>
+                            <span>{{ course.duration_hours }} hours</span>
+                        </li>
+                        <li>
+                            <strong><i class="fas fa-play-circle me-2"></i>Lessons:</strong>
+                            <span>{{ lessons.count }}</span>
+                        </li>
+                        <li>
+                            <strong><i class="fas fa-trophy me-2"></i>Points:</strong>
+                            <span class="text-success fw-bold">{{ course.points_reward }} CropCoins</span>
+                        </li>
+                        <li>
+                            <strong><i class="fas fa-users me-2"></i>Students:</strong>
+                            <span>{{ total_enrollments }} enrolled</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Prerequisites -->
+            {% if course.prerequisites.exists %}
+                <div class="modern-card">
+                    <div class="modern-card-header">
+                        <h6><i class="fas fa-exclamation-triangle text-warning"></i> Prerequisites</h6>
+                    </div>
+                    <div class="modern-card-body">
+                        <div class="prerequisites-list">
+                            {% for prereq in course.prerequisites.all %}
+                                <a href="{% url 'courses:course_detail' prereq.slug %}">
+                                    <i class="fas fa-arrow-right me-2"></i>{{ prereq.title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+{% if is_enrolled %}
+<script>
+function completeCourse(courseId) {
+    if (confirm('🎉 Ready to complete this course? This will mark all lessons as finished and issue your certificate!')) {
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Completing...';
+        button.disabled = true;
+        
+        fetch(`/courses/complete/${courseId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show success message with animation
+                const successDiv = document.createElement('div');
+                successDiv.className = 'alert alert-success text-center';
+                successDiv.innerHTML = `
+                    <h4><i class="fas fa-trophy text-warning"></i> Congratulations!</h4>
+                    <p>${data.message}</p>
+                `;
+                document.querySelector('.container').prepend(successDiv);
+                
+                // Reload page after short delay
+                setTimeout(() => location.reload(), 2000);
+            } else {
+                alert('❌ Error: ' + (data.error || 'Something went wrong'));
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        })
+        .catch(error => {
+            alert('❌ Error: ' + error);
+            button.innerHTML = originalText;
+            button.disabled = false;
+        });
+    }
+}
+</script>
+{% csrf_token %}
+{% endif %}
+{% endblock %}

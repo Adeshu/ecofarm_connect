@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% if form.instance.pk %}Edit Crop{% else %}Add New Crop{% endif %} - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .card-header h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+  }
+  .btn-success {
+    background: linear-gradient(135deg, #20c997, #28a745);
+    border-radius: 50px;
+    padding: 10px 28px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px #28a745a6;
+    transition: background 0.3s ease;
+  }
+  .btn-success:hover {
+    background: linear-gradient(135deg, #1aa87e, #238535);
+  }
+  .btn-secondary {
+    border-radius: 50px;
+    padding: 10px 28px;
+    font-weight: 700;
+  }
+  .form-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+  }
+  .container.py-4 {
+    max-width: 900px;
+  }
+  .alert {
+    border-radius: 13px;
+    font-size: 1.08em;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm rounded-3">
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">
+            <i class="fas fa-{% if form.instance.pk %}edit{% else %}plus{% endif %} me-2"></i>
+            {% if form.instance.pk %}Edit Crop{% else %}Add New Crop{% endif %}
+            {% if farm %} - {{ farm.name }}{% endif %}
+          </h4>
+        </div>
+        <div class="card-body p-4">
+        
+          {% if form.errors %}
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error|escape }}</li>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <li>{{ error|escape }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          
+          <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-6">
+                {{ form.name|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.variety|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.planted_date|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.expected_harvest_date|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.actual_harvest_date|as_crispy_field }}
+                <small class="form-text mt-1">Leave empty if not yet harvested</small>
+              </div>
+              <div class="col-md-6">
+                {{ form.status|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.area_planted|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.expected_yield|as_crispy_field }}
+              </div>
+              <div class="col-md-6">
+                {{ form.actual_yield|as_crispy_field }}
+                <small class="form-text mt-1">Fill after harvest</small>
+              </div>
+              <div class="col-12">
+                {{ form.notes|as_crispy_field }}
+              </div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+              <a href="{% if farm %}{% url 'farms:farm_detail' farm.id %}{% else %}{% url 'farms:farm_list' %}{% endif %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Cancel
+              </a>
+              <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i>
+                {% if form.instance.pk %}Update Crop{% else %}Add Crop{% endif %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

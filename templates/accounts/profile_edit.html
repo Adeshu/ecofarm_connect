@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Profile - {{ user.get_full_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .profile-edit-container {
+    max-width: 900px;
+    margin: 60px auto;
+  }
+  .card-edit-profile {
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(32, 201, 151, 0.15);
+    background: #ffffffcc;
+    backdrop-filter: blur(10px);
+  }
+  .profile-header {
+    background: linear-gradient(135deg, #20c997, #28a745);
+    color: white;
+    padding: 25px;
+    border-radius: 18px 18px 0 0;
+    text-align: center;
+  }
+  .profile-header h3 {
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+  .profile-header p {
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+  .form-label {
+    font-weight: 600;
+    color: #117a55;
+  }
+  input.form-control, select.form-select {
+    border-radius: 50px;
+    border: 1.8px solid #20c997;
+    padding: 12px 20px;
+    font-size: 1.05rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  input.form-control:focus, select.form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 15px rgba(40,167,69,0.4);
+  }
+  .btn-success {
+    background: linear-gradient(135deg, #20c997, #28a745);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    padding: 12px 30px;
+    box-shadow: 0 8px 28px rgba(32, 201, 151, 0.5);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .btn-success:hover {
+    background: linear-gradient(135deg, #1aa87e, #238535);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 700;
+  }
+  .form-errors {
+    color: #d9534f;
+    margin-bottom: 15px;
+  }
+  .profile-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .profile-left,
+  .profile-right {
+    flex: 1;
+    min-width: 300px;
+  }
+  .avatar-preview {
+    max-width: 160px;
+    max-height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #20c997;
+    margin-bottom: 1rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container profile-edit-container">
+  <div class="card card-edit-profile">
+    <div class="profile-header">
+      <h3><i class="fas fa-user-edit"></i> Edit Your Profile</h3>
+      <p>Update your personal and farming information below</p>
+    </div>
+    <div class="card-body p-4">
+      <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="profile-content">
+          <div class="profile-left">
+            {% if profile_form.instance.avatar %}
+              <img src="{{ profile_form.instance.avatar.url }}" alt="Avatar" class="avatar-preview">
+            {% endif %}
+            {{ profile_form.avatar.label_tag }}
+            {{ profile_form.avatar }}
+            {% for error in profile_form.avatar.errors %}
+              <div class="form-errors">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="profile-right">
+            {% if form.non_field_errors %}
+              <div class="form-errors">{{ form.non_field_errors }}</div>
+            {% endif %}
+            {% for field in form %}
+              <div class="mb-3">
+                {{ field.label_tag }} 
+                {{ field }}
+                {% if field.help_text %}
+                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <div class="form-errors">{{ error }}</div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+            {% if profile_form.non_field_errors %}
+              <div class="form-errors">{{ profile_form.non_field_errors }}</div>
+            {% endif %}
+            {% for field in profile_form %}
+              {% if field.name != 'avatar' %}
+                <div class="mb-3">
+                  {{ field.label_tag }} 
+                  {{ field }}
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <div class="form-errors">{{ error }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <a href="{% url 'accounts:profile' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Cancel
+          </a>
+          <button type="submit" class="btn btn-success">
+            <i class="fas fa-save"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

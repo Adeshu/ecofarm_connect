@@ -1,0 +1,42 @@
+[
+    {
+        "model": "courses.course",
+        "pk": 1,
+        "fields": {
+            "title": "Organic Farming Basics",
+            "description": "Learn the fundamentals of organic farming techniques."
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 2,
+        "fields": {
+            "title": "Advanced Water Conservation",
+            "description": "Explore advanced methods of water conservation in agriculture."
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 3,
+        "fields": {
+            "title": "Soil Health Management",
+            "description": "Understanding soil composition and health improvement strategies."
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 4,
+        "fields": {
+            "title": "Integrated Pest Management",
+            "description": "Sustainable approaches to managing agricultural pests."
+        }
+    },
+    {
+        "model": "courses.course",
+        "pk": 5,
+        "fields": {
+            "title": "Crop Rotation Techniques",
+            "description": "Maximizing soil fertility through strategic crop rotation."
+        }
+    }
+]

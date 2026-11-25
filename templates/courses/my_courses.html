@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}My Courses - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.mycourse-status {
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .93em;
+  padding: 7px 17px;
+  letter-spacing: .05em;
+}
+.card-complete {
+  border: 2px solid #37b24d!important;
+  box-shadow: 0 8px 24px #28a74520;
+}
+.btn-progress {
+  animation: pulse 1.3s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow:0 0 0 0 rgba(32,201,151,0.16);}
+  70% { box-shadow:0 0 0 8px rgba(32,201,151,0.0);}
+  100% { box-shadow:0 0 0 0 rgba(32,201,151,0.0);}
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold"><i class="fas fa-book-reader"></i> My Courses</h1>
+    <a href="{% url 'courses:course_list' %}" class="btn btn-primary rounded-pill"> <i class="fas fa-plus"></i> Browse More Courses </a>
+  </div>
+  <div class="mb-4">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a class="nav-link {% if not current_status %}active{% endif %}" href="{% url 'courses:my_courses' %}">All</a></li>
+      <li class="nav-item"><a class="nav-link {% if current_status == 'not_started' %}active{% endif %}" href="?status=not_started">Not Started</a></li>
+      <li class="nav-item"><a class="nav-link {% if current_status == 'in_progress' %}active{% endif %}" href="?status=in_progress">In Progress</a></li>
+      <li class="nav-item"><a class="nav-link {% if current_status == 'completed' %}active{% endif %}" href="?status=completed">Completed</a></li>
+    </ul>
+  </div>
+  <div class="row">
+    {% for enrollment in enrollments %}
+    <div class="col-lg-6 col-xl-4 mb-4">
+      <div class="card h-100 {% if enrollment.progress == 100 %}card-complete{% endif %}">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge mycourse-status" style="background:{{ enrollment.course.category.color }};color:#fff;">{{ enrollment.course.category.name }}</span>
+            <span class="badge bg-secondary">{{ enrollment.course.get_difficulty_display }}</span>
+            <small class="text-muted">{{ enrollment.enrolled_at|date:"M d, Y" }}</small>
+          </div>
+          <h5 class="card-title mb-1 fw-semibold">{{ enrollment.course.title }}</h5>
+          <p class="card-text text-muted mb-2">{{ enrollment.course.description|truncatewords:16 }}</p>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <small class="text-secondary">Progress</small>
+              <small class="fw-bold">{{ enrollment.progress }}%</small>
+            </div>
+            <div class="progress" style="height:10px;">
+              <div class="progress-bar {% if enrollment.progress == 100 %}bg-success{% else %}bg-primary{% endif %}" role="progressbar" style="width: {{ enrollment.progress }}%"></div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <small>
+              <i class="fas fa-clock"></i> {{ enrollment.course.duration_hours }}h
+              <i class="fas fa-coins ms-2 text-warning"></i> {{ enrollment.course.points_reward }} CropCoins
+            </small>
+          </div>
+          {% if enrollment.progress == 100 %}
+            <div class="text-success mb-2"><i class="fas fa-check-circle"></i> Completed</div>
+            <a href="{% url 'courses:course_detail' enrollment.course.slug %}" class="btn btn-success w-100 rounded-pill"> <i class="fas fa-certificate"></i> View Certificate </a>
+          {% else %}
+            <a href="{% url 'courses:course_detail' enrollment.course.slug %}" class="btn btn-primary btn-progress w-100 rounded-pill">
+              <i class="fas fa-play"></i> Continue Learning
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <div class="text-center py-5">
+        <i class="fas fa-graduation-cap fa-3x text-muted mb-3"></i>
+        <h3>No courses enrolled yet</h3>
+        <p class="text-muted">Start your learning journey by enrolling in a course.</p>
+        <a href="{% url 'courses:course_list' %}" class="btn btn-primary btn-lg rounded-pill"><i class="fas fa-search"></i> Browse Courses</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

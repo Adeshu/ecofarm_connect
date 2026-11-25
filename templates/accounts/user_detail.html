@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Profile - {{ profile_user.get_full_name|default:profile_user.username }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .profile-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 30px;
+    background: #e6f4ea;
+    border-radius: 18px;
+    padding: 24px 32px;
+    box-shadow: 0 12px 40px rgba(32, 201, 151, 0.15);
+  }
+  .avatar-container {
+    flex-shrink: 0;
+    position: relative;
+  }
+  .avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #28a745;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .avatar-default {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #20c997, #28a745);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 900;
+    user-select: none;
+    border: 4px solid #28a745;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .profile-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #117a55;
+  }
+  .profile-email {
+    font-size: 1.1rem;
+    color: #385737;
+    margin-top: 4px;
+  }
+  .profile-section {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 16px 56px rgba(32, 201, 151, 0.1);
+    margin-bottom: 40px;
+    padding: 30px 36px;
+  }
+  .section-header {
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: #28a745;
+    margin-bottom: 22px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 24px 32px;
+  }
+  .stat-card {
+    background: #e6f4ea;
+    padding: 20px 16px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(32, 201, 151, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    color: #117a55;
+    transition: transform 0.3s ease;
+  }
+  .stat-card:hover {
+    transform: translateY(-4px);
+  }
+  .stat-value {
+    font-size: 2rem;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+  .farm-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .farm-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #d6e8d8;
+  }
+  .farm-item:last-child {
+    border-bottom: none;
+  }
+  .farm-name {
+    font-weight: 600;
+    color: #206936;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .farm-name:hover {
+    color: #28a745;
+  }
+  .badges-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .badge {
+    background: #20c997;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 22px rgba(32, 201, 151, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+    cursor: default;
+    transition: transform 0.3s ease;
+  }
+  .badge:hover {
+    transform: scale(1.05);
+  }
+  .badge i.fas.fa-award {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  .badge-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .leaderboard-badge {
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 8px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <!-- Avatar with corrected fallback logic -->
+    <div class="avatar-container">
+      {% if profile and profile.avatar %}
+        <!-- Avatar from Profile model -->
+        <img src="{{ profile.avatar.url }}" 
+             alt="{{ profile_user.get_full_name|default:profile_user.username }}" 
+             class="avatar-img">
+      {% elif profile_user.avatar %}
+        <!-- Avatar from User model directly -->
+        <img src="{{ profile_user.avatar.url }}" 
+             alt="{{ profile_user.get_full_name|default:profile_user.username }}" 
+             class="avatar-img">
+      {% else %}
+        <!-- Default fallback with initial -->
+        <div class="avatar-default">
+          {{ profile_user.get_full_name|default:profile_user.username|slice:":1"|upper }}
+        </div>
+      {% endif %}
+    </div>
+    
+    <!-- Profile Info -->
+    <div>
+      <div class="profile-name">{{ profile_user.get_full_name|default:profile_user.username }}</div>
+      <div class="profile-email">{{ profile_user.email }}</div>
+      {% if leaderboard_position %}
+        <span class="leaderboard-badge">
+          <i class="fas fa-trophy me-1"></i>Rank #{{ leaderboard_position }}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Achievements & Stats -->
+  <section class="profile-section">
+    <h2 class="section-header"><i class="fas fa-chart-line me-2"></i>User Stats</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">{{ completed_quests|default:0 }}</div>
+        <div class="stat-label">Completed Quests</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ completed_courses|default:0 }}</div>
+        <div class="stat-label">Completed Courses</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ public_farms|length|default:0 }}</div>
+        <div class="stat-label">Farms Managed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ recent_badges|length|default:0 }}</div>
+        <div class="stat-label">Badges Earned</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farms -->
+  <section class="profile-section">
+    <h2 class="section-header"><i class="fas fa-tractor me-2"></i>Farms</h2>
+    {% if public_farms %}
+      <ul class="farm-list">
+        {% for farm in public_farms %}
+          <li class="farm-item">
+            <a href="{% url 'farms:farm_detail' farm.id %}" class="farm-name">
+              <i class="fas fa-map-marker-alt me-2 text-success"></i>{{ farm.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="text-center py-4 text-muted">
+        <i class="fas fa-seedling fa-3x mb-3 d-block"></i>
+        <p>No farms to display.</p>
+      </div>
+    {% endif %}
+  </section>
+
+  <!-- Badges -->
+  <section class="profile-section">
+    <h2 class="section-header"><i class="fas fa-award me-2"></i>Recent Badges</h2>
+    {% if recent_badges %}
+      <div class="badges-carousel">
+        {% for user_badge in recent_badges %}
+          <div class="badge" title="{{ user_badge.badge.title }}">
+            <i class="fas fa-award"></i>
+            <div class="badge-name">{{ user_badge.badge.title }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center py-4 text-muted">
+        <i class="fas fa-trophy fa-3x mb-3 d-block"></i>
+        <p>No badges earned yet. Complete quests to earn badges!</p>
+      </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

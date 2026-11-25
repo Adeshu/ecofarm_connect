@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Certificates - {{ site_name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-certificate"></i> My Certificates</h2>
+        <div class="text-muted">
+            Total: {{ total_certificates }} certificate{{ total_certificates|pluralize }}
+        </div>
+    </div>
+
+    {% if certificates %}
+        <div class="row">
+            {% for cert in certificates %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-award text-success" style="font-size: 60px;"></i>
+                        </div>
+
+                        <h5 class="card-title">{{ cert.course.title }}</h5>
+                        <p class="text-muted small mb-2">Certificate of Completion</p>
+
+                        <div class="certificate-details mb-3">
+                            <div class="row text-sm">
+                                <div class="col-12">
+                                    <strong>Certificate ID:</strong><br>
+                                    <code class="small">{{ cert.certificate_code }}</code>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <strong>Issued Date:</strong><br>
+                                    {{ cert.issued_at|date:"M d, Y" }}
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <strong>Verification Code:</strong><br>
+                                    <code class="small">{{ cert.verification_code }}</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer bg-transparent">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'courses:certificate_pdf' cert.id %}" class="btn btn-success btn-sm w-100">
+                                    <i class="fas fa-download"></i> Download
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'courses:certificate_verify' cert.id %}" class="btn btn-outline-primary btn-sm w-100" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Verify
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if certificates.has_other_pages %}
+        <nav aria-label="Certificates pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if certificates.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ certificates.previous_page_number }}">&laquo; Previous</a>
+                    </li>
+                {% endif %}
+
+                {% for num in certificates.paginator.page_range %}
+                    {% if certificates.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > certificates.number|add:'-3' and num < certificates.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if certificates.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ certificates.next_page_number }}">Next &raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+    {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-certificate text-muted" style="font-size: 100px;"></i>
+            <h3 class="text-muted mt-3">No Certificates Yet</h3>
+            <p class="text-muted">Complete courses to earn certificates!</p>
+            <a href="{% url 'courses:course_list' %}" class="btn btn-primary">
+                <i class="fas fa-book"></i> Browse Courses
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

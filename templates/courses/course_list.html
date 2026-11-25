@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %}Courses - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.card-course {
+  border-radius: 18px;
+  box-shadow: 0 6px 32px 0 rgba(0,0,0,0.06);
+  transition: box-shadow .3s,transform .3s;
+  overflow: hidden;
+}
+.card-course:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 32px 0 rgba(0,180,120,0.08);
+}
+.course-thumb {
+  height: 190px; 
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  object-fit: cover;
+}
+.ribbon {
+  position: absolute;
+  top: 14px;
+  left: -16px;
+  padding: 5px 22px;
+  background: var(--category-color,#007bff);
+  color: #fff !important;
+  font-weight: 600;
+  font-size: .95em;
+  border-radius: 0 20px 20px 0;
+  z-index: 20;
+  box-shadow: 0 2px 12px 0 rgba(32,201,151,0.10);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center mb-4">
+      <h1 class="fw-bold"><i class="fas fa-graduation-cap"></i> Explore Courses</h1>
+      {% if user.is_authenticated %}
+      <a href="{% url 'courses:my_courses' %}" class="btn btn-outline-primary rounded-pill">
+        <i class="fas fa-book-reader"></i> My Courses
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <form method="get" class="row g-2 mb-4">
+    <div class="col-sm-5 col-md-4">
+      <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ search_query }}">
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <select name="category" class="form-select">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+        <option value="{{ category.id }}" {% if category.id|stringformat:'s' == current_category %}selected{% endif %}>{{ category.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <select name="difficulty" class="form-select">
+        <option value="">All Levels</option>
+        {% for diff_key, diff_name in difficulty_choices %}
+        <option value="{{ diff_key }}" {% if current_difficulty == diff_key %}selected{% endif %}>{{ diff_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-sm-1 col-md-2">
+      <button type="submit" class="btn btn-primary w-100 rounded-pill">
+        <i class="fas fa-search"></i> Filter
+      </button>
+    </div>
+  </form>
+
+  <!-- Courses Grid -->
+  <div class="row">
+    {% for course in page_obj %}
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card card-course h-100 position-relative">
+        {% if course.thumbnail %}
+          <img src="{{ course.thumbnail }}" class="course-thumb w-100" alt="{{ course.title }}">
+        {% else %}
+          <div class="course-thumb d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, {{ course.category.color }}, #20c997);color: #fff;">
+            <i class="{{ course.category.icon }} fa-3x"></i>
+          </div>
+        {% endif %}
+        <span class="ribbon" style="--category-color:{{ course.category.color }};">{{ course.category.name }}</span>
+        <div class="card-body d-flex flex-column">
+          <div class="mb-2">
+            <span class="badge rounded-pill bg-secondary">{{ course.get_difficulty_display }}</span>
+          </div>
+          <h5 class="card-title mb-2 fw-semibold">{{ course.title }}</h5>
+          <p class="card-text flex-grow-1 text-muted">{{ course.description|truncatewords:20 }}</p>
+          <div class="course-meta my-2">
+            <span class="me-2"><i class="fas fa-clock"></i> {{ course.duration_hours }}h</span>
+            <span class="me-2"><i class="fas fa-coins text-warning"></i> {{ course.points_reward }} CropCoins</span>
+            <span><i class="fas fa-users"></i> {{ course.enrollments.count }}</span>
+          </div>
+          <a href="{% url 'courses:course_detail' course.slug %}" class="btn btn-primary rounded-pill w-100 mt-auto">
+            <i class="fas fa-eye"></i> View Course
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <div class="text-center py-5">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <h3>No courses found</h3>
+        <p class="text-muted">Try adjusting your search criteria.</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  {% if page_obj.has_other_pages %}
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="Courses pagination">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+          {% endif %}
+          {% for page_num in page_obj.paginator.page_range %}
+            {% if page_num == page_obj.number %}
+              <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
+            {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

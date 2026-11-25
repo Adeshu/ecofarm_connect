@@ -1,0 +1,210 @@
+[
+    {
+        "model": "accounts.user",
+        "pk": 1,
+        "fields": {
+            "phone": "1234567890",
+            "first_name": "Alice",
+            "last_name": "Smith",
+            "state": "California",
+            "district": "District A",
+            "village": "Village X",
+            "total_points": 1200,
+            "level": 5,
+            "is_verified": true,
+            "date_joined": "2025-09-26T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 2,
+        "fields": {
+            "phone": "1234567891",
+            "first_name": "Bob",
+            "last_name": "Johnson",
+            "state": "Texas",
+            "district": "District B",
+            "village": "Village Y",
+            "total_points": 950,
+            "level": 4,
+            "is_verified": true,
+            "date_joined": "2025-09-20T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 3,
+        "fields": {
+            "phone": "1234567892",
+            "first_name": "Carol",
+            "last_name": "Williams",
+            "state": "Florida",
+            "district": "District C",
+            "village": "Village Z",
+            "total_points": 700,
+            "level": 3,
+            "is_verified": true,
+            "date_joined": "2025-09-18T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 4,
+        "fields": {
+            "phone": "1234567893",
+            "first_name": "David",
+            "last_name": "Brown",
+            "state": "Nevada",
+            "district": "District D",
+            "village": "Village W",
+            "total_points": 450,
+            "level": 2,
+            "is_verified": true,
+            "date_joined": "2025-09-15T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 5,
+        "fields": {
+            "phone": "1234567894",
+            "first_name": "Eva",
+            "last_name": "Davis",
+            "state": "Oregon",
+            "district": "District E",
+            "village": "Village V",
+            "total_points": 800,
+            "level": 4,
+            "is_verified": true,
+            "date_joined": "2025-09-12T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 6,
+        "fields": {
+            "phone": "1234567895",
+            "first_name": "Frank",
+            "last_name": "Miller",
+            "state": "Washington",
+            "district": "District F",
+            "village": "Village U",
+            "total_points": 650,
+            "level": 3,
+            "is_verified": true,
+            "date_joined": "2025-09-10T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 7,
+        "fields": {
+            "phone": "1234567896",
+            "first_name": "Grace",
+            "last_name": "Wilson",
+            "state": "Colorado",
+            "district": "District G",
+            "village": "Village T",
+            "total_points": 1100,
+            "level": 5,
+            "is_verified": true,
+            "date_joined": "2025-09-08T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 8,
+        "fields": {
+            "phone": "1234567897",
+            "first_name": "Henry",
+            "last_name": "Moore",
+            "state": "Arizona",
+            "district": "District H",
+            "village": "Village S",
+            "total_points": 520,
+            "level": 2,
+            "is_verified": true,
+            "date_joined": "2025-09-05T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 9,
+        "fields": {
+            "phone": "1234567898",
+            "first_name": "Ivy",
+            "last_name": "Taylor",
+            "state": "Montana",
+            "district": "District I",
+            "village": "Village R",
+            "total_points": 370,
+            "level": 2,
+            "is_verified": true,
+            "date_joined": "2025-09-03T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 10,
+        "fields": {
+            "phone": "1234567899",
+            "first_name": "Jack",
+            "last_name": "Anderson",
+            "state": "Idaho",
+            "district": "District J",
+            "village": "Village Q",
+            "total_points": 890,
+            "level": 4,
+            "is_verified": true,
+            "date_joined": "2025-09-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 11,
+        "fields": {
+            "phone": "1234567800",
+            "first_name": "Kate",
+            "last_name": "Thomas",
+            "state": "Utah",
+            "district": "District K",
+            "village": "Village P",
+            "total_points": 1350,
+            "level": 5,
+            "is_verified": true,
+            "date_joined": "2025-08-28T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 12,
+        "fields": {
+            "phone": "1234567801",
+            "first_name": "Luke",
+            "last_name": "Jackson",
+            "state": "New Mexico",
+            "district": "District L",
+            "village": "Village O",
+            "total_points": 280,
+            "level": 1,
+            "is_verified": true,
+            "date_joined": "2025-08-25T00:00:00Z"
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 13,
+        "fields": {
+            "phone": "1234567802",
+            "first_name": "Maya",
+            "last_name": "White",
+            "state": "Wyoming",
+            "district": "District M",
+            "village": "Village N",
+            "total_points": 740,
+            "level": 3,
+            "is_verified": true,
+            "date_joined": "2025-08-22T00:00:00Z"
+        }
+    }
+]

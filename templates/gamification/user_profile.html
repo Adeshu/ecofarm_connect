@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Profile - {{ user.get_full_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .profile-container {
+    max-width: 800px;
+    margin: 60px auto;
+  }
+  .card-profile {
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(32, 201, 151, 0.15);
+    background: #ffffffcc;
+    backdrop-filter: blur(10px);
+  }
+  .profile-header {
+    background: linear-gradient(135deg, #20c997, #28a745);
+    color: white;
+    padding: 25px;
+    border-radius: 18px 18px 0 0;
+    text-align: center;
+  }
+  .profile-header h3 {
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+  .profile-header p {
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+  .avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-top: 10px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  }
+  .rank-badge {
+    margin: 0 auto 10px;
+    background: #28a745;
+    color: white;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .profile-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+  }
+  .profile-row:last-child {
+    border-bottom: none;
+  }
+  .profile-label {
+    flex: 0 0 30%;
+    font-weight: 700;
+    color: #117a55;
+  }
+  .profile-value {
+    flex: 1;
+    color: #333;
+  }
+  .btn-primary, .btn-secondary {
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #20c997, #28a745);
+    color: #fff;
+    border: none;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #1aa87e, #238535);
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container profile-container">
+  <div class="card card-profile">
+    <div class="profile-header">
+      {% if leaderboard_position %}
+      <div class="rank-badge" title="Leaderboard Rank">#{{ leaderboard_position }}</div>
+      {% endif %}
+      <h3><i class="fas fa-user-circle"></i> {{ user.get_full_name|default:user.username }}</h3>
+      <p>{{ user.email }}</p>
+      {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="Avatar" class="avatar-img"/>
+      {% else %}
+        <img src="{% static 'images/default_avatar.png' %}" alt="Default Avatar" class="avatar-img"/>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <div class="profile-row">
+        <div class="profile-label">Phone</div>
+        <div class="profile-value">{{ user.phone|default:"N/A" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">State</div>
+        <div class="profile-value">{{ user.state|default:"N/A" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">District</div>
+        <div class="profile-value">{{ user.district|default:"N/A" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">Village</div>
+        <div class="profile-value">{{ user.village|default:"N/A" }}</div>
+      </div>      
+      <div class="profile-row">
+        <div class="profile-label">Date of Birth</div>
+        <div class="profile-value">{{ profile.date_of_birth|date:"F j, Y"|default:"N/A" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">Bio</div>
+        <div class="profile-value">{{ profile.bio|linebreaksbr|default:"N/A" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">Farming Experience (Years)</div>
+        <div class="profile-value">{{ profile.farming_experience_years|default:"0" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">Preferred Farming Type</div>
+        <div class="profile-value">{{ profile.preferred_farming_type|default:"N/A" }}</div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">Gender</div>
+        <div class="profile-value">
+          {% if profile.gender %}
+            {% if profile.gender == "M" %}Male
+            {% elif profile.gender == "F" %}Female
+            {% elif profile.gender == "O" %}Other
+            {% else %}Prefer Not to Say
+            {% endif %}
+          {% else %}
+            N/A
+          {% endif %}
+        </div>
+      </div>
+      <div class="profile-row">
+        <div class="profile-label">Total CropCoins</div>
+        <div class="profile-value"><i class="fas fa-coins me-2 text-warning"></i>{{ user.total_points|default:"0" }}</div>
+      </div>
+      <div class="mt-4 d-flex justify-content-between">
+        <a href="{% url 'core:dashboard' %}" class="btn btn-secondary">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="{% url 'accounts:profile_edit' %}" class="btn btn-primary">
+          <i class="fas fa-edit"></i> Edit Profile
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+:root {
+    --primary-green: #28a745;
+    --secondary-green: #34ce57;
+    --dark-green: #155724;
+    --light-green: #d4edda;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+.bg-gradient {
+    background-color: var(--primary-green) !important;
+}
+
+.text-primary {
+    color: var(--primary-green) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), #20c997);
+    min-height: 500px;
+}
+
+.hero-stats .col-4 {
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-stats .col-4:last-child {
+    border-right: none;
+}
+
+.feature-card {
+    transition: transform 0.3s ease;
+    border: none;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}

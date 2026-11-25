@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Certificate Verification - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.verify-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 40px 20px;
+  background: #f0f9f5;
+}
+.verify-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  max-width: 900px;
+  width: 100%;
+  padding: 30px;
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.verify-header {
+  background: linear-gradient(135deg, #20c997, #4dd0e1);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  border-radius: 16px 16px 0 0;
+}
+.verify-header h3 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.verify-icon {
+  margin: 20px 0;
+}
+.verify-icon i {
+  font-size: 110px;
+}
+.details-table {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto 0;
+}
+.details-table td {
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+.details-table td strong {
+  display: block;
+  color: #333;
+}
+.valid-section {
+  text-align: center;
+  margin-top: 30px;
+}
+.valid-icon i {
+  font-size: 120px;
+  color: #28a745;
+}
+.valid-text {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #28a745;
+}
+.invalid-section {
+  text-align: center;
+  margin-top: 30px;
+}
+.invalid-icon i {
+  font-size: 120px;
+  color: #dc3545;
+}
+.invalid-text {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #dc3545;
+}
+.return-home {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 30px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #20c997, #4dd0e1);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+.return-home:hover {
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  transform: translateY(-2px);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="verify-container">
+  <div class="verify-card">
+    <!-- Header -->
+    <div class="verify-header mb-4">
+      <h3><i class="fas fa-certificate"></i> Certificate Verification</h3>
+    </div>
+
+    <!-- Verification Result -->
+    {% if verified %}
+      <div class="valid-section">
+        <i class="fas fa-check-circle"></i>
+        <div class="verify-icon"></div>
+        <div class="verify-header">
+          <h4 class="mt-3 mb-2">Certificate Valid & Authentic</h4>
+        </div>
+        <table class="details-table table-borderless text-start">
+          <tr><td><strong>Recipient:</strong></td><td>{{ user.get_full_name }}</td></tr>
+          <tr><td><strong>Course:</strong></td><td>{{ course.title }}</td></tr>
+          <tr><td><strong>Issue Date:</strong></td><td>{{ issued_date|date:"F d, Y" }}</td></tr>
+          <tr><td><strong>Certificate ID:</strong></td><td><code>{{ certificate_id }}</code></td></tr>
+          <tr><td><strong>Verification Code:</strong></td><td><code>{{ verification_code }}</code></td></tr>
+        </table>
+        <div class="mt-4">
+          <a href="{% url 'courses:certificate_pdf' cert.id %}" class="btn btn-success btn-lg rounded-pill px-4 me-2"><i class="fas fa-download"></i> Download PDF</a>
+          <a href="{% url 'courses:certificate_verify' cert.id %}" target="_blank" class="btn btn-outline-success btn-lg rounded-pill px-4"><i class="fas fa-shield-alt"></i> Verify Online</a>
+        </div>
+      </div>
+    {% else %}
+      <div class="invalid-section">
+        <i class="fas fa-times-circle"></i>
+        <div class="verify-icon"></div>
+        <h4 class="mt-3 mb-2">Invalid or Non-Existent Certificate</h4>
+        <p class="mb-0">{{ error_message|default:"The certificate could not be verified. Please check the ID and try again." }}</p>
+        <div class="mt-4">
+          <a href="{% url 'core:home' %}" class="return-home"><i class="fas fa-home"></i> Return Home</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

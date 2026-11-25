@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .stats-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(40,167,69,0.12);
+    color: #fff;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .stats-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(40,167,69,0.2);
+  }
+  .stats-icon {
+    font-size: 3rem;
+    margin-bottom: 0.4rem;
+    color: #fff;
+  }
+  .stats-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stats-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+  .card-header {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border-radius: 16px 16px 0 0;
+    color: white;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  .card-body {
+    padding: 1.5rem;
+  }
+  .farm-entry, .quest-entry, .achievement-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e6f1ea;
+  }
+  .farm-entry:last-child, .quest-entry:last-child, .achievement-entry:last-child {
+    border-bottom: none;
+  }
+  .entry-info {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  .entry-subtext {
+    font-size: 0.9rem;
+    color: #789262;
+  }
+  .btn-light {
+    border-radius: 28px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  .btn-light:hover {
+    background-color: #d0f0de;
+  }
+  .btn-primary, .btn-success {
+    border-radius: 28px;
+  }
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1f4d2f;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+.stats-card.bg-gradient {
+  background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+  color: #e0f8e6; /* lighter greenish-white for better contrast */
+  padding: 2rem 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(0, 80, 0, 0.7); /* subtle green shadow behind text */
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4 fw-bold">
+        <i class="fas fa-tachometer-alt text-success"></i> Welcome back, {{ user.get_full_name }}!
+      </h1>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-5">
+    <div class="col-lg-3 col-md-6">
+      <div class="stats-card bg-success" style="background: linear-gradient(135deg, #20c997 0%, #28a745 100%)">
+        <i class="fas fa-star stats-icon"></i>
+        <div class="stats-number">{{ user.total_points }}</div>
+        <div class="stats-label">Total CropCoins</div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="stats-card bg-success">
+        <i class="fas fa-level-up-alt stats-icon"></i>
+        <div class="stats-number">Level {{ user.level }}</div>
+        <div class="stats-label">Current Level</div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="stats-card bg-info">
+        <i class="fas fa-tasks stats-icon"></i>
+        <div class="stats-number">{{ completed_quests_count }}</div>
+        <div class="stats-label">Quests Completed</div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="stats-card bg-warning">
+        <i class="fas fa-trophy stats-icon"></i>
+        <div class="stats-number">#{{ leaderboard_position }}</div>
+        <div class="stats-label">Leaderboard Rank</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="card rounded-4 shadow-sm">
+        <div class="card-header">
+          <span class="section-title"><i class="fas fa-tractor"></i> My Farms</span>
+          <a href="{% url 'farms:farm_create' %}" class="btn btn-sm btn-light float-end"><i class="fas fa-plus"></i> Add Farm</a>
+        </div>
+        <div class="card-body">
+          {% if user_farms %}
+            {% for farm in user_farms %}
+              <div class="farm-entry">
+                <div class="entry-info">{{ farm.name }}</div>
+                <small class="entry-subtext">{{ farm.location }} • {{ farm.area_acres }} acres</small>
+                <a href="{% url 'farms:farm_detail' farm.id %}" class="btn btn-sm btn-outline-primary">View</a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="text-center p-4">
+              <i class="fas fa-tractor fa-3x text-muted mb-3"></i>
+              <p class="text-muted mb-2">No farms added yet.</p>
+              <a href="{% url 'farms:farm_create' %}" class="btn btn-primary rounded-pill px-4">Create Your First Farm</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card rounded-4 shadow-sm">
+        <div class="card-header">
+          <span class="section-title"><i class="fas fa-tasks"></i> Available Quests</span>
+          <a href="{% url 'quests:quest_list' %}" class="btn btn-sm btn-light float-end">View All</a>
+        </div>
+        <div class="card-body">
+          {% if available_quests %}
+            {% for quest in available_quests %}
+              <div class="quest-entry">
+                <div class="entry-info">{{ quest.title }}</div>
+                <small class="entry-subtext"><span class="badge bg-secondary">{{ quest.get_difficulty_display }}</span> {{ quest.points_reward }} CropCoins</small>
+                <a href="{% url 'quests:quest_detail' quest.id %}" class="btn btn-sm btn-outline-success">Start</a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="text-center p-4 text-success">
+              <i class="fas fa-check-circle fa-3x mb-3"></i>
+              <p>All quests completed! Great job!</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row g-4 mt-4">
+    <div class="col-lg-6">
+      <div class="card rounded-4 shadow-sm">
+        <div class="card-header">
+          <span class="section-title"><i class="fas fa-award"></i> My Badges</span>
+          <a href="{% url 'gamification:my_badges' %}" class="btn btn-sm btn-light float-end">View All</a>
+        </div>
+        <div class="card-body text-center">
+          {% if user_badges %}
+            <div class="row row-cols-3">
+              {% for user_badge in user_badges|slice:":6" %}
+                <div class="col py-2">
+                  <i class="{{ user_badge.badge.icon }} fa-2x text-warning"></i>
+                  <div class="mt-1 small fw-semibold">{{ user_badge.badge.name }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="py-4 text-muted">
+              <i class="fas fa-award fa-3x mb-3"></i>
+              <p>No badges earned yet.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card rounded-4 shadow-sm">
+        <div class="card-header">
+          <span class="section-title"><i class="fas fa-trophy"></i> Recent Achievements</span>
+          <a href="{% url 'gamification:my_achievements' %}" class="btn btn-sm btn-light float-end">View All</a>
+        </div>
+        <div class="card-body">
+          {% if recent_achievements %}
+            {% for achievement in recent_achievements %}
+              <div class="achievement-entry">
+                <div>
+                  <strong>{{ achievement.title }}</strong><br>
+                  <small class="text-muted">{{ achievement.achieved_at|date:"M d, Y" }}</small>
+                </div>
+                <span class="badge bg-success">+{{ achievement.points_earned }} CropCoins</span>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="py-4 text-muted text-center">
+              <i class="fas fa-trophy fa-3x mb-3"></i>
+              <p>Complete quests and lessons to earn achievements!</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .login-container {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0faf3;
+    padding: 30px 10px;
+  }
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 8px 28px rgba(32, 201, 151, 0.2);
+    background: white;
+    overflow: hidden;
+  }
+  .login-card .card-header {
+    background: linear-gradient(135deg, #20c997 10%, #28a745 90%);
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+  }
+  .login-card .card-header p {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 6px;
+    opacity: 0.85;
+  }
+  .form-label {
+    font-weight: 600;
+    color: #31785f;
+  }
+  input.form-control {
+    border-radius: 50px;
+    border: 1.8px solid #20c997;
+    padding: 15px 20px;
+    font-size: 1.05rem;
+    transition: border-color 0.3s;
+  }
+  input.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 12px rgba(40, 167, 69, 0.35);
+    outline: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #20c997 10%, #28a745 90%);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 14px 0;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0 6px 20px rgba(32, 201, 151, 0.5);
+    transition: background 0.3s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(135deg, #1aa87e 10%, #238535 90%);
+    box-shadow: 0 10px 28px rgba(32, 201, 151, 0.7);
+    transform: translateY(-3px);
+  }
+  .text-muted {
+    font-size: 0.9rem;
+  }
+  .login-footer {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  .login-footer a {
+    color: #20c997;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .login-footer a:hover {
+    color: #28a745;
+    text-decoration: underline;
+  }
+  .text-danger {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <div class="login-card card">
+    <div class="card-header">
+      <i class="fas fa-sign-in-alt fa-lg me-2"></i> Login
+      <p>Welcome back to {{ site_name }}</p>
+    </div>
+    <div class="card-body">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="mb-4">
+          <label for="{{ form.username.id_for_label }}" class="form-label">Email Address</label>
+          <input type="text" name="{{ form.username.name }}" class="form-control" placeholder="Email Address" id="{{ form.username.id_for_label }}">
+          {% if form.username.errors %}
+            <div class="text-danger">{{ form.username.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-4">
+          <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+          <input type="password" name="{{ form.password.name }}" class="form-control" placeholder="Password" id="{{ form.password.id_for_label }}">
+          {% if form.password.errors %}
+            <div class="text-danger">{{ form.password.errors }}</div>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-sign-in-alt me-2"></i> Login
+        </button>
+      </form>
+      <div class="login-footer">
+        <p>Don't have an account? <a href="{% url 'accounts:register' %}">Register here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

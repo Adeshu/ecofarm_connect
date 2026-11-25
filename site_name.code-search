@@ -1,0 +1,1921 @@
+# Query: site_name
+# ContextLines: 1
+
+570 results - 225 files
+
+core\context_processors.py:
+  7      return {
+  8:         'site_name': 'EcoFarm Connect',
+  9          'support_email': 'support@sustainablefarm.com',
+
+core\models.py:
+   8      id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+   9:     site_name = models.CharField(max_length=100, default="EcoFarm Connect")
+  10      site_description = models.TextField(default="Gamified platform to promote sustainable farming practices")
+
+  16      def __str__(self):
+  17:         return self.site_name
+  18  
+
+core\migrations\0001_initial.py:
+  31                  ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+  32:                 ('site_name', models.CharField(default='EcoFarm Connect', max_length=100)),
+  33                  ('site_description', models.TextField(default='Gamified platform to promote sustainable farming practices')),
+
+staticfiles\rest_framework\docs\js\highlight.pack.js:
+  1: ⟪ 203574 characters skipped ⟫ired_files project qt_wrap_cpp qt_wrap_ui remove_definitions return separate_arguments set set_directory_properties set_property set_source_files_properties set_target_properties set_tests_properties site_name source_group string target_link_libraries try_compile try_run unset variable_watch while build_name exec_program export_library_dependencies install_files install_programs install_targets link_libraries make_directory remove subdir_depends subdirs use_mangled_mesa utility_source variable_requires write_file qt5_use_modules qt5_use_package qt5_wrap_cpp on off true false and or",operator:"equal less greater strless strgreater strequal matches"},c:[{cN:"envvar",b:"\\${",e:"}"},e.HCM,e.QSM,e.NM]}});hljs.registerLanguage("1c",function(c){var e="[a-zA-Zа-яА-Я][a-zA-Z0-9_а-яА-Я]*",r="возврат дата для если и или иначе иначеесли исключение конецесли конецпопытки конецпроцедуры конецфункции конеццикла константа не перейти перем перечисление по пока попытка прервать продолжить процедура строка тогда фс функция цикл число экспорт",t="ansitooem oemtoansi ввестивидсубконто ввестидату ввестизначение ввестиперечисление ввестипериод ввестиплансчетов ввестистроку ввестичисло вопрос восстановит
+  2  c:[{cN:"comment",b:/\(\*/,e:/\*\)/},e.ASM,e.QSM,e.CNM,{cN:"list",b:/\{/,e:/\}/,i:/:/}]}});hljs.registerLanguage("fsharp",function(e){var t={b:"<",e:">",c:[e.inherit(e.TM,{b:/'[a-zA-Z0-9_]+/})]};return{aliases:["fs"],k:"yield! return! let! do!abstract and as assert base begin class default delegate do done downcast downto elif else end exception extern false finally for fun function global if in inherit inline interface internal lazy let match member module mutable namespace new null of open or override private public rec return sig static struct then to true try type upcast use val void when while with yield",c:[{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},{cN:"string",b:'"""',e:'"""'},e.C("\\(\\*","\\*\\)"),{cN:"class",bK:"type",e:"\\(|=|$",eE:!0,c:[e.UTM,t]},{cN:"annotation",b:"\\[<",e:">\\]",r:10},{cN:"attribute",b:"\\B('[A-Za-z])\\b",c:[e.BE]},e.CLCM,e.inherit(e.QSM,{i:null}),e.CNM]}});hljs.registerLanguage("verilog",function(e){return{aliases:["v"],cI:!0,k:{keyword:"always and assign begin buf bufif0 bufif1 case casex casez cmos deassign default defparam disable edge else end endcase endfunction endmodule endprimitive endspecify endtable endtask event for force forever fork function if ifnone initial inout input join macromodule module nand negedge nmos nor not notif0 notif1 or output parameter pmos posedge primitive pulldown pullup rcmos release repeat rnmos rpmos rtran rtranif0 rtranif1 specify specparam table task timescale tran tranif0 tranif1 wait while xnor xor",typename:"highz0 highz1 integer large medium pull0 pull1 real realtime reg scalared signed small strong0 strong1 supply0 supply0 supply1 supply1 time tri tri0 tri1 triand trior trireg vectored wand weak0 weak1 wire wor"},c:[e.CBCM,e.CLCM,e.QSM,{cN:"number",b:"\\b(\\d+'(b|h|o|d|B|H|O|D))?[0-9xzXZ]+",c:[e.BE],r:0},{cN:"typename",b:"\\.\\w+",r:0},{cN:"value",b:"#\\((?!parameter).+\\)"},{cN:"keyword",b:"\\+|-|\\*|/|%|<|>|=|#|`|\\!|&|\\||@|:|\\^|~|\\{|\\}",r:0}]}});hljs.registerLanguage("dos",function(e){var r=e.C(/@?rem\b/,/$/,{r:10}),t={cN:"label",b:"^\\s*[A-Za-z._?][A-Za-z0-9_$#@~.?]*(:|\\s+label)",r:0};return{aliases:["bat","cmd"],cI:!0,k:{flow:"if else goto for in do call exit not exist errorlevel defined",operator:"equ neq lss leq gtr geq",keyword:"shift cd dir echo setlocal endlocal set pause copy",stream:"prn nul lpt3 lpt2 lpt1 con com4 com3 com2 com1 aux",winutils:"ping net ipconfig taskkill xcopy ren del",built_in:"append assoc at attrib break cacls cd chcp chdir chkdsk chkntfs cls cmd color comp compact convert date dir diskcomp diskcopy doskey erase fs find findstr format ftype graftabl help keyb label md mkdir mode more move path pause print popd pushd promt rd recover rem rename replace restore rmdir shiftsort start subst time title tree type ver verify vol"},c:[{cN:"envvar",b:/%%[^ ]|%[^ ]+?%|![^ ]+?!/},{cN:"function",b:t.b,e:"goto:eof",c:[e.inherit(e.TM,{b:"([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*"}),r]},{cN:"number",b:"\\b\\d+",r:0},r]}});hljs.registerLanguage("gherkin",function(e){return{aliases:["feature"],k:"Feature Background Ability Business Need Scenario Scenarios Scenario Outline Scenario Template Examples Given And Then But When",c:[{cN:"keyword",b:"\\*"},e.C("@[^@\r\n	 ]+","$"),{cN:"string",b:"\\|",e:"\\$"},{cN:"variable",b:"<",e:">"},e.HCM,{cN:"string",b:'"""',e:'"""'},e.QSM]}});hljs.registerLanguage("xml",function(t){var e="[A-Za-z0-9\\._:-]+",s={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"},c={eW:!0,i:/</,r:0,c:[s,{cN:"attribute",b:e,r:0},{b:"=",r:0,c:[{cN:"value",c:[s],v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:!0,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},t.C("<!--","-->",{r:10}),{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[c],starts:{e:"</style>",rE:!0,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[c],starts:{e:"</script>",rE:!0,sL:""}},s,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:/[^ \/><\n\t]+/,r:0},c]}]}});hljs.registerLanguage("autohotkey",function(e){var r={cN:"escape",b:"`[\\s\\S]"},c=e.C(";","$",{r:0}),n=[{cN:"built_in",b:"A_[a-zA-Z0-9]+"},{cN:"built_in",bK:"ComSpec Clipboard ClipboardAll ErrorLevel"}];return{cI:!0,k:{keyword:"Break Continue Else Gosub If Loop Return While",literal:"A true false NOT AND OR"},c:n.concat([r,e.inherit(e.QSM,{c:[r]}),c,{cN:"number",b:e.NR,r:0},{cN:"var_expand",b:"%",e:"%",i:"\\n",c:[r]},{cN:"label",c:[r],v:[{b:'^[^\\n";]+::(?!=)'},{b:'^[^\\n";]+:(?!=)',r:0}]},{b:",\\s*,",r:10}])}});hljs.registerLanguage("r",function(e){var r="([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*";return{c:[e.HCM,{b:r,l:r,k:{keyword:"function if in break next repeat else for return switch while try tryCatch stop warning require library attach detach source setMethod setGeneric setGroupGeneric setClass ...",literal:"NULL NA TRUE FALSE T F Inf NaN NA_integer_|10 NA_real_|10 NA_character_|10 NA_complex_|10"},r:0},{cN:"number",b:"0[xX][0-9a-fA-F]+[Li]?\\b",r:0},{cN:"number",b:"\\d+(?:[eE][+\\-]?\\d*)?L\\b",r:0},{cN:"number",b:"\\d+\\.(?!\\d)(?:i\\b)?",r:0},{cN:"number",b:"\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",r:0},{b:"`",e:"`",r:0},{cN:"string",c:[e.BE],v:[{b:'"',e:'"'},{b:"'",e:"'"}]}]}});hljs.registerLanguage("cs",function(e){var r="abstract as base bool break byte case catch char checked const continue decimal dynamic default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long null when object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while async protected public private internal ascending descending from get group into join let orderby partial select set value var where yield",t=e.IR+"(<"+e.IR+">)?";return{aliases:["csharp"],k:r,i:/::/,c:[e.C("///","$",{rB:!0,c:[{cN:"xmlDocTag",v:[{b:"///",r:0},{b:"<!--|-->"},{b:"</?",e:">"}]}]}),e.CLCM,e.CBCM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line region endregion pragma checksum"},{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},e.ASM,e.QSM,e.CNM,{bK:"class namespace interface",e:/[{;=]/,i:/[^\s:]/,c:[e.TM,e.CLCM,e.CBCM]},{bK:"new return throw await",r:0},{cN:"function",b:"("+t+"\\s+)+"+e.IR+"\\s*\\(",rB:!0,e:/[{;=]/,eE:!0,k:r,c:[{b:e.IR+"\\s*\\(",rB:!0,c:[e.TM],r:0},{cN:"params",b:/\(/,e:/\)/,k:r,r:0,c:[e.ASM,e.QSM,e.CNM,e.CBCM]},e.CLCM,e.CBCM]}]}});hljs.registerLanguage("nsis",function(e){var t={cN:"symbol",b:"\\$(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)"},n={cN:"constant",b:"\\$+{[a-zA-Z0-9_]+}"},i={cN:"variable",b:"\\$+[a-zA-Z0-9_]+",i:"\\(\\){}"},r={cN:"constant",b:"\\$+\\([a-zA-Z0-9_]+\\)"},o={cN:"params",b:"(ARCHIVE|FILE_ATTRIBUTE_ARCHIVE|FILE_ATTRIBUTE_NORMAL|FILE_ATTRIBUTE_OFFLINE|FILE_ATTRIBUTE_READONLY|FILE_ATTRIBUTE_SYSTEM|FILE_ATTRIBUTE_TEMPORARY|HKCR|HKCU|HKDD|HKEY_CLASSES_ROOT|HKEY_CURRENT_CONFIG|HKEY_CURRENT_USER|HKEY_DYN_DATA|HKEY_LOCAL_MACHINE|HKEY_PERFORMANCE_DATA|HKEY_USERS|HKLM|HKPD|HKU|IDABORT|IDCANCEL|IDIGNORE|IDNO|IDOK|IDRETRY|IDYES|MB_ABORTRETRYIGNORE|MB_DEFBUTTON1|MB_DEFBUTTON2|MB_DEFBUTTON3|MB_DEFBUTTON4|MB_ICONEXCLAMATION|MB_ICONINFORMATION|MB_ICONQUESTION|MB_ICONSTOP|MB_OK|MB_OKCANCEL|MB_RETRYCANCEL|MB_RIGHT|MB_RTLREADING|MB_SETFOREGROUND|MB_TOPMOST|MB_USERICON|MB_YESNO|NORMAL|OFFLINE|READONLY|SHCTX|SHELL_CONTEXT|SYSTEM|TEMPORARY)"},l={cN:"constant",b:"\\!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|searchparse|searchreplace|tempfile|undef|verbose|warning)"};return{cI:!1,k:{keyword:"Abort AddBrandingImage AddSize AllowRootDirInstall AllowSkipFiles AutoCloseWindow BGFont BGGradient BrandingText BringToFront Call CallInstDLL Caption ChangeUI CheckBitmap ClearErrors CompletedText ComponentText CopyFiles CRCCheck CreateDirectory CreateFont CreateShortCut Delete DeleteINISec DeleteINIStr DeleteRegKey DeleteRegValue DetailPrint DetailsButtonText DirText DirVar DirVerify EnableWindow EnumRegKey EnumRegValue Exch Exec ExecShell ExecWait ExpandEnvStrings File FileBufSize FileClose FileErrorText FileOpen FileRead FileReadByte FileReadUTF16LE FileReadWord FileSeek FileWrite FileWriteByte FileWriteUTF16LE FileWriteWord FindClose FindFirst FindNext FindWindow FlushINI FunctionEnd GetCurInstType GetCurrentAddress GetDlgItem GetDLLVersion GetDLLVersionLocal GetErrorLevel GetFileTime GetFileTimeLocal GetFullPathName GetFunctionAddress GetInstDirError GetLabelAddress GetTempFileName Goto HideWindow Icon IfAbort IfErrors IfFileExists IfRebootFlag IfSilent InitPluginsDir InstallButtonText InstallColors InstallDir InstallDirRegKey InstProgressFlags InstType InstTypeGetText InstTypeSetText IntCmp IntCmpU IntFmt IntOp IsWindow LangString LicenseBkColor LicenseData LicenseForceSelection LicenseLangString LicenseText LoadLanguageFile LockWindow LogSet LogText ManifestDPIAware ManifestSupportedOS MessageBox MiscButtonText Name Nop OutFile Page PageCallbacks PageExEnd Pop Push Quit ReadEnvStr ReadINIStr ReadRegDWORD ReadRegStr Reboot RegDLL Rename RequestExecutionLevel ReserveFile Return RMDir SearchPath SectionEnd SectionGetFlags SectionGetInstTypes SectionGetSize SectionGetText SectionGroupEnd SectionIn SectionSetFlags SectionSetInstTypes SectionSetSize SectionSetText SendMessage SetAutoClose SetBrandingImage SetCompress SetCompressor SetCompressorDictSize SetCtlColors SetCurInstType SetDatablockOptimize SetDateSave SetDetailsPrint SetDetailsView SetErrorLevel SetErrors SetFileAttributes SetFont SetOutPath SetOverwrite SetPluginUnload SetRebootFlag SetRegView SetShellVarContext SetSilent ShowInstDetails ShowUninstDetails ShowWindow SilentInstall SilentUnInstall Sleep SpaceTexts StrCmp StrCmpS StrCpy StrLen SubCaption SubSectionEnd Unicode UninstallButtonText UninstallCaption UninstallIcon UninstallSubCaption UninstallText UninstPage UnRegDLL Var VIAddVersionKey VIFileVersion VIProductVersion WindowIcon WriteINIStr WriteRegBin WriteRegDWORD WriteRegExpandStr WriteRegStr WriteUninstaller XPStyle",literal:"admin all auto both colored current false force hide highest lastused leave listonly none normal notset off on open print show silent silentlog smooth textonly true user "},c:[e.HCM,e.CBCM,{cN:"string",b:'"',e:'"',i:"\\n",c:[{cN:"symbol",b:"\\$(\\\\(n|r|t)|\\$)"},t,n,i,r]},e.C(";","$",{r:0}),{cN:"function",bK:"Function PageEx Section SectionGroup SubSection",e:"$"},l,n,i,r,o,e.NM,{cN:"literal",b:e.IR+"::"+e.IR}]}});hljs.registerLanguage("less",function(e){var r="[\\w-]+",t="("+r+"|@{"+r+"})",a=[],c=[],n=function(e){return{cN:"string",b:"~?"+e+".*?"+e}},i=function(e,r,t){return{cN:e,b:r,r:t}},s=function(r,t,a){return e.inherit({cN:r,b:t+"\\(",e:"\\(",rB:!0,eE:!0,r:0},a)},b={b:"\\(",e:"\\)",c:c,r:0};c.push(e.CLCM,e.CBCM,n("'"),n('"'),e.CSSNM,i("hexcolor","#[0-9A-Fa-f]+\\b"),s("function","(url|data-uri)",{starts:{cN:"string",e:"[\\)\\n]",eE:!0}}),s("function",r),b,i("variable","@@?"+r,10),i("variable","@{"+r+"}"),i("built_in","~?`[^`]*?`"),{cN:"attribute",b:r+"\\s*:",e:":",rB:!0,eE:!0});var o=c.concat({b:"{",e:"}",c:a}),u={bK:"when",eW:!0,c:[{bK:"and not"}].concat(c)},C={cN:"attribute",b:t,e:":",eE:!0,c:[e.CLCM,e.CBCM],i:/\S/,starts:{e:"[;}]",rE:!0,c:c,i:"[<=$]"}},l={cN:"at_rule",b:"@(import|media|charset|font-face|(-[a-z]+-)?keyframes|supports|document|namespace|page|viewport|host)\\b",starts:{e:"[;{}]",rE:!0,c:c,r:0}},d={cN:"variable",v:[{b:"@"+r+"\\s*:",r:15},{b:"@"+r}],starts:{e:"[;}]",rE:!0,c:o}},p={v:[{b:"[\\.#:&\\[]",e:"[;{}]"},{b:t+"[^;]*{",e:"{"}],rB:!0,rE:!0,i:"[<='$\"]",c:[e.CLCM,e.CBCM,u,i("keyword","all\\b"),i("variable","@{"+r+"}"),i("tag",t+"%?",0),i("id","#"+t),i("class","\\."+t,0),i("keyword","&",0),s("pseudo",":not"),s("keyword",":extend"),i("pseudo","::?"+t),{cN:"attr_selector",b:"\\[",e:"\\]"},{b:"\\(",e:"\\)",c:o},{b:"!important"}]};return a.push(e.CLCM,e.CBCM,l,d,p,C),{cI:!0,i:"[=>'/<($\"]",c:a}});hljs.registerLanguage("pf",function(t){var o={cN:"variable",b:/\$[\w\d#@][\w\d_]*/},e={cN:"variable",b:/</,e:/>/};return{aliases:["pf.conf"],l:/[a-z0-9_<>-]+/,k:{built_in:"block match pass load anchor|5 antispoof|10 set table",keyword:"in out log quick on rdomain inet inet6 proto from port os to routeallow-opts divert-packet divert-reply divert-to flags group icmp-typeicmp6-type label once probability recieved-on rtable prio queuetos tag tagged user keep fragment for os dropaf-to|10 binat-to|10 nat-to|10 rdr-to|10 bitmask least-stats random round-robinsource-hash static-portdup-to reply-to route-toparent bandwidth default min max qlimitblock-policy debug fingerprints hostid limit loginterface optimizationreassemble ruleset-optimization basic none profile skip state-defaultsstate-policy timeoutconst counters persistno modulate synproxy state|5 floating if-bound no-sync pflow|10 sloppysource-track global rule max-src-nodes max-src-states max-src-connmax-src-conn-rate overload flushscrub|5 max-mss min-ttl no-df|10 random-id",literal:"all any no-route self urpf-failed egress|5 unknown"},c:[t.HCM,t.NM,t.QSM,o,e]}});hljs.registerLanguage("lasso",function(e){var r="[a-zA-Z_][a-zA-Z0-9_.]*",a="<\\?(lasso(script)?|=)",t="\\]|\\?>",s={literal:"true false none minimal full all void and or not bw nbw ew new cn ncn lt lte gt gte eq neq rx nrx ft",built_in:"array date decimal duration integer map pair string tag xml null boolean bytes keyword list locale queue set stack staticarray local var variable global data self inherited",keyword:"error_code error_msg error_pop error_push error_reset cache database_names database_schemanames database_tablenames define_tag define_type email_batch encode_set html_comment handle handle_error header if inline iterate ljax_target link link_currentaction link_currentgroup link_currentrecord link_detail link_firstgroup link_firstrecord link_lastgroup link_lastrecord link_nextgroup link_nextrecord link_prevgroup link_prevrecord log loop namespace_using output_none portal private protect records referer referrer repeating resultset rows search_args search_arguments select sort_args sort_arguments thread_atomic value_list while abort case else if_empty if_false if_null if_true loop_abort loop_continue loop_count params params_up return return_value run_children soap_definetag soap_lastrequest soap_lastresponse tag_name ascending average by define descending do equals frozen group handle_failure import in into join let match max min on order parent protected provide public require returnhome skip split_thread sum take thread to trait type where with yield yieldhome"},n=e.C("<!--","-->",{r:0}),o={cN:"preprocessor",b:"\\[noprocess\\]",starts:{cN:"markup",e:"\\[/noprocess\\]",rE:!0,c:[n]}},i={cN:"preprocessor",b:"\\[/noprocess|"+a},l={cN:"variable",b:"'"+r+"'"},c=[e.CLCM,{cN:"javadoc",b:"/\\*\\*!",e:"\\*/",c:[e.PWM]},e.CBCM,e.inherit(e.CNM,{b:e.CNR+"|(-?infinity|nan)\\b"}),e.inherit(e.ASM,{i:null}),e.inherit(e.QSM,{i:null}),{cN:"string",b:"`",e:"`"},{cN:"variable",v:[{b:"[#$]"+r},{b:"#",e:"\\d+",i:"\\W"}]},{cN:"tag",b:"::\\s*",e:r,i:"\\W"},{cN:"attribute",v:[{b:"-"+e.UIR,r:0},{b:"(\\.\\.\\.)"}]},{cN:"subst",v:[{b:"->\\s*",c:[l]},{b:":=|/(?!\\w)=?|[-+*%=<>&|!?\\\\]+",r:0}]},{cN:"built_in",b:"\\.\\.?\\s*",r:0,c:[l]},{cN:"class",bK:"define",rE:!0,e:"\\(|=>",c:[e.inherit(e.TM,{b:e.UIR+"(=(?!>))?"})]}];return{aliases:["ls","lassoscript"],cI:!0,l:r+"|&[lg]t;",k:s,c:[{cN:"preprocessor",b:t,r:0,starts:{cN:"markup",e:"\\[|"+a,rE:!0,r:0,c:[n]}},o,i,{cN:"preprocessor",b:"\\[no_square_brackets",starts:{e:"\\[/no_square_brackets\\]",l:r+"|&[lg]t;",k:s,c:[{cN:"preprocessor",b:t,r:0,starts:{cN:"markup",e:"\\[noprocess\\]|"+a,rE:!0,c:[n]}},o,i].concat(c)}},{cN:"preprocessor",b:"\\[",r:0},{cN:"shebang",b:"^#!.+lasso9\\b",r:10}].concat(c)}});hljs.registerLanguage("prolog",function(c){var r={cN:"atom",b:/[a-z][A-Za-z0-9_]*/,r:0},b={cN:"name",v:[{b:/[A-Z][a-zA-Z0-9_]*/},{b:/_[A-Za-z0-9_]*/}],r:0},a={b:/\(/,e:/\)/,r:0},e={b:/\[/,e:/\]/},n={cN:"comment",b:/%/,e:/$/,c:[c.PWM]},t={cN:"string",b:/`/,e:/`/,c:[c.BE]},g={cN:"string",b:/0\'(\\\'|.)/},N={cN:"string",b:/0\'\\s/},o={b:/:-/},s=[r,b,a,o,e,n,c.CBCM,c.QSM,c.ASM,t,g,N,c.CNM];return a.c=s,e.c=s,{c:s.concat([{b:/\.$/}])}});hljs.registerLanguage("oxygene",function(e){var r="abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false final finalize finalizer finally flags for forward from function future global group has if implementation implements implies in index inherited inline interface into invariants is iterator join locked locking loop matching method mod module namespace nested new nil not notify nullable of old on operator or order out override parallel params partial pinned private procedure property protected public queryable raise read readonly record reintroduce remove repeat require result reverse sealed select self sequence set shl shr skip static step soft take then to true try tuple type union unit unsafe until uses using var virtual raises volatile where while with write xor yield await mapped deprecated stdcall cdecl pascal register safecall overload library platform reference packed strict published autoreleasepool selector strong weak unretained",t=e.C("{","}",{r:0}),a=e.C("\\(\\*","\\*\\)",{r:10}),n={cN:"string",b:"'",e:"'",c:[{b:"''"}]},o={cN:"string",b:"(#\\d+)+"},i={cN:"function",bK:"function constructor destructor procedure method",e:"[:;]",k:"function constructor|10 destructor|10 procedure|10 method|10",c:[e.TM,{cN:"params",b:"\\(",e:"\\)",k:r,c:[n,o]},t,a]};return{cI:!0,k:r,i:'("|\\$[G-Zg-z]|\\/\\*|</|=>|->)',c:[t,a,e.CLCM,n,o,e.NM,i,{cN:"class",b:"=\\bclass\\b",e:"end;",k:r,c:[n,o,t,a,e.CLCM,i]}]}});hljs.registerLanguage("applescript",function(e){var t=e.inherit(e.QSM,{i:""}),r={cN:"params",b:"\\(",e:"\\)",c:["self",e.CNM,t]},o=e.C("--","$"),n=e.C("\\(\\*","\\*\\)",{c:["self",o]}),a=[o,n,e.HCM];return{aliases:["osascript"],k:{keyword:"about above after against and around as at back before beginning behind below beneath beside between but by considering contain contains continue copy div does eighth else end equal equals error every exit fifth first for fourth from front get given global if ignoring in into is it its last local me middle mod my ninth not of on onto or over prop property put ref reference repeat returning script second set seventh since sixth some tell tenth that the|0 then third through thru timeout times to transaction try until where while whose with without",constant:"AppleScript false linefeed return pi quote result space tab true",type:"alias application boolean class constant date file integer list number real record string text",command:"activate beep count delay launch log offset read round run say summarize write",property:"character characters contents day frontmost id item length month name paragraph paragraphs rest reverse running time version weekday word words year"},c:[t,e.CNM,{cN:"type",b:"\\bPOSIX file\\b"},{cN:"command",b:"\\b(clipboard info|the clipboard|info for|list (disks|folder)|mount volume|path to|(close|open for) access|(get|set) eof|current date|do shell script|get volume settings|random number|set volume|system attribute|system info|time to GMT|(load|run|store) script|scripting components|ASCII (character|number)|localized string|choose (application|color|file|file name|folder|from list|remote application|URL)|display (alert|dialog))\\b|^\\s*return\\b"},{cN:"constant",b:"\\b(text item delimiters|current application|missing value)\\b"},{cN:"keyword",b:"\\b(apart from|aside from|instead of|out of|greater than|isn't|(doesn't|does not) (equal|come before|come after|contain)|(greater|less) than( or equal)?|(starts?|ends|begins?) with|contained by|comes (before|after)|a (ref|reference))\\b"},{cN:"property",b:"\\b(POSIX path|(date|time) string|quoted form)\\b"},{cN:"function_start",bK:"on",i:"[${=;\\n]",c:[e.UTM,r]}].concat(a),i:"//|->|=>"}});hljs.registerLanguage("makefile",function(e){var a={cN:"variable",b:/\$\(/,e:/\)/,c:[e.BE]};return{aliases:["mk","mak"],c:[e.HCM,{b:/^\w+\s*\W*=/,rB:!0,r:0,starts:{cN:"constant",e:/\s*\W*=/,eE:!0,starts:{e:/$/,r:0,c:[a]}}},{cN:"title",b:/^[\w]+:\s*$/},{cN:"phony",b:/^\.PHONY:/,e:/$/,k:".PHONY",l:/[\.\w]+/},{b:/^\t+/,e:/$/,r:0,c:[e.QSM,a]}]}});hljs.registerLanguage("dust",function(e){var a="if eq ne lt lte gt gte select default math sep";return{aliases:["dst"],cI:!0,sL:"xml",subLanguageMode:"continuous",c:[{cN:"expression",b:"{",e:"}",r:0,c:[{cN:"begin-block",b:"#[a-zA-Z- .]+",k:a},{cN:"string",b:'"',e:'"'},{cN:"end-block",b:"\\/[a-zA-Z- .]+",k:a},{cN:"variable",b:"[a-zA-Z-.]+",k:a,r:0}]}]}});hljs.registerLanguage("clojure-repl",function(e){return{c:[{cN:"prompt",b:/^([\w.-]+|\s*#_)=>/,starts:{e:/$/,sL:"clojure",subLanguageMode:"continuous"}}]}});hljs.registerLanguage("dart",function(e){var t={cN:"subst",b:"\\$\\{",e:"}",k:"true false null this is new super"},r={cN:"string",v:[{b:"r'''",e:"'''"},{b:'r"""',e:'"""'},{b:"r'",e:"'",i:"\\n"},{b:'r"',e:'"',i:"\\n"},{b:"'''",e:"'''",c:[e.BE,t]},{b:'"""',e:'"""',c:[e.BE,t]},{b:"'",e:"'",i:"\\n",c:[e.BE,t]},{b:'"',e:'"',i:"\\n",c:[e.BE,t]}]};t.c=[e.CNM,r];var n={keyword:"assert break case catch class const continue default do else enum extends false final finally for if in is new null rethrow return super switch this throw true try var void while with",literal:"abstract as dynamic export external factory get implements import library operator part set static typedef",built_in:"print Comparable DateTime Duration Function Iterable Iterator List Map Match Null Object Pattern RegExp Set Stopwatch String StringBuffer StringSink Symbol Type Uri bool double int num document window querySelector querySelectorAll Element ElementList"};return{k:n,c:[r,{cN:"dartdoc",b:"/\\*\\*",e:"\\*/",sL:"markdown",subLanguageMode:"continuous"},{cN:"dartdoc",b:"///",e:"$",sL:"markdown",subLanguageMode:"continuous"},e.CLCM,e.CBCM,{cN:"class",bK:"class interface",e:"{",eE:!0,c:[{bK:"extends implements"},e.UTM]},e.CNM,{cN:"annotation",b:"@[A-Za-z]+"},{b:"=>"}]}});
+
+templates\base.html:
+    6      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    7:     <title>{% block title %}{{ site_name }}{% endblock %}</title>
+    8      <link
+
+  116              <a class="navbar-brand" href="{% url 'core:home' %}">
+  117:                 <i class="fas fa-leaf"></i> {{ site_name }}
+  118              </a>
+
+  198                  <div class="col-md-4">
+  199:                     <h5><i class="fas fa-leaf"></i> {{ site_name }}</h5>
+  200                      <p>Empowering sustainable farming practices through technology and community.</p>
+
+  220              <hr class="my-4">
+  221:             <p>&copy; 2025 {{ site_name }}. All rights reserved.</p>
+  222          </div>
+
+templates\accounts\login.html:
+   2  
+   3: {% block title %}Login - {{ site_name }}{% endblock %}
+   4  
+
+  11                      <h3><i class="fas fa-sign-in-alt"></i> Login</h3>
+  12:                     <p class="text-muted mb-0">Welcome back to {{ site_name }}</p>
+  13                  </div>
+
+templates\accounts\register.html:
+   2  
+   3: {% block title %}Register - {{ site_name }}{% endblock %}
+   4  
+
+  11                      <h3><i class="fas fa-user-plus"></i> Create Account</h3>
+  12:                     <p class="text-muted mb-0">Join {{ site_name }} community</p>
+  13                  </div>
+
+templates\core\dashboard.html:
+  2  
+  3: {% block title %}Dashboard - {{ site_name }}{% endblock %}
+  4  
+
+templates\core\home.html:
+   2  
+   3: {% block title %}Welcome to {{ site_name }}{% endblock %}
+   4  
+
+  11                  <h1 class="display-4 fw-bold mb-4">
+  12:                     <i class="fas fa-seedling"></i> Welcome to {{ site_name }}
+  13                  </h1>
+
+templates\courses\course_detail.html:
+  2  
+  3: {% block title %}{{ course.title }} - {{ site_name }}{% endblock %}
+  4  
+
+templates\courses\course_list.html:
+  2  
+  3: {% block title %}Courses - {{ site_name }}{% endblock %}
+  4  
+
+templates\courses\my_certificates.html:
+  2  
+  3: {% block title %}My Certificates - {{ site_name }}{% endblock %}
+  4  
+
+templates\courses\my_courses.html:
+  2  
+  3: {% block title %}My Courses - {{ site_name }}{% endblock %}
+  4  
+
+templates\farms\activity_form.html:
+  4  {% block title %}
+  5: {{ title }} - {{ site_name }}
+  6  {% endblock %}
+
+templates\farms\crop_form.html:
+  3  
+  4: {% block title %}{% if form.instance.pk %}Edit Crop{% else %}Add New Crop{% endif %} - {{ site_name }}{% endblock %}
+  5  
+
+templates\farms\farm_form.html:
+  3  
+  4: {% block title %}{% if form.instance.pk %}Edit Farm{% else %}Add New Farm{% endif %} - {{ site_name }}{% endblock %}
+  5  
+
+templates\farms\farm_list.html:
+  2  
+  3: {% block title %}My Farms - {{ site_name }}{% endblock %}
+  4  
+
+templates\farms\public_farms.html:
+  2  
+  3: {% block title %}Public Farms - {{ site_name }}{% endblock %}
+  4  
+
+templates\gamification\badges.html:
+  2  
+  3: {% block title %}Badges - {{ site_name }}{% endblock %}
+  4  
+
+templates\gamification\leaderboard.html:
+  2  
+  3: {% block title %}Leaderboard - {{ site_name }}{% endblock %}
+  4  
+
+templates\gamification\my_achievements.html:
+  2  
+  3: {% block title %}My Achievements - {{ site_name }}{% endblock %}
+  4  
+
+templates\gamification\my_badges.html:
+  2  
+  3: {% block title %}My Badges - {{ site_name }}{% endblock %}
+  4  
+
+templates\gamification\points_history.html:
+  2  
+  3: {% block title %}Points History - {{ site_name }}{% endblock %}
+  4  
+
+templates\quests\my_quests.html:
+  2  
+  3: {% block title %}My Quests - {{ site_name }}{% endblock %}
+  4  
+
+templates\quests\quest_detail.html:
+  2  
+  3: {% block title %}{{ quest.title }} - {{ site_name }}{% endblock %}
+  4  
+
+templates\quests\quest_list.html:
+  2  
+  3: {% block title %}Quests - {{ site_name }}{% endblock %}
+  4  
+
+venv\Lib\site-packages\django\contrib\admin\locale\af\LC_MESSAGES\django.po:
+  660  "You're receiving this email because you requested a password reset for your "
+  661: "user account at %(site_name)s."
+  662  msgstr ""
+  663  "U ontvang hierdie e-pos omdat u ’n wagwoordherstel vir u rekening by "
+  664: "%(site_name)s aangevra het."
+  665  
+
+  675  #, python-format
+  676: msgid "The %(site_name)s team"
+  677: msgstr "Die %(site_name)s span"
+  678  
+
+venv\Lib\site-packages\django\contrib\admin\locale\am\LC_MESSAGES\django.po:
+  581  "You're receiving this email because you requested a password reset for your "
+  582: "user account at %(site_name)s."
+  583  msgstr ""
+  584: "ይህ ኢ-ሜል የደረስዎት %(site_name)s ላይ እንደ አዲስ የይለፍቃል(ፓስወርድ) ለ ለመቀየር ስለጠየቁ ነው::"
+  585  
+
+  595  #, python-format
+  596: msgid "The %(site_name)s team"
+  597: msgstr "%(site_name)s ቡድን"
+  598  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ar\LC_MESSAGES\django.po:
+  671  "You're receiving this email because you requested a password reset for your "
+  672: "user account at %(site_name)s."
+  673  msgstr ""
+  674  "لقد قمت بتلقى هذه الرسالة لطلبك بإعادة تعين كلمة المرور لحسابك الشخصي على "
+  675: "%(site_name)s."
+  676  
+
+  686  #, python-format
+  687: msgid "The %(site_name)s team"
+  688: msgstr "فريق %(site_name)s"
+  689  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ar_DZ\LC_MESSAGES\django.po:
+  678  "You're receiving this email because you requested a password reset for your "
+  679: "user account at %(site_name)s."
+  680  msgstr ""
+  681  "لقد قمت بتلقى هذه الرسالة لطلبك بإعادة تعين كلمة المرور لحسابك الشخصي على "
+  682: "%(site_name)s."
+  683  
+
+  693  #, python-format
+  694: msgid "The %(site_name)s team"
+  695: msgstr "فريق %(site_name)s"
+  696  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ast\LC_MESSAGES\django.po:
+  584  "You're receiving this email because you requested a password reset for your "
+  585: "user account at %(site_name)s."
+  586  msgstr ""
+
+  597  #, python-format
+  598: msgid "The %(site_name)s team"
+  599  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\az\LC_MESSAGES\django.po:
+  672  "You're receiving this email because you requested a password reset for your "
+  673: "user account at %(site_name)s."
+  674  msgstr ""
+  675: "%(site_name)s saytında şifrəni yeniləmək istədiyinizə görə bu məktubu "
+  676  "göndərdik."
+
+  687  #, python-format
+  688: msgid "The %(site_name)s team"
+  689: msgstr "%(site_name)s komandası"
+  690  
+
+venv\Lib\site-packages\django\contrib\admin\locale\be\LC_MESSAGES\django.po:
+  697  "You're receiving this email because you requested a password reset for your "
+  698: "user account at %(site_name)s."
+  699  msgstr ""
+  700  "Вы атрымалі гэты ліст, таму што вы прасілі скінуць пароль для ўліковага "
+  701: "запісу карыстальніка на %(site_name)s."
+  702  
+
+  712  #, python-format
+  713: msgid "The %(site_name)s team"
+  714: msgstr "Каманда «%(site_name)s»"
+  715  
+
+venv\Lib\site-packages\django\contrib\admin\locale\bg\LC_MESSAGES\django.po:
+  684  "You're receiving this email because you requested a password reset for your "
+  685: "user account at %(site_name)s."
+  686  msgstr ""
+  687  "Вие получавати този имейл, защото сте поискали да промените паролата за "
+  688: "вашия потребителски акаунт в %(site_name)s."
+  689  
+
+  699  #, python-format
+  700: msgid "The %(site_name)s team"
+  701: msgstr "Екипът на %(site_name)s"
+  702  
+
+venv\Lib\site-packages\django\contrib\admin\locale\bn\LC_MESSAGES\django.po:
+  653  "You're receiving this email because you requested a password reset for your "
+  654: "user account at %(site_name)s."
+  655  msgstr ""
+  656: "আপনি এই ই-মেইলটি পেয়েছেন কারন আপনি %(site_name)s এ আপনার ইউজার একাউন্টের "
+  657  "পাসওয়ার্ড রিসেট এর জন্য অনুরোধ করেছেন।"
+
+  668  #, python-format
+  669: msgid "The %(site_name)s team"
+  670: msgstr "%(site_name)s দল"
+  671  
+
+venv\Lib\site-packages\django\contrib\admin\locale\br\LC_MESSAGES\django.po:
+  615  "You're receiving this email because you requested a password reset for your "
+  616: "user account at %(site_name)s."
+  617  msgstr ""
+
+  628  #, python-format
+  629: msgid "The %(site_name)s team"
+  630  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\bs\LC_MESSAGES\django.po:
+  605  "You're receiving this email because you requested a password reset for your "
+  606: "user account at %(site_name)s."
+  607  msgstr ""
+
+  618  #, python-format
+  619: msgid "The %(site_name)s team"
+  620: msgstr "Uredništvo sajta %(site_name)s"
+  621  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ca\LC_MESSAGES\django.po:
+  690  "You're receiving this email because you requested a password reset for your "
+  691: "user account at %(site_name)s."
+  692  msgstr ""
+  693  "Heu rebut aquest correu perquè vau sol·licitar restablir la contrasenya per "
+  694: "al vostre compte d'usuari a %(site_name)s."
+  695  
+
+  705  #, python-format
+  706: msgid "The %(site_name)s team"
+  707: msgstr "L'equip de %(site_name)s"
+  708  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ckb\LC_MESSAGES\django.po:
+  699  "You're receiving this email because you requested a password reset for your "
+  700: "user account at %(site_name)s."
+  701  msgstr ""
+  702  "تۆ ئەم نامە ئەلیکترۆنیەت بەدەست گەیشتووە لەبەرئەوەی داواکاری دوبارە "
+  703: "دانانەوەی تێپەڕە ووشەت کردبوو بۆ هەژماری بەکارهێنەرەکەت لە %(site_name)s."
+  704  
+
+  714  #, python-format
+  715: msgid "The %(site_name)s team"
+  716: msgstr "دەستەی %(site_name)s"
+  717  
+
+venv\Lib\site-packages\django\contrib\admin\locale\cs\LC_MESSAGES\django.po:
+  690  "You're receiving this email because you requested a password reset for your "
+  691: "user account at %(site_name)s."
+  692  msgstr ""
+  693  "Tento e-mail vám byl zaslán na základě vyžádání obnovy hesla vašeho "
+  694: "uživatelskému účtu na systému %(site_name)s."
+  695  
+
+  705  #, python-format
+  706: msgid "The %(site_name)s team"
+  707: msgstr "Tým aplikace %(site_name)s"
+  708  
+
+venv\Lib\site-packages\django\contrib\admin\locale\cy\LC_MESSAGES\django.po:
+  619  "You're receiving this email because you requested a password reset for your "
+  620: "user account at %(site_name)s."
+  621  msgstr ""
+  622  "Derbyniwch yr ebost hwn oherwydd i chi ofyn i ailosod y cyfrinair i'ch "
+  623: "cyfrif yn %(site_name)s."
+  624  
+
+  634  #, python-format
+  635: msgid "The %(site_name)s team"
+  636: msgstr "Tîm %(site_name)s"
+  637  
+
+venv\Lib\site-packages\django\contrib\admin\locale\da\LC_MESSAGES\django.po:
+  695  "You're receiving this email because you requested a password reset for your "
+  696: "user account at %(site_name)s."
+  697  msgstr ""
+  698  "Du modtager denne e-mail, fordi du har anmodet om en nulstilling af "
+  699: "adgangskoden til din brugerkonto ved %(site_name)s ."
+  700  
+
+  710  #, python-format
+  711: msgid "The %(site_name)s team"
+  712: msgstr "Med venlig hilsen %(site_name)s"
+  713  
+
+venv\Lib\site-packages\django\contrib\admin\locale\de\LC_MESSAGES\django.po:
+  710  "You're receiving this email because you requested a password reset for your "
+  711: "user account at %(site_name)s."
+  712  msgstr ""
+  713  "Diese E-Mail wurde aufgrund einer Anfrage zum Zurücksetzen des Passworts auf "
+  714: "der Website %(site_name)s versendet."
+  715  
+
+  725  #, python-format
+  726: msgid "The %(site_name)s team"
+  727: msgstr "Das Team von %(site_name)s"
+  728  
+
+venv\Lib\site-packages\django\contrib\admin\locale\dsb\LC_MESSAGES\django.po:
+  700  "You're receiving this email because you requested a password reset for your "
+  701: "user account at %(site_name)s."
+  702  msgstr ""
+  703  "Dostawaśo toś tu mejlku, dokulaž sćo za swójo wužywarske konto na "
+  704: "%(site_name)s wó slědkstajenje gronidła  pšosył."
+  705  
+
+  715  #, python-format
+  716: msgid "The %(site_name)s team"
+  717: msgstr "Team %(site_name)s"
+  718  
+
+venv\Lib\site-packages\django\contrib\admin\locale\el\LC_MESSAGES\django.po:
+  676  "You're receiving this email because you requested a password reset for your "
+  677: "user account at %(site_name)s."
+  678  msgstr ""
+  679  "Λαμβάνετε αυτό το email επειδή ζητήσατε επαναφορά συνθηματικού για το "
+  680: "λογαριασμό σας στον ιστότοπο %(site_name)s."
+  681  
+
+  692  #, python-format
+  693: msgid "The %(site_name)s team"
+  694: msgstr "Η ομάδα του ιστότοπου %(site_name)s"
+  695  
+
+venv\Lib\site-packages\django\contrib\admin\locale\en\LC_MESSAGES\django.po:
+  868  "You're receiving this email because you requested a password reset for your "
+  869: "user account at %(site_name)s."
+  870  msgstr ""
+
+  885  #, python-format
+  886: msgid "The %(site_name)s team"
+  887  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\en_AU\LC_MESSAGES\django.po:
+  664  "You're receiving this email because you requested a password reset for your "
+  665: "user account at %(site_name)s."
+  666  msgstr ""
+  667  "You're receiving this email because you requested a password reset for your "
+  668: "user account at %(site_name)s."
+  669  
+
+  679  #, python-format
+  680: msgid "The %(site_name)s team"
+  681: msgstr "The %(site_name)s team"
+  682  
+
+venv\Lib\site-packages\django\contrib\admin\locale\en_GB\LC_MESSAGES\django.po:
+  635  "You're receiving this email because you requested a password reset for your "
+  636: "user account at %(site_name)s."
+  637  msgstr ""
+
+  648  #, python-format
+  649: msgid "The %(site_name)s team"
+  650: msgstr "The %(site_name)s team"
+  651  
+
+venv\Lib\site-packages\django\contrib\admin\locale\eo\LC_MESSAGES\django.po:
+  668  "You're receiving this email because you requested a password reset for your "
+  669: "user account at %(site_name)s."
+  670  msgstr ""
+  671  "Vi ricevis ĉi tiun retpoŝton ĉar vi petis pasvortan rekomencigon por via "
+  672: "uzanta konto ĉe %(site_name)s."
+  673  
+
+  683  #, python-format
+  684: msgid "The %(site_name)s team"
+  685: msgstr "La %(site_name)s teamo"
+  686  
+
+venv\Lib\site-packages\django\contrib\admin\locale\es\LC_MESSAGES\django.po:
+  724  "You're receiving this email because you requested a password reset for your "
+  725: "user account at %(site_name)s."
+  726  msgstr ""
+  727  "Ha recibido este correo electrónico porque ha solicitado restablecer la "
+  728: "contraseña para su cuenta en %(site_name)s."
+  729  
+
+  739  #, python-format
+  740: msgid "The %(site_name)s team"
+  741: msgstr "El equipo de %(site_name)s"
+  742  
+
+venv\Lib\site-packages\django\contrib\admin\locale\es_AR\LC_MESSAGES\django.po:
+  685  "You're receiving this email because you requested a password reset for your "
+  686: "user account at %(site_name)s."
+  687  msgstr ""
+  688  "Le enviamos este email porque Ud. ha solicitado que se reestablezca la "
+  689: "contraseña para su cuenta de usuario en %(site_name)s."
+  690  
+
+  702  #, python-format
+  703: msgid "The %(site_name)s team"
+  704: msgstr "El equipo de %(site_name)s"
+  705  
+
+venv\Lib\site-packages\django\contrib\admin\locale\es_CO\LC_MESSAGES\django.po:
+  641  "You're receiving this email because you requested a password reset for your "
+  642: "user account at %(site_name)s."
+  643  msgstr ""
+  644  "Ha recibido este correo electrónico porque ha solicitado restablecer la "
+  645: "contraseña para su cuenta en %(site_name)s."
+  646  
+
+  656  #, python-format
+  657: msgid "The %(site_name)s team"
+  658: msgstr "El equipo de %(site_name)s"
+  659  
+
+venv\Lib\site-packages\django\contrib\admin\locale\es_MX\LC_MESSAGES\django.po:
+  660  "You're receiving this email because you requested a password reset for your "
+  661: "user account at %(site_name)s."
+  662  msgstr ""
+  663  "Usted está recibiendo este correo electrónico porque ha solicitado un "
+  664: "restablecimiento de contraseña para la cuenta de usuario en %(site_name)s."
+  665  
+
+  677  #, python-format
+  678: msgid "The %(site_name)s team"
+  679: msgstr "El equipo de %(site_name)s"
+  680  
+
+venv\Lib\site-packages\django\contrib\admin\locale\es_VE\LC_MESSAGES\django.po:
+  642  "You're receiving this email because you requested a password reset for your "
+  643: "user account at %(site_name)s."
+  644  msgstr ""
+  645  "Ha recibido este correo electrónico porque ha solicitado restablecer la "
+  646: "contraseña para su cuenta en %(site_name)s."
+  647  
+
+  657  #, python-format
+  658: msgid "The %(site_name)s team"
+  659: msgstr "El equipo de %(site_name)s"
+  660  
+
+venv\Lib\site-packages\django\contrib\admin\locale\et\LC_MESSAGES\django.po:
+  693  "You're receiving this email because you requested a password reset for your "
+  694: "user account at %(site_name)s."
+  695  msgstr ""
+  696: "Saite käesoleva kirja kuna soovisite muuta lehel %(site_name)s oma "
+  697  "kasutajakontoga seotud parooli."
+
+  708  #, python-format
+  709: msgid "The %(site_name)s team"
+  710: msgstr "%(site_name)s meeskond"
+  711  
+
+venv\Lib\site-packages\django\contrib\admin\locale\eu\LC_MESSAGES\django.po:
+  672  "You're receiving this email because you requested a password reset for your "
+  673: "user account at %(site_name)s."
+  674  msgstr ""
+  675: "Mezu hau %(site_name)s webgunean pasahitza berrezartzea eskatu duzulako jaso "
+  676  "duzu."
+
+  687  #, python-format
+  688: msgid "The %(site_name)s team"
+  689: msgstr "%(site_name)s webguneko taldea"
+  690  
+
+venv\Lib\site-packages\django\contrib\admin\locale\fa\LC_MESSAGES\django.po:
+  691  "You're receiving this email because you requested a password reset for your "
+  692: "user account at %(site_name)s."
+  693  msgstr ""
+  694: "شما این ایمیل را بخاطر تقاضای تغییر رمز حساب در  %(site_name)s. دریافت کرده "
+  695  "اید."
+
+  706  #, python-format
+  707: msgid "The %(site_name)s team"
+  708: msgstr "گروه %(site_name)s"
+  709  
+
+venv\Lib\site-packages\django\contrib\admin\locale\fi\LC_MESSAGES\django.po:
+  675  "You're receiving this email because you requested a password reset for your "
+  676: "user account at %(site_name)s."
+  677  msgstr ""
+  678: "Tämä viesti on lähetetty sinulle, koska olet pyytänyt %(site_name)s -"
+  679  "sivustolla salasanan palautusta."
+
+  690  #, python-format
+  691: msgid "The %(site_name)s team"
+  692: msgstr "%(site_name)s -sivuston ylläpitäjät"
+  693  
+
+venv\Lib\site-packages\django\contrib\admin\locale\fr\LC_MESSAGES\django.po:
+  715  "You're receiving this email because you requested a password reset for your "
+  716: "user account at %(site_name)s."
+  717  msgstr ""
+  718  "Vous recevez ce message en réponse à votre demande de réinitialisation du "
+  719: "mot de passe de votre compte sur %(site_name)s."
+  720  
+
+  731  #, python-format
+  732: msgid "The %(site_name)s team"
+  733: msgstr "L’équipe %(site_name)s"
+  734  
+
+venv\Lib\site-packages\django\contrib\admin\locale\fy\LC_MESSAGES\django.po:
+  554  "You're receiving this email because you requested a password reset for your "
+  555: "user account at %(site_name)s."
+  556  msgstr ""
+
+  567  #, python-format
+  568: msgid "The %(site_name)s team"
+  569  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\ga\LC_MESSAGES\django.po:
+  657  "You're receiving this email because you requested a password reset for your "
+  658: "user account at %(site_name)s."
+  659  msgstr ""
+
+  672  #, python-format
+  673: msgid "The %(site_name)s team"
+  674: msgstr "Foireann an %(site_name)s"
+  675  
+
+venv\Lib\site-packages\django\contrib\admin\locale\gd\LC_MESSAGES\django.po:
+  691  "You're receiving this email because you requested a password reset for your "
+  692: "user account at %(site_name)s."
+  693  msgstr ""
+
+  695  "an fhacail-fhaire agad airson a’ chunntais cleachdaiche agad air "
+  696: "%(site_name)s."
+  697  
+
+  708  #, python-format
+  709: msgid "The %(site_name)s team"
+  710: msgstr "Sgioba %(site_name)s"
+  711  
+
+venv\Lib\site-packages\django\contrib\admin\locale\gl\LC_MESSAGES\django.po:
+  702  "You're receiving this email because you requested a password reset for your "
+  703: "user account at %(site_name)s."
+  704  msgstr ""
+  705  "Recibe este email porque solicitou restablecer o contrasinal para a súa "
+  706: "conta de usuario en %(site_name)s"
+  707  
+
+  717  #, python-format
+  718: msgid "The %(site_name)s team"
+  719: msgstr "O equipo de %(site_name)s"
+  720  
+
+venv\Lib\site-packages\django\contrib\admin\locale\he\LC_MESSAGES\django.po:
+  657  "You're receiving this email because you requested a password reset for your "
+  658: "user account at %(site_name)s."
+  659  msgstr ""
+  660  "הודעה זו נשלחה אליך עקב בקשתך לאיפוס הסיסמה עבור המשתמש שלך באתר "
+  661: "%(site_name)s."
+  662  
+
+  672  #, python-format
+  673: msgid "The %(site_name)s team"
+  674: msgstr "צוות %(site_name)s"
+  675  
+
+venv\Lib\site-packages\django\contrib\admin\locale\hi\LC_MESSAGES\django.po:
+  648  "You're receiving this email because you requested a password reset for your "
+  649: "user account at %(site_name)s."
+  650  msgstr ""
+  651: "आपको यह डाक इसलिए आई है क्योंकि आप ने %(site_name)s पर अपने खाते का कूटशब्द बदलने का "
+  652  "अनुरोध किया था |"
+
+  663  #, python-format
+  664: msgid "The %(site_name)s team"
+  665: msgstr "%(site_name)s दल"
+  666  
+
+venv\Lib\site-packages\django\contrib\admin\locale\hr\LC_MESSAGES\django.po:
+  656  "You're receiving this email because you requested a password reset for your "
+  657: "user account at %(site_name)s."
+  658  msgstr ""
+  659  "Primili ste ovu poruku jer ste zatražili postavljanje nove lozinke za svoj "
+  660: "korisnički račun na %(site_name)s."
+  661  
+
+  671  #, python-format
+  672: msgid "The %(site_name)s team"
+  673: msgstr "%(site_name)s tim"
+  674  
+
+venv\Lib\site-packages\django\contrib\admin\locale\hsb\LC_MESSAGES\django.po:
+  699  "You're receiving this email because you requested a password reset for your "
+  700: "user account at %(site_name)s."
+  701  msgstr ""
+  702  "Dóstawaće tutu e-mejlku, dokelž sće wo wróćostajenje hesła za swoje "
+  703: "wužiwarske konto na at %(site_name)s prosył."
+  704  
+
+  714  #, python-format
+  715: msgid "The %(site_name)s team"
+  716: msgstr "Team %(site_name)s"
+  717  
+
+venv\Lib\site-packages\django\contrib\admin\locale\hu\LC_MESSAGES\django.po:
+  670  "You're receiving this email because you requested a password reset for your "
+  671: "user account at %(site_name)s."
+  672  msgstr ""
+  673  "Azért kapja ezt az e-mailt, mert jelszavának visszaállítását kérte ezen a "
+  674: "weboldalon: %(site_name)s."
+  675  
+
+  685  #, python-format
+  686: msgid "The %(site_name)s team"
+  687: msgstr "%(site_name)s csapat"
+  688  
+
+venv\Lib\site-packages\django\contrib\admin\locale\hy\LC_MESSAGES\django.po:
+  648  "You're receiving this email because you requested a password reset for your "
+  649: "user account at %(site_name)s."
+  650  msgstr ""
+  651  "Դուք ստացել եք այս նամակը, քանի որ ցանկացել եք փոխել ձեր գաղտնաբառը "
+  652: "%(site_name)s կայքում։"
+  653  
+
+  663  #, python-format
+  664: msgid "The %(site_name)s team"
+  665: msgstr "%(site_name)s կայքի թիմ"
+  666  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ia\LC_MESSAGES\django.po:
+  612  "You're receiving this email because you requested a password reset for your "
+  613: "user account at %(site_name)s."
+  614  msgstr ""
+
+  625  #, python-format
+  626: msgid "The %(site_name)s team"
+  627: msgstr "Le equipa de %(site_name)s"
+  628  
+
+venv\Lib\site-packages\django\contrib\admin\locale\id\LC_MESSAGES\django.po:
+  682  "You're receiving this email because you requested a password reset for your "
+  683: "user account at %(site_name)s."
+  684  msgstr ""
+  685  "Anda menerima email ini karena Anda meminta penyetelan ulang sandi untuk "
+  686: "akun pengguna di %(site_name)s."
+  687  
+
+  697  #, python-format
+  698: msgid "The %(site_name)s team"
+  699: msgstr "Tim %(site_name)s"
+  700  
+
+venv\Lib\site-packages\django\contrib\admin\locale\io\LC_MESSAGES\django.po:
+  612  "You're receiving this email because you requested a password reset for your "
+  613: "user account at %(site_name)s."
+  614  msgstr ""
+  615  "Vu esas recevanta ica mesajo pro ke vu demandis pasvorto chanjo por vua "
+  616: "uzero account che %(site_name)s."
+  617  
+
+  627  #, python-format
+  628: msgid "The %(site_name)s team"
+  629: msgstr "La equipo di %(site_name)s"
+  630  
+
+venv\Lib\site-packages\django\contrib\admin\locale\is\LC_MESSAGES\django.po:
+  660  "You're receiving this email because you requested a password reset for your "
+  661: "user account at %(site_name)s."
+  662  msgstr ""
+  663  "Þú ert að fá þennan tölvupóst því þú baðst um endurstillingu á lykilorði "
+  664: "fyrir aðganginn þinn á %(site_name)s."
+  665  
+
+  675  #, python-format
+  676: msgid "The %(site_name)s team"
+  677: msgstr "%(site_name)s hópurinn"
+  678  
+
+venv\Lib\site-packages\django\contrib\admin\locale\it\LC_MESSAGES\django.po:
+  715  "You're receiving this email because you requested a password reset for your "
+  716: "user account at %(site_name)s."
+  717  msgstr ""
+  718  "Ricevi questa mail perché hai richiesto di reimpostare la password del tuo "
+  719: "account utente presso %(site_name)s."
+  720  
+
+  730  #, python-format
+  731: msgid "The %(site_name)s team"
+  732: msgstr "Il team di %(site_name)s"
+  733  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ja\LC_MESSAGES\django.po:
+  691  "You're receiving this email because you requested a password reset for your "
+  692: "user account at %(site_name)s."
+  693  msgstr ""
+  694: "このメールは %(site_name)s で、あなたのアカウントのパスワードリセットが要求さ"
+  695  "れたため、送信されました。"
+
+  706  #, python-format
+  707: msgid "The %(site_name)s team"
+  708: msgstr " %(site_name)s チーム"
+  709  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ka\LC_MESSAGES\django.po:
+  639  "You're receiving this email because you requested a password reset for your "
+  640: "user account at %(site_name)s."
+  641  msgstr ""
+  642  "თქვენ მიიღეთ ეს წერილი იმიტომ, რომ გააკეთეთ პაროლის თავიდან დაყენების "
+  643: "მოთხოვნა თქვენი მომხმარებლის ანგარიშისთვის %(site_name)s-ზე."
+  644  
+
+  654  #, python-format
+  655: msgid "The %(site_name)s team"
+  656: msgstr "%(site_name)s საიტის გუნდი"
+  657  
+
+venv\Lib\site-packages\django\contrib\admin\locale\kab\LC_MESSAGES\django.po:
+  579  "You're receiving this email because you requested a password reset for your "
+  580: "user account at %(site_name)s."
+  581  msgstr ""
+
+  592  #, python-format
+  593: msgid "The %(site_name)s team"
+  594  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\kk\LC_MESSAGES\django.po:
+  639  "You're receiving this email because you requested a password reset for your "
+  640: "user account at %(site_name)s."
+  641  msgstr ""
+
+  652  #, python-format
+  653: msgid "The %(site_name)s team"
+  654: msgstr "%(site_name)s тобы"
+  655  
+
+venv\Lib\site-packages\django\contrib\admin\locale\km\LC_MESSAGES\django.po:
+  584  "You're receiving this email because you requested a password reset for your "
+  585: "user account at %(site_name)s."
+  586  msgstr ""
+
+  597  #, python-format
+  598: msgid "The %(site_name)s team"
+  599: msgstr "ក្រុមរបស់គេហទំព័រ %(site_name)s"
+  600  
+
+venv\Lib\site-packages\django\contrib\admin\locale\kn\LC_MESSAGES\django.po:
+  587  "You're receiving this email because you requested a password reset for your "
+  588: "user account at %(site_name)s."
+  589  msgstr ""
+
+  600  #, python-format
+  601: msgid "The %(site_name)s team"
+  602: msgstr "%(site_name)s ತಂಡ"
+  603  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ko\LC_MESSAGES\django.po:
+  708  "You're receiving this email because you requested a password reset for your "
+  709: "user account at %(site_name)s."
+  710  msgstr ""
+  711: "%(site_name)s의 계정 비밀번호를 초기화하기 위한 요청으로 이 이메일이 전송되었"
+  712  "습니다."
+
+  723  #, python-format
+  724: msgid "The %(site_name)s team"
+  725: msgstr "%(site_name)s 팀"
+  726  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ky\LC_MESSAGES\django.po:
+  655  "You're receiving this email because you requested a password reset for your "
+  656: "user account at %(site_name)s."
+  657: msgstr "Сиз %(site_name)s боюнча сырсөз сураган үчүн бул экат келди."
+  658  
+
+  668  #, python-format
+  669: msgid "The %(site_name)s team"
+  670: msgstr "%(site_name)s жамааты"
+  671  
+
+venv\Lib\site-packages\django\contrib\admin\locale\lb\LC_MESSAGES\django.po:
+  580  "You're receiving this email because you requested a password reset for your "
+  581: "user account at %(site_name)s."
+  582  msgstr ""
+
+  593  #, python-format
+  594: msgid "The %(site_name)s team"
+  595  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\lt\LC_MESSAGES\django.po:
+  660  "You're receiving this email because you requested a password reset for your "
+  661: "user account at %(site_name)s."
+  662  msgstr ""
+  663  "Jūs gaunate šį laišką nes prašėte paskyros slaptažodžio atkūrimo "
+  664: "%(site_name)s svetainėje."
+  665  
+
+  675  #, python-format
+  676: msgid "The %(site_name)s team"
+  677: msgstr "%(site_name)s komanda"
+  678  
+
+venv\Lib\site-packages\django\contrib\admin\locale\lv\LC_MESSAGES\django.po:
+  697  "You're receiving this email because you requested a password reset for your "
+  698: "user account at %(site_name)s."
+  699  msgstr ""
+  700  "Jūs saņemat šo e-pasta ziņojumu, jo pieprasījāt atiestatīt lietotāja konta "
+  701: "paroli vietnē %(site_name)s."
+  702  
+
+  712  #, python-format
+  713: msgid "The %(site_name)s team"
+  714: msgstr "%(site_name)s komanda"
+  715  
+
+venv\Lib\site-packages\django\contrib\admin\locale\mk\LC_MESSAGES\django.po:
+  666  "You're receiving this email because you requested a password reset for your "
+  667: "user account at %(site_name)s."
+  668  msgstr ""
+  669  "Го примате овој email бидејќи побаравте ресетирање на лозинка како корисник "
+  670: "на %(site_name)s."
+  671  
+
+  681  #, python-format
+  682: msgid "The %(site_name)s team"
+  683: msgstr "Тимот на %(site_name)s"
+  684  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ml\LC_MESSAGES\django.po:
+  642  "You're receiving this email because you requested a password reset for your "
+  643: "user account at %(site_name)s."
+  644  msgstr ""
+  645: "നിങ്ങളുൾ പാസ് വേർഡ്‌ മാറ്റാനുള്ള നിർദേശങ്ങൾ %(site_name)s ഇൽ ആവശ്യപ്പെട്ടതുകൊണ്ടാണ് ഈ "
+  646  "ഇമെയിൽ സന്ദേശം ലഭിച്ചദ്."
+
+  657  #, python-format
+  658: msgid "The %(site_name)s team"
+  659: msgstr "%(site_name)s പക്ഷം"
+  660  
+
+venv\Lib\site-packages\django\contrib\admin\locale\mn\LC_MESSAGES\django.po:
+  645  "You're receiving this email because you requested a password reset for your "
+  646: "user account at %(site_name)s."
+  647  msgstr ""
+  648: "%(site_name)s сайтанд бүртгүүлсэн эрхийн нууц үгийг сэргээх хүсэлт гаргасан "
+  649  "учир энэ имэйл ийг та хүлээн авсан болно. "
+
+  660  #, python-format
+  661: msgid "The %(site_name)s team"
+  662: msgstr "%(site_name)s баг"
+  663  
+
+venv\Lib\site-packages\django\contrib\admin\locale\mr\LC_MESSAGES\django.po:
+  554  "You're receiving this email because you requested a password reset for your "
+  555: "user account at %(site_name)s."
+  556  msgstr ""
+
+  567  #, python-format
+  568: msgid "The %(site_name)s team"
+  569  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\ms\LC_MESSAGES\django.po:
+  661  "You're receiving this email because you requested a password reset for your "
+  662: "user account at %(site_name)s."
+  663  msgstr ""
+  664  "Anda menerima emel ini kerana anda telah memohon untuk menetapkan semula "
+  665: "kata laluan bagi akaun pengguna di %(site_name)s"
+  666  
+
+  676  #, python-format
+  677: msgid "The %(site_name)s team"
+  678: msgstr "Pasukan %(site_name)s"
+  679  
+
+venv\Lib\site-packages\django\contrib\admin\locale\my\LC_MESSAGES\django.po:
+  577  "You're receiving this email because you requested a password reset for your "
+  578: "user account at %(site_name)s."
+  579  msgstr ""
+
+  590  #, python-format
+  591: msgid "The %(site_name)s team"
+  592  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\nb\LC_MESSAGES\django.po:
+  660  "You're receiving this email because you requested a password reset for your "
+  661: "user account at %(site_name)s."
+  662  msgstr ""
+  663  "Du mottar denne e-posten fordi du har bedt om nullstilling av passordet ditt "
+  664: "på %(site_name)s."
+  665  
+
+  675  #, python-format
+  676: msgid "The %(site_name)s team"
+  677: msgstr "Hilsen %(site_name)s"
+  678  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ne\LC_MESSAGES\django.po:
+  629  "You're receiving this email because you requested a password reset for your "
+  630: "user account at %(site_name)s."
+  631  msgstr ""
+  632: " %(site_name)s को लागि तपाइले पासवर्ड पुन: राख्न आग्रह गरेको हुनाले ई-मेल पाउनुहुदैंछ । "
+  633  
+
+  643  #, python-format
+  644: msgid "The %(site_name)s team"
+  645: msgstr "%(site_name)s टोली"
+  646  
+
+venv\Lib\site-packages\django\contrib\admin\locale\nl\LC_MESSAGES\django.po:
+  692  "You're receiving this email because you requested a password reset for your "
+  693: "user account at %(site_name)s."
+  694  msgstr ""
+  695  "U ontvangt deze e-mail, omdat u een aanvraag voor opnieuw instellen van het "
+  696: "wachtwoord voor uw account op %(site_name)s hebt gedaan."
+  697  
+
+  707  #, python-format
+  708: msgid "The %(site_name)s team"
+  709: msgstr "Het %(site_name)s-team"
+  710  
+
+venv\Lib\site-packages\django\contrib\admin\locale\nn\LC_MESSAGES\django.po:
+  676  "You're receiving this email because you requested a password reset for your "
+  677: "user account at %(site_name)s."
+  678  msgstr ""
+  679  "Du får denne e-posten fordi du har bedt om å nullstille passordet for "
+  680: "brukarkontoen din på %(site_name)s."
+  681  
+
+  691  #, python-format
+  692: msgid "The %(site_name)s team"
+  693: msgstr "Helsing %(site_name)s"
+  694  
+
+venv\Lib\site-packages\django\contrib\admin\locale\os\LC_MESSAGES\django.po:
+  609  "You're receiving this email because you requested a password reset for your "
+  610: "user account at %(site_name)s."
+  611  msgstr ""
+  612: "Ды райстай ацы фыстӕг, уымӕн ӕмӕ %(site_name)s-ы дӕ архайӕджы аккаунтӕн "
+  613  "пароль сӕвӕрын ӕрдомдтай."
+
+  624  #, python-format
+  625: msgid "The %(site_name)s team"
+  626: msgstr "%(site_name)s-ы бал"
+  627  
+
+venv\Lib\site-packages\django\contrib\admin\locale\pa\LC_MESSAGES\django.po:
+  650  "You're receiving this email because you requested a password reset for your "
+  651: "user account at %(site_name)s."
+  652  msgstr ""
+
+  663  #, python-format
+  664: msgid "The %(site_name)s team"
+  665: msgstr "%(site_name)s ਟੀਮ"
+  666  
+
+venv\Lib\site-packages\django\contrib\admin\locale\pl\LC_MESSAGES\django.po:
+  722  "You're receiving this email because you requested a password reset for your "
+  723: "user account at %(site_name)s."
+  724  msgstr ""
+  725  "Otrzymujesz tę wiadomość, gdyż skorzystano z opcji resetu hasła dla Twojego "
+  726: "konta na stronie %(site_name)s."
+  727  
+
+  739  #, python-format
+  740: msgid "The %(site_name)s team"
+  741: msgstr "Zespół %(site_name)s"
+  742  
+
+venv\Lib\site-packages\django\contrib\admin\locale\pt\LC_MESSAGES\django.po:
+  665  "You're receiving this email because you requested a password reset for your "
+  666: "user account at %(site_name)s."
+  667  msgstr ""
+  668  "Está a receber este email porque pediu para redefinir a palavra-chave para o "
+  669: "seu utilizador no site %(site_name)s."
+  670  
+
+  680  #, python-format
+  681: msgid "The %(site_name)s team"
+  682: msgstr "A equipa do %(site_name)s"
+  683  
+
+venv\Lib\site-packages\django\contrib\admin\locale\pt_BR\LC_MESSAGES\django.po:
+  728  "You're receiving this email because you requested a password reset for your "
+  729: "user account at %(site_name)s."
+  730  msgstr ""
+  731  "Você está recebendo este email porque solicitou a redefinição da senha da "
+  732: "sua conta em %(site_name)s."
+  733  
+
+  743  #, python-format
+  744: msgid "The %(site_name)s team"
+  745: msgstr "Equipe %(site_name)s"
+  746  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ro\LC_MESSAGES\django.po:
+  698  "You're receiving this email because you requested a password reset for your "
+  699: "user account at %(site_name)s."
+  700  msgstr ""
+  701  "Primiți acest email deoarece ați cerut o resetare a parolei pentru contul de "
+  702: "utilizator de la %(site_name)s."
+  703  
+
+  713  #, python-format
+  714: msgid "The %(site_name)s team"
+  715: msgstr "Echipa %(site_name)s"
+  716  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ru\LC_MESSAGES\django.po:
+  695  "You're receiving this email because you requested a password reset for your "
+  696: "user account at %(site_name)s."
+  697  msgstr ""
+  698  "Вы получили это письмо, потому что вы (или кто-то другой) запросили "
+  699: "восстановление пароля от учётной записи на сайте %(site_name)s, которая "
+  700  "связана с этим адресом электронной почты."
+
+  711  #, python-format
+  712: msgid "The %(site_name)s team"
+  713: msgstr "Команда сайта %(site_name)s"
+  714  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sk\LC_MESSAGES\django.po:
+  680  "You're receiving this email because you requested a password reset for your "
+  681: "user account at %(site_name)s."
+  682  msgstr ""
+  683  "Tento e-mail ste dostali preto, lebo ste požiadali o obnovenie hesla pre "
+  684: "užívateľský účet na %(site_name)s."
+  685  
+
+  695  #, python-format
+  696: msgid "The %(site_name)s team"
+  697: msgstr "Tím %(site_name)s"
+  698  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sl\LC_MESSAGES\django.po:
+  634  "You're receiving this email because you requested a password reset for your "
+  635: "user account at %(site_name)s."
+  636  msgstr ""
+  637  "To e-pošto ste prejeli, ker je ste zahtevali ponastavitev gesla za vaš "
+  638: "uporabniški račun na %(site_name)s."
+  639  
+
+  649  #, python-format
+  650: msgid "The %(site_name)s team"
+  651: msgstr "Ekipa strani %(site_name)s"
+  652  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sq\LC_MESSAGES\django.po:
+  697  "You're receiving this email because you requested a password reset for your "
+  698: "user account at %(site_name)s."
+  699  msgstr ""
+  700  "Këtë email po e merrni ngaqë kërkuat ricaktim fjalëkalimi për llogarinë tuaj "
+  701: "si përdorues te %(site_name)s."
+  702  
+
+  712  #, python-format
+  713: msgid "The %(site_name)s team"
+  714: msgstr "Ekipi i %(site_name)s"
+  715  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sr\LC_MESSAGES\django.po:
+  661  "You're receiving this email because you requested a password reset for your "
+  662: "user account at %(site_name)s."
+  663  msgstr ""
+  664  "Примате ову поруку зато што сте затражили ресетовање лозинке за кориснички "
+  665: "налог на сајту %(site_name)s."
+  666  
+
+  676  #, python-format
+  677: msgid "The %(site_name)s team"
+  678: msgstr "Екипа сајта %(site_name)s"
+  679  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sr_Latn\LC_MESSAGES\django.po:
+  638  "You're receiving this email because you requested a password reset for your "
+  639: "user account at %(site_name)s."
+  640  msgstr ""
+
+  651  #, python-format
+  652: msgid "The %(site_name)s team"
+  653: msgstr "Ekipa sajta %(site_name)s"
+  654  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sv\LC_MESSAGES\django.po:
+  701  "You're receiving this email because you requested a password reset for your "
+  702: "user account at %(site_name)s."
+  703  msgstr ""
+  704  "Du får detta e-postmeddelande för att du har begärt återställning av ditt "
+  705: "lösenord av ditt konto på %(site_name)s."
+  706  
+
+  716  #, python-format
+  717: msgid "The %(site_name)s team"
+  718: msgstr "%(site_name)s-teamet"
+  719  
+
+venv\Lib\site-packages\django\contrib\admin\locale\sw\LC_MESSAGES\django.po:
+  620  "You're receiving this email because you requested a password reset for your "
+  621: "user account at %(site_name)s."
+  622  msgstr ""
+  623  "Umepata barua pepe hii kwa sababu ulihitaji ku seti upya nywila ya akaunti "
+  624: "yako ya %(site_name)s."
+  625  
+
+  635  #, python-format
+  636: msgid "The %(site_name)s team"
+  637: msgstr "timu ya %(site_name)s"
+  638  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ta\LC_MESSAGES\django.po:
+  591  "You're receiving this email because you requested a password reset for your "
+  592: "user account at %(site_name)s."
+  593  msgstr ""
+
+  604  #, python-format
+  605: msgid "The %(site_name)s team"
+  606: msgstr "இந்த %(site_name)s -இன்  குழு"
+  607  
+
+venv\Lib\site-packages\django\contrib\admin\locale\te\LC_MESSAGES\django.po:
+  588  "You're receiving this email because you requested a password reset for your "
+  589: "user account at %(site_name)s."
+  590  msgstr ""
+
+  601  #, python-format
+  602: msgid "The %(site_name)s team"
+  603: msgstr "%(site_name)s జట్టు"
+  604  
+
+venv\Lib\site-packages\django\contrib\admin\locale\tg\LC_MESSAGES\django.po:
+  640  "You're receiving this email because you requested a password reset for your "
+  641: "user account at %(site_name)s."
+  642  msgstr ""
+  643: "Шумо ин матубро гирифтед барои он, ки аз сомонаи %(site_name)s, ки бо ин "
+  644  "почтаи электронӣ алоқаманд аст,ба мо дархост барои барқароркунии рамз қабул "
+
+  656  #, python-format
+  657: msgid "The %(site_name)s team"
+  658: msgstr "Гурӯҳи ташкили %(site_name)s"
+  659  
+
+venv\Lib\site-packages\django\contrib\admin\locale\th\LC_MESSAGES\django.po:
+  614  "You're receiving this email because you requested a password reset for your "
+  615: "user account at %(site_name)s."
+  616  msgstr ""
+  617: "คุณได้รับอีเมล์ฉบับนี้ เนื่องจากคุณส่งคำร้องขอเปลี่ยนรหัสผ่านสำหรับบัญชีผู้ใช้ของคุณที่ %(site_name)s."
+  618  
+
+  628  #, python-format
+  629: msgid "The %(site_name)s team"
+  630: msgstr "%(site_name)s ทีม"
+  631  
+
+venv\Lib\site-packages\django\contrib\admin\locale\tk\LC_MESSAGES\django.po:
+  648  "You're receiving this email because you requested a password reset for your "
+  649: "user account at %(site_name)s."
+  650  msgstr ""
+
+  661  #, python-format
+  662: msgid "The %(site_name)s team"
+  663  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\tr\LC_MESSAGES\django.po:
+  702  "You're receiving this email because you requested a password reset for your "
+  703: "user account at %(site_name)s."
+  704  msgstr ""
+  705: "Bu e-postayı alıyorsunuz çünkü %(site_name)s sitesindeki kullanıcı hesabınız "
+  706  "için bir parola sıfırlama istediniz."
+
+  717  #, python-format
+  718: msgid "The %(site_name)s team"
+  719: msgstr "%(site_name)s ekibi"
+  720  
+
+venv\Lib\site-packages\django\contrib\admin\locale\tt\LC_MESSAGES\django.po:
+  603  "You're receiving this email because you requested a password reset for your "
+  604: "user account at %(site_name)s."
+  605  msgstr ""
+
+  616  #, python-format
+  617: msgid "The %(site_name)s team"
+  618: msgstr "%(site_name)s сайтының төркеме"
+  619  
+
+venv\Lib\site-packages\django\contrib\admin\locale\udm\LC_MESSAGES\django.po:
+  551  "You're receiving this email because you requested a password reset for your "
+  552: "user account at %(site_name)s."
+  553  msgstr ""
+
+  564  #, python-format
+  565: msgid "The %(site_name)s team"
+  566  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\uk\LC_MESSAGES\django.po:
+  715  "You're receiving this email because you requested a password reset for your "
+  716: "user account at %(site_name)s."
+  717  msgstr ""
+  718  "Ви отримали цей лист через те, що зробили запит на перевстановлення пароля "
+  719: "для облікового запису користувача на %(site_name)s."
+  720  
+
+  730  #, python-format
+  731: msgid "The %(site_name)s team"
+  732: msgstr "Команда сайту %(site_name)s "
+  733  
+
+venv\Lib\site-packages\django\contrib\admin\locale\ur\LC_MESSAGES\django.po:
+  609  "You're receiving this email because you requested a password reset for your "
+  610: "user account at %(site_name)s."
+  611  msgstr ""
+
+  622  #, python-format
+  623: msgid "The %(site_name)s team"
+  624: msgstr "%(site_name)s کی ٹیم"
+  625  
+
+venv\Lib\site-packages\django\contrib\admin\locale\uz\LC_MESSAGES\django.po:
+  622  "You're receiving this email because you requested a password reset for your "
+  623: "user account at %(site_name)s."
+  624  msgstr ""
+
+  635  #, python-format
+  636: msgid "The %(site_name)s team"
+  637  msgstr ""
+
+venv\Lib\site-packages\django\contrib\admin\locale\vi\LC_MESSAGES\django.po:
+  666  "You're receiving this email because you requested a password reset for your "
+  667: "user account at %(site_name)s."
+  668  msgstr ""
+  669  "Bạn nhận được email này vì bạn đã yêu cầu làm mới lại mật khẩu cho tài khoản "
+  670: "của bạn tại %(site_name)s."
+  671  
+
+  681  #, python-format
+  682: msgid "The %(site_name)s team"
+  683: msgstr "Đội của %(site_name)s"
+  684  
+
+venv\Lib\site-packages\django\contrib\admin\locale\zh_Hans\LC_MESSAGES\django.po:
+  686  "You're receiving this email because you requested a password reset for your "
+  687: "user account at %(site_name)s."
+  688: msgstr "你收到这封邮件是因为你请求重置你在网站 %(site_name)s上的用户账户密码。"
+  689  
+
+  699  #, python-format
+  700: msgid "The %(site_name)s team"
+  701: msgstr "%(site_name)s 团队"
+  702  
+
+venv\Lib\site-packages\django\contrib\admin\locale\zh_Hant\LC_MESSAGES\django.po:
+  606  "You're receiving this email because you requested a password reset for your "
+  607: "user account at %(site_name)s."
+  608: msgstr "這封電子郵件來自 %(site_name)s，因為你要求為帳號重新設定密碼。"
+  609  
+
+  619  #, python-format
+  620: msgid "The %(site_name)s team"
+  621: msgstr "%(site_name)s 團隊"
+  622  
+
+venv\Lib\site-packages\django\contrib\admin\templates\registration\password_reset_email.html:
+   1  {% load i18n %}{% autoescape off %}
+   2: {% blocktranslate %}You're receiving this email because you requested a password reset for your user account at {{ site_name }}.{% endblocktranslate %}
+   3  
+
+  11  
+  12: {% blocktranslate %}The {{ site_name }} team{% endblocktranslate %}
+  13  
+
+venv\Lib\site-packages\django\contrib\auth\forms.py:
+  358              current_site = get_current_site(request)
+  359:             site_name = current_site.name
+  360              domain = current_site.domain
+  361          else:
+  362:             site_name = domain = domain_override
+  363          email_field_name = UserModel.get_email_field_name()
+
+  368                  "domain": domain,
+  369:                 "site_name": site_name,
+  370                  "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+
+venv\Lib\site-packages\django\contrib\auth\views.py:
+  118                  "site": current_site,
+  119:                 "site_name": current_site.name,
+  120                  **(self.extra_context or {}),
+
+  176                  "site": current_site,
+  177:                 "site_name": current_site.name,
+  178                  "title": _("Logged out"),
+
+venv\Lib\site-packages\django\contrib\auth\locale\af\LC_MESSAGES\django.po:
+  264  #, python-format
+  265: msgid "Password reset on %(site_name)s"
+  266: msgstr "Wagwoordherstel op %(site_name)s"
+  267  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ar\LC_MESSAGES\django.po:
+  279  #, python-format
+  280: msgid "Password reset on %(site_name)s"
+  281: msgstr "إعادة تعيين كلمة المرور على %(site_name)s"
+  282  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ar_DZ\LC_MESSAGES\django.po:
+  280  #, python-format
+  281: msgid "Password reset on %(site_name)s"
+  282: msgstr "إعادة تعيين كلمة المرور على %(site_name)s"
+  283  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ast\LC_MESSAGES\django.po:
+  248  #, python-format
+  249: msgid "Password reset on %(site_name)s"
+  250  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\az\LC_MESSAGES\django.po:
+  264  #, python-format
+  265: msgid "Password reset on %(site_name)s"
+  266: msgstr "%(site_name)s, şifrənin sıfırlanması"
+  267  
+
+venv\Lib\site-packages\django\contrib\auth\locale\be\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "Узнавіць пароль на %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\bg\LC_MESSAGES\django.po:
+  271  #, python-format
+  272: msgid "Password reset on %(site_name)s"
+  273: msgstr "Промяна на парола за %(site_name)s"
+  274  
+
+venv\Lib\site-packages\django\contrib\auth\locale\bn\LC_MESSAGES\django.po:
+  250  #, python-format
+  251: msgid "Password reset on %(site_name)s"
+  252  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\br\LC_MESSAGES\django.po:
+  257  #, python-format
+  258: msgid "Password reset on %(site_name)s"
+  259  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\bs\LC_MESSAGES\django.po:
+  260  #, python-format
+  261: msgid "Password reset on %(site_name)s"
+  262  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\ca\LC_MESSAGES\django.po:
+  276  #, python-format
+  277: msgid "Password reset on %(site_name)s"
+  278: msgstr "Reinicialitzar la contrasenya a %(site_name)s"
+  279  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ckb\LC_MESSAGES\django.po:
+  266  #, python-format
+  267: msgid "Password reset on %(site_name)s"
+  268: msgstr "تێپەڕەوشەکەت دانرایەوە لە %(site_name)s"
+  269  
+
+venv\Lib\site-packages\django\contrib\auth\locale\cs\LC_MESSAGES\django.po:
+  269  #, python-format
+  270: msgid "Password reset on %(site_name)s"
+  271: msgstr "Obnovení hesla na webu %(site_name)s"
+  272  
+
+venv\Lib\site-packages\django\contrib\auth\locale\cy\LC_MESSAGES\django.po:
+  258  #, python-format
+  259: msgid "Password reset on %(site_name)s"
+  260: msgstr "Ailosod cyfrinar ar %(site_name)s"
+  261  
+
+venv\Lib\site-packages\django\contrib\auth\locale\da\LC_MESSAGES\django.po:
+  269  #, python-format
+  270: msgid "Password reset on %(site_name)s"
+  271: msgstr "Adgangskode nulstillet på %(site_name)s"
+  272  
+
+venv\Lib\site-packages\django\contrib\auth\locale\de\LC_MESSAGES\django.po:
+  278  #, python-format
+  279: msgid "Password reset on %(site_name)s"
+  280: msgstr "Passwort auf %(site_name)s zurücksetzen"
+  281  
+
+venv\Lib\site-packages\django\contrib\auth\locale\dsb\LC_MESSAGES\django.po:
+  279  #, python-format
+  280: msgid "Password reset on %(site_name)s"
+  281: msgstr "Slědkstajenje gronidła na %(site_name)s"
+  282  
+
+venv\Lib\site-packages\django\contrib\auth\locale\el\LC_MESSAGES\django.po:
+  280  #, python-format
+  281: msgid "Password reset on %(site_name)s"
+  282: msgstr "Επαναφορά συνθηματικού για το %(site_name)s "
+  283  
+
+venv\Lib\site-packages\django\contrib\auth\locale\en\LC_MESSAGES\django.po:
+  329  #, python-format
+  330: msgid "Password reset on %(site_name)s"
+  331  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\en_AU\LC_MESSAGES\django.po:
+  266  #, python-format
+  267: msgid "Password reset on %(site_name)s"
+  268: msgstr "Password reset on %(site_name)s"
+  269  
+
+venv\Lib\site-packages\django\contrib\auth\locale\en_GB\LC_MESSAGES\django.po:
+  253  #, python-format
+  254: msgid "Password reset on %(site_name)s"
+  255: msgstr "Password reset on %(site_name)s"
+  256  
+
+venv\Lib\site-packages\django\contrib\auth\locale\eo\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "Pasvorta rekomencigo ĉe %(site_name)s"
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\es\LC_MESSAGES\django.po:
+  285  #, python-format
+  286: msgid "Password reset on %(site_name)s"
+  287: msgstr "Contraseña restablecida en %(site_name)s"
+  288  
+
+venv\Lib\site-packages\django\contrib\auth\locale\es_AR\LC_MESSAGES\django.po:
+  274  #, python-format
+  275: msgid "Password reset on %(site_name)s"
+  276: msgstr "Reinicio de contraseña en %(site_name)s"
+  277  
+
+venv\Lib\site-packages\django\contrib\auth\locale\es_CO\LC_MESSAGES\django.po:
+  268  #, python-format
+  269: msgid "Password reset on %(site_name)s"
+  270: msgstr "Contraseña restablecida en %(site_name)s"
+  271  
+
+venv\Lib\site-packages\django\contrib\auth\locale\es_MX\LC_MESSAGES\django.po:
+  272  #, python-format
+  273: msgid "Password reset on %(site_name)s"
+  274: msgstr "Restablecimiento de la contraseña en %(site_name)s "
+  275  
+
+venv\Lib\site-packages\django\contrib\auth\locale\es_VE\LC_MESSAGES\django.po:
+  264  #, python-format
+  265: msgid "Password reset on %(site_name)s"
+  266: msgstr "Contraseña restablecida en %(site_name)s"
+  267  
+
+venv\Lib\site-packages\django\contrib\auth\locale\et\LC_MESSAGES\django.po:
+  268  #, python-format
+  269: msgid "Password reset on %(site_name)s"
+  270: msgstr "Uue salasõna loomine saidil %(site_name)s"
+  271  
+
+venv\Lib\site-packages\django\contrib\auth\locale\eu\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "Pasahitza berrezarri %(site_name)s webgunean"
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\fa\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "بازیابی گذرواژه در %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\fi\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "Salasanan nollaus sivustolla %(site_name)s "
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\fr\LC_MESSAGES\django.po:
+  282  #, python-format
+  283: msgid "Password reset on %(site_name)s"
+  284: msgstr "Réinitialisation du mot de passe sur %(site_name)s"
+  285  
+
+venv\Lib\site-packages\django\contrib\auth\locale\fy\LC_MESSAGES\django.po:
+  200  #, python-format
+  201: msgid "Password reset on %(site_name)s"
+  202  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\ga\LC_MESSAGES\django.po:
+  262  #, python-format
+  263: msgid "Password reset on %(site_name)s"
+  264: msgstr "Athshocraigh focal faire ar %(site_name)s"
+  265  
+
+venv\Lib\site-packages\django\contrib\auth\locale\gd\LC_MESSAGES\django.po:
+  297  #, python-format
+  298: msgid "Password reset on %(site_name)s"
+  299: msgstr "Ath-shuidheachadh an fhacail-fhaire air %(site_name)s"
+  300  
+
+venv\Lib\site-packages\django\contrib\auth\locale\gl\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "Cambio de contrasinal en %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\he\LC_MESSAGES\django.po:
+  263  #, python-format
+  264: msgid "Password reset on %(site_name)s"
+  265: msgstr "החלפת הסיסמה ב-%(site_name)s"
+  266  
+
+venv\Lib\site-packages\django\contrib\auth\locale\hi\LC_MESSAGES\django.po:
+  254  #, python-format
+  255: msgid "Password reset on %(site_name)s"
+  256: msgstr "%(site_name)s पर कूटशब्द को पुनःठीक करे"
+  257  
+
+venv\Lib\site-packages\django\contrib\auth\locale\hr\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "Resetiranje lozinke na %(site_name)s"
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\hsb\LC_MESSAGES\django.po:
+  276  #, python-format
+  277: msgid "Password reset on %(site_name)s"
+  278: msgstr "Hesło je so na %(site_name)s wróćo stajiło."
+  279  
+
+venv\Lib\site-packages\django\contrib\auth\locale\hu\LC_MESSAGES\django.po:
+  268  #, python-format
+  269: msgid "Password reset on %(site_name)s"
+  270: msgstr "Jelszó újragenerálása ezen az oldalon: %(site_name)s"
+  271  
+
+venv\Lib\site-packages\django\contrib\auth\locale\hy\LC_MESSAGES\django.po:
+  259  #, python-format
+  260: msgid "Password reset on %(site_name)s"
+  261: msgstr "Գաղտնաբառի փոփոխում %(site_name)s կայքում։"
+  262  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ia\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "Reinitialisation del contrasigno in %(site_name)s"
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\id\LC_MESSAGES\django.po:
+  266  #, python-format
+  267: msgid "Password reset on %(site_name)s"
+  268: msgstr "Penyetelan ulang sandi di %(site_name)s"
+  269  
+
+venv\Lib\site-packages\django\contrib\auth\locale\io\LC_MESSAGES\django.po:
+  200  #, python-format
+  201: msgid "Password reset on %(site_name)s"
+  202  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\is\LC_MESSAGES\django.po:
+  267  #, python-format
+  268: msgid "Password reset on %(site_name)s"
+  269: msgstr "Lykilorð endursett á %(site_name)s"
+  270  
+
+venv\Lib\site-packages\django\contrib\auth\locale\it\LC_MESSAGES\django.po:
+  282  #, python-format
+  283: msgid "Password reset on %(site_name)s"
+  284: msgstr "Password reset su %(site_name)s"
+  285  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ja\LC_MESSAGES\django.po:
+  264  #, python-format
+  265: msgid "Password reset on %(site_name)s"
+  266: msgstr "%(site_name)s のパスワードリセット"
+  267  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ka\LC_MESSAGES\django.po:
+  264  #, python-format
+  265: msgid "Password reset on %(site_name)s"
+  266: msgstr "პაროლის თავიდან დაყენება %(site_name)s-ზე"
+  267  
+
+venv\Lib\site-packages\django\contrib\auth\locale\kab\LC_MESSAGES\django.po:
+  251  #, python-format
+  252: msgid "Password reset on %(site_name)s"
+  253  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\kk\LC_MESSAGES\django.po:
+  249  #, python-format
+  250: msgid "Password reset on %(site_name)s"
+  251: msgstr "%(site_name)s торапта құпия сөзді өзгерту"
+  252  
+
+venv\Lib\site-packages\django\contrib\auth\locale\km\LC_MESSAGES\django.po:
+  245  #, python-format
+  246: msgid "Password reset on %(site_name)s"
+  247  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\kn\LC_MESSAGES\django.po:
+  249  #, python-format
+  250: msgid "Password reset on %(site_name)s"
+  251  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\ko\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "%(site_name)s의 비밀번호 재설정"
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ky\LC_MESSAGES\django.po:
+  259  #, python-format
+  260: msgid "Password reset on %(site_name)s"
+  261: msgstr "%(site_name)s дан сырсөздү жокко чыгырыңыз"
+  262  
+
+venv\Lib\site-packages\django\contrib\auth\locale\lb\LC_MESSAGES\django.po:
+  200  #, python-format
+  201: msgid "Password reset on %(site_name)s"
+  202  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\lt\LC_MESSAGES\django.po:
+  280  #, python-format
+  281: msgid "Password reset on %(site_name)s"
+  282: msgstr "Slaptažodis atkurtas ant %(site_name)s"
+  283  
+
+venv\Lib\site-packages\django\contrib\auth\locale\lv\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "Paroles pārstatīšana %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\mk\LC_MESSAGES\django.po:
+  268  #, python-format
+  269: msgid "Password reset on %(site_name)s"
+  270: msgstr "Ресетирање на лозинка за  %(site_name)s"
+  271  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ml\LC_MESSAGES\django.po:
+  263  #, python-format
+  264: msgid "Password reset on %(site_name)s"
+  265: msgstr "%(site_name)s ലെ പാസ്‌വേര്‍ഡ് മാറ്റിയിരിക്കുന്നു"
+  266  
+
+venv\Lib\site-packages\django\contrib\auth\locale\mn\LC_MESSAGES\django.po:
+  270  #, python-format
+  271: msgid "Password reset on %(site_name)s"
+  272: msgstr "%(site_name)s cайт дээрх нууц үг шинэчлэлт"
+  273  
+
+venv\Lib\site-packages\django\contrib\auth\locale\mr\LC_MESSAGES\django.po:
+  200  #, python-format
+  201: msgid "Password reset on %(site_name)s"
+  202  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\ms\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "Penetapan semula kata laluan di %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\my\LC_MESSAGES\django.po:
+  246  #, python-format
+  247: msgid "Password reset on %(site_name)s"
+  248  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\nb\LC_MESSAGES\django.po:
+  264  #, python-format
+  265: msgid "Password reset on %(site_name)s"
+  266: msgstr "Passord-nullstilling på %(site_name)s"
+  267  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ne\LC_MESSAGES\django.po:
+  249  #, python-format
+  250: msgid "Password reset on %(site_name)s"
+  251: msgstr "%(site_name)s को पासवर्ड पून: राख्नु "
+  252  
+
+venv\Lib\site-packages\django\contrib\auth\locale\nl\LC_MESSAGES\django.po:
+  277  #, python-format
+  278: msgid "Password reset on %(site_name)s"
+  279: msgstr "Wachtwoordherinitialisatie voor %(site_name)s"
+  280  
+
+venv\Lib\site-packages\django\contrib\auth\locale\nn\LC_MESSAGES\django.po:
+  261  #, python-format
+  262: msgid "Password reset on %(site_name)s"
+  263: msgstr "Passordnullstilling på %(site_name)s"
+  264  
+
+venv\Lib\site-packages\django\contrib\auth\locale\os\LC_MESSAGES\django.po:
+  252  #, python-format
+  253: msgid "Password reset on %(site_name)s"
+  254: msgstr "%(site_name)s-ы нӕуӕг пароль ӕвӕрӕн"
+  255  
+
+venv\Lib\site-packages\django\contrib\auth\locale\pa\LC_MESSAGES\django.po:
+  249  #, python-format
+  250: msgid "Password reset on %(site_name)s"
+  251  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\pl\LC_MESSAGES\django.po:
+  287  #, python-format
+  288: msgid "Password reset on %(site_name)s"
+  289: msgstr "Reset hasła dla konta na stronie %(site_name)s"
+  290  
+
+venv\Lib\site-packages\django\contrib\auth\locale\pt\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "Redefinição de palavra-passe em %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\pt_BR\LC_MESSAGES\django.po:
+  292  #, python-format
+  293: msgid "Password reset on %(site_name)s"
+  294: msgstr "Redefinição de senha em %(site_name)s "
+  295  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ro\LC_MESSAGES\django.po:
+  280  #, python-format
+  281: msgid "Password reset on %(site_name)s"
+  282: msgstr "Resetează parola pentru %(site_name)s"
+  283  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ru\LC_MESSAGES\django.po:
+  283  #, python-format
+  284: msgid "Password reset on %(site_name)s"
+  285: msgstr "Сброс пароля на %(site_name)s"
+  286  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sk\LC_MESSAGES\django.po:
+  274  #, python-format
+  275: msgid "Password reset on %(site_name)s"
+  276: msgstr "Obnovenie hesla pre %(site_name)s "
+  277  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sl\LC_MESSAGES\django.po:
+  272  #, python-format
+  273: msgid "Password reset on %(site_name)s"
+  274: msgstr "Geslo na %(site_name)s je ponastavljeno."
+  275  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sq\LC_MESSAGES\django.po:
+  268  #, python-format
+  269: msgid "Password reset on %(site_name)s"
+  270: msgstr "Ricaktim fjalëkalimi për te %(site_name)s"
+  271  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sr\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "Ресетовање лозинке на сајту %(site_name)s"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sr_Latn\LC_MESSAGES\django.po:
+  261  #, python-format
+  262: msgid "Password reset on %(site_name)s"
+  263: msgstr "Resetovanje lozinke na sajtu %(site_name)s"
+  264  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sv\LC_MESSAGES\django.po:
+  277  #, python-format
+  278: msgid "Password reset on %(site_name)s"
+  279: msgstr "Lösenord nollställt på %(site_name)s"
+  280  
+
+venv\Lib\site-packages\django\contrib\auth\locale\sw\LC_MESSAGES\django.po:
+  251  #, python-format
+  252: msgid "Password reset on %(site_name)s"
+  253: msgstr "Kuseti upya nywila ya %(site_name)s"
+  254  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ta\LC_MESSAGES\django.po:
+  247  #, python-format
+  248: msgid "Password reset on %(site_name)s"
+  249  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\te\LC_MESSAGES\django.po:
+  249  #, python-format
+  250: msgid "Password reset on %(site_name)s"
+  251  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\tg\LC_MESSAGES\django.po:
+  259  #, python-format
+  260: msgid "Password reset on %(site_name)s"
+  261: msgstr "Барҳамдиҳии рамз дар сайти мазкур %(site_name)s"
+  262  
+
+venv\Lib\site-packages\django\contrib\auth\locale\th\LC_MESSAGES\django.po:
+  246  #, python-format
+  247: msgid "Password reset on %(site_name)s"
+  248: msgstr "รีเซ็ตรหัสผ่านบน %(site_name)s"
+  249  
+
+venv\Lib\site-packages\django\contrib\auth\locale\tk\LC_MESSAGES\django.po:
+  267  #, python-format
+  268: msgid "Password reset on %(site_name)s"
+  269: msgstr "%(site_name)s-de paroly täzeden düzüldi"
+  270  
+
+venv\Lib\site-packages\django\contrib\auth\locale\tr\LC_MESSAGES\django.po:
+  273  #, python-format
+  274: msgid "Password reset on %(site_name)s"
+  275: msgstr "%(site_name)s sitesinde parola sıfırlama"
+  276  
+
+venv\Lib\site-packages\django\contrib\auth\locale\tt\LC_MESSAGES\django.po:
+  245  #, python-format
+  246: msgid "Password reset on %(site_name)s"
+  247  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\udm\LC_MESSAGES\django.po:
+  200  #, python-format
+  201: msgid "Password reset on %(site_name)s"
+  202  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\uk\LC_MESSAGES\django.po:
+  283  #, python-format
+  284: msgid "Password reset on %(site_name)s"
+  285: msgstr "Скидання пароля на %(site_name)s"
+  286  
+
+venv\Lib\site-packages\django\contrib\auth\locale\ur\LC_MESSAGES\django.po:
+  246  #, python-format
+  247: msgid "Password reset on %(site_name)s"
+  248  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\uz\LC_MESSAGES\django.po:
+  251  #, python-format
+  252: msgid "Password reset on %(site_name)s"
+  253  msgstr ""
+
+venv\Lib\site-packages\django\contrib\auth\locale\vi\LC_MESSAGES\django.po:
+  265  #, python-format
+  266: msgid "Password reset on %(site_name)s"
+  267: msgstr "Đặt lại mật khẩu trên %(site_name)s"
+  268  
+
+venv\Lib\site-packages\django\contrib\auth\locale\zh_Hans\LC_MESSAGES\django.po:
+  266  #, python-format
+  267: msgid "Password reset on %(site_name)s"
+  268: msgstr "重置 %(site_name)s 的密码"
+  269  
+
+venv\Lib\site-packages\django\contrib\auth\locale\zh_Hant\LC_MESSAGES\django.po:
+  255  #, python-format
+  256: msgid "Password reset on %(site_name)s"
+  257: msgstr "在 %(site_name)s 進行密碼重置"
+  258  
+
+venv\Lib\site-packages\django\contrib\auth\templates\registration\password_reset_subject.txt:
+  1  {% load i18n %}{% autoescape off %}
+  2: {% blocktranslate %}Password reset on {{ site_name }}{% endblocktranslate %}
+  3  {% endautoescape %}
+
+venv\Lib\site-packages\django_extensions\management\commands\set_default_site.py:
+  16          parser.add_argument(
+  17:             '--name', dest='site_name', default=None,
+  18              help='Use this as site name.'
+
+  43          else:
+  44:             name = options["site_name"]
+  45              domain = options["site_domain"]
+
+venv\Lib\site-packages\rest_framework\static\rest_framework\docs\js\highlight.pack.js:
+  1: ⟪ 203574 characters skipped ⟫ired_files project qt_wrap_cpp qt_wrap_ui remove_definitions return separate_arguments set set_directory_properties set_property set_source_files_properties set_target_properties set_tests_properties site_name source_group string target_link_libraries try_compile try_run unset variable_watch while build_name exec_program export_library_dependencies install_files install_programs install_targets link_libraries make_directory remove subdir_depends subdirs use_mangled_mesa utility_source variable_requires write_file qt5_use_modules qt5_use_package qt5_wrap_cpp on off true false and or",operator:"equal less greater strless strgreater strequal matches"},c:[{cN:"envvar",b:"\\${",e:"}"},e.HCM,e.QSM,e.NM]}});hljs.registerLanguage("1c",function(c){var e="[a-zA-Zа-яА-Я][a-zA-Z0-9_а-яА-Я]*",r="возврат дата для если и или иначе иначеесли исключение конецесли конецпопытки конецпроцедуры конецфункции конеццикла константа не перейти перем перечисление по пока попытка прервать продолжить процедура строка тогда фс функция цикл число экспорт",t="ansitooem oemtoansi ввестивидсубконто ввестидату ввестизначение ввестиперечисление ввестипериод ввестиплансчетов ввестистроку ввестичисло вопрос восстановит
+  2  c:[{cN:"comment",b:/\(\*/,e:/\*\)/},e.ASM,e.QSM,e.CNM,{cN:"list",b:/\{/,e:/\}/,i:/:/}]}});hljs.registerLanguage("fsharp",function(e){var t={b:"<",e:">",c:[e.inherit(e.TM,{b:/'[a-zA-Z0-9_]+/})]};return{aliases:["fs"],k:"yield! return! let! do!abstract and as assert base begin class default delegate do done downcast downto elif else end exception extern false finally for fun function global if in inherit inline interface internal lazy let match member module mutable namespace new null of open or override private public rec return sig static struct then to true try type upcast use val void when while with yield",c:[{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},{cN:"string",b:'"""',e:'"""'},e.C("\\(\\*","\\*\\)"),{cN:"class",bK:"type",e:"\\(|=|$",eE:!0,c:[e.UTM,t]},{cN:"annotation",b:"\\[<",e:">\\]",r:10},{cN:"attribute",b:"\\B('[A-Za-z])\\b",c:[e.BE]},e.CLCM,e.inherit(e.QSM,{i:null}),e.CNM]}});hljs.registerLanguage("verilog",function(e){return{aliases:["v"],cI:!0,k:{keyword:"always and assign begin buf bufif0 bufif1 case casex casez cmos deassign default defparam disable edge else end endcase endfunction endmodule endprimitive endspecify endtable endtask event for force forever fork function if ifnone initial inout input join macromodule module nand negedge nmos nor not notif0 notif1 or output parameter pmos posedge primitive pulldown pullup rcmos release repeat rnmos rpmos rtran rtranif0 rtranif1 specify specparam table task timescale tran tranif0 tranif1 wait while xnor xor",typename:"highz0 highz1 integer large medium pull0 pull1 real realtime reg scalared signed small strong0 strong1 supply0 supply0 supply1 supply1 time tri tri0 tri1 triand trior trireg vectored wand weak0 weak1 wire wor"},c:[e.CBCM,e.CLCM,e.QSM,{cN:"number",b:"\\b(\\d+'(b|h|o|d|B|H|O|D))?[0-9xzXZ]+",c:[e.BE],r:0},{cN:"typename",b:"\\.\\w+",r:0},{cN:"value",b:"#\\((?!parameter).+\\)"},{cN:"keyword",b:"\\+|-|\\*|/|%|<|>|=|#|`|\\!|&|\\||@|:|\\^|~|\\{|\\}",r:0}]}});hljs.registerLanguage("dos",function(e){var r=e.C(/@?rem\b/,/$/,{r:10}),t={cN:"label",b:"^\\s*[A-Za-z._?][A-Za-z0-9_$#@~.?]*(:|\\s+label)",r:0};return{aliases:["bat","cmd"],cI:!0,k:{flow:"if else goto for in do call exit not exist errorlevel defined",operator:"equ neq lss leq gtr geq",keyword:"shift cd dir echo setlocal endlocal set pause copy",stream:"prn nul lpt3 lpt2 lpt1 con com4 com3 com2 com1 aux",winutils:"ping net ipconfig taskkill xcopy ren del",built_in:"append assoc at attrib break cacls cd chcp chdir chkdsk chkntfs cls cmd color comp compact convert date dir diskcomp diskcopy doskey erase fs find findstr format ftype graftabl help keyb label md mkdir mode more move path pause print popd pushd promt rd recover rem rename replace restore rmdir shiftsort start subst time title tree type ver verify vol"},c:[{cN:"envvar",b:/%%[^ ]|%[^ ]+?%|![^ ]+?!/},{cN:"function",b:t.b,e:"goto:eof",c:[e.inherit(e.TM,{b:"([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*"}),r]},{cN:"number",b:"\\b\\d+",r:0},r]}});hljs.registerLanguage("gherkin",function(e){return{aliases:["feature"],k:"Feature Background Ability Business Need Scenario Scenarios Scenario Outline Scenario Template Examples Given And Then But When",c:[{cN:"keyword",b:"\\*"},e.C("@[^@\r\n	 ]+","$"),{cN:"string",b:"\\|",e:"\\$"},{cN:"variable",b:"<",e:">"},e.HCM,{cN:"string",b:'"""',e:'"""'},e.QSM]}});hljs.registerLanguage("xml",function(t){var e="[A-Za-z0-9\\._:-]+",s={b:/<\?(php)?(?!\w)/,e:/\?>/,sL:"php",subLanguageMode:"continuous"},c={eW:!0,i:/</,r:0,c:[s,{cN:"attribute",b:e,r:0},{b:"=",r:0,c:[{cN:"value",c:[s],v:[{b:/"/,e:/"/},{b:/'/,e:/'/},{b:/[^\s\/>]+/}]}]}]};return{aliases:["html","xhtml","rss","atom","xsl","plist"],cI:!0,c:[{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},t.C("<!--","-->",{r:10}),{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[c],starts:{e:"</style>",rE:!0,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[c],starts:{e:"</script>",rE:!0,sL:""}},s,{cN:"pi",b:/<\?\w+/,e:/\?>/,r:10},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:/[^ \/><\n\t]+/,r:0},c]}]}});hljs.registerLanguage("autohotkey",function(e){var r={cN:"escape",b:"`[\\s\\S]"},c=e.C(";","$",{r:0}),n=[{cN:"built_in",b:"A_[a-zA-Z0-9]+"},{cN:"built_in",bK:"ComSpec Clipboard ClipboardAll ErrorLevel"}];return{cI:!0,k:{keyword:"Break Continue Else Gosub If Loop Return While",literal:"A true false NOT AND OR"},c:n.concat([r,e.inherit(e.QSM,{c:[r]}),c,{cN:"number",b:e.NR,r:0},{cN:"var_expand",b:"%",e:"%",i:"\\n",c:[r]},{cN:"label",c:[r],v:[{b:'^[^\\n";]+::(?!=)'},{b:'^[^\\n";]+:(?!=)',r:0}]},{b:",\\s*,",r:10}])}});hljs.registerLanguage("r",function(e){var r="([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*";return{c:[e.HCM,{b:r,l:r,k:{keyword:"function if in break next repeat else for return switch while try tryCatch stop warning require library attach detach source setMethod setGeneric setGroupGeneric setClass ...",literal:"NULL NA TRUE FALSE T F Inf NaN NA_integer_|10 NA_real_|10 NA_character_|10 NA_complex_|10"},r:0},{cN:"number",b:"0[xX][0-9a-fA-F]+[Li]?\\b",r:0},{cN:"number",b:"\\d+(?:[eE][+\\-]?\\d*)?L\\b",r:0},{cN:"number",b:"\\d+\\.(?!\\d)(?:i\\b)?",r:0},{cN:"number",b:"\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",r:0},{b:"`",e:"`",r:0},{cN:"string",c:[e.BE],v:[{b:'"',e:'"'},{b:"'",e:"'"}]}]}});hljs.registerLanguage("cs",function(e){var r="abstract as base bool break byte case catch char checked const continue decimal dynamic default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long null when object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while async protected public private internal ascending descending from get group into join let orderby partial select set value var where yield",t=e.IR+"(<"+e.IR+">)?";return{aliases:["csharp"],k:r,i:/::/,c:[e.C("///","$",{rB:!0,c:[{cN:"xmlDocTag",v:[{b:"///",r:0},{b:"<!--|-->"},{b:"</?",e:">"}]}]}),e.CLCM,e.CBCM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line region endregion pragma checksum"},{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},e.ASM,e.QSM,e.CNM,{bK:"class namespace interface",e:/[{;=]/,i:/[^\s:]/,c:[e.TM,e.CLCM,e.CBCM]},{bK:"new return throw await",r:0},{cN:"function",b:"("+t+"\\s+)+"+e.IR+"\\s*\\(",rB:!0,e:/[{;=]/,eE:!0,k:r,c:[{b:e.IR+"\\s*\\(",rB:!0,c:[e.TM],r:0},{cN:"params",b:/\(/,e:/\)/,k:r,r:0,c:[e.ASM,e.QSM,e.CNM,e.CBCM]},e.CLCM,e.CBCM]}]}});hljs.registerLanguage("nsis",function(e){var t={cN:"symbol",b:"\\$(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)"},n={cN:"constant",b:"\\$+{[a-zA-Z0-9_]+}"},i={cN:"variable",b:"\\$+[a-zA-Z0-9_]+",i:"\\(\\){}"},r={cN:"constant",b:"\\$+\\([a-zA-Z0-9_]+\\)"},o={cN:"params",b:"(ARCHIVE|FILE_ATTRIBUTE_ARCHIVE|FILE_ATTRIBUTE_NORMAL|FILE_ATTRIBUTE_OFFLINE|FILE_ATTRIBUTE_READONLY|FILE_ATTRIBUTE_SYSTEM|FILE_ATTRIBUTE_TEMPORARY|HKCR|HKCU|HKDD|HKEY_CLASSES_ROOT|HKEY_CURRENT_CONFIG|HKEY_CURRENT_USER|HKEY_DYN_DATA|HKEY_LOCAL_MACHINE|HKEY_PERFORMANCE_DATA|HKEY_USERS|HKLM|HKPD|HKU|IDABORT|IDCANCEL|IDIGNORE|IDNO|IDOK|IDRETRY|IDYES|MB_ABORTRETRYIGNORE|MB_DEFBUTTON1|MB_DEFBUTTON2|MB_DEFBUTTON3|MB_DEFBUTTON4|MB_ICONEXCLAMATION|MB_ICONINFORMATION|MB_ICONQUESTION|MB_ICONSTOP|MB_OK|MB_OKCANCEL|MB_RETRYCANCEL|MB_RIGHT|MB_RTLREADING|MB_SETFOREGROUND|MB_TOPMOST|MB_USERICON|MB_YESNO|NORMAL|OFFLINE|READONLY|SHCTX|SHELL_CONTEXT|SYSTEM|TEMPORARY)"},l={cN:"constant",b:"\\!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|searchparse|searchreplace|tempfile|undef|verbose|warning)"};return{cI:!1,k:{keyword:"Abort AddBrandingImage AddSize AllowRootDirInstall AllowSkipFiles AutoCloseWindow BGFont BGGradient BrandingText BringToFront Call CallInstDLL Caption ChangeUI CheckBitmap ClearErrors CompletedText ComponentText CopyFiles CRCCheck CreateDirectory CreateFont CreateShortCut Delete DeleteINISec DeleteINIStr DeleteRegKey DeleteRegValue DetailPrint DetailsButtonText DirText DirVar DirVerify EnableWindow EnumRegKey EnumRegValue Exch Exec ExecShell ExecWait ExpandEnvStrings File FileBufSize FileClose FileErrorText FileOpen FileRead FileReadByte FileReadUTF16LE FileReadWord FileSeek FileWrite FileWriteByte FileWriteUTF16LE FileWriteWord FindClose FindFirst FindNext FindWindow FlushINI FunctionEnd GetCurInstType GetCurrentAddress GetDlgItem GetDLLVersion GetDLLVersionLocal GetErrorLevel GetFileTime GetFileTimeLocal GetFullPathName GetFunctionAddress GetInstDirError GetLabelAddress GetTempFileName Goto HideWindow Icon IfAbort IfErrors IfFileExists IfRebootFlag IfSilent InitPluginsDir InstallButtonText InstallColors InstallDir InstallDirRegKey InstProgressFlags InstType InstTypeGetText InstTypeSetText IntCmp IntCmpU IntFmt IntOp IsWindow LangString LicenseBkColor LicenseData LicenseForceSelection LicenseLangString LicenseText LoadLanguageFile LockWindow LogSet LogText ManifestDPIAware ManifestSupportedOS MessageBox MiscButtonText Name Nop OutFile Page PageCallbacks PageExEnd Pop Push Quit ReadEnvStr ReadINIStr ReadRegDWORD ReadRegStr Reboot RegDLL Rename RequestExecutionLevel ReserveFile Return RMDir SearchPath SectionEnd SectionGetFlags SectionGetInstTypes SectionGetSize SectionGetText SectionGroupEnd SectionIn SectionSetFlags SectionSetInstTypes SectionSetSize SectionSetText SendMessage SetAutoClose SetBrandingImage SetCompress SetCompressor SetCompressorDictSize SetCtlColors SetCurInstType SetDatablockOptimize SetDateSave SetDetailsPrint SetDetailsView SetErrorLevel SetErrors SetFileAttributes SetFont SetOutPath SetOverwrite SetPluginUnload SetRebootFlag SetRegView SetShellVarContext SetSilent ShowInstDetails ShowUninstDetails ShowWindow SilentInstall SilentUnInstall Sleep SpaceTexts StrCmp StrCmpS StrCpy StrLen SubCaption SubSectionEnd Unicode UninstallButtonText UninstallCaption UninstallIcon UninstallSubCaption UninstallText UninstPage UnRegDLL Var VIAddVersionKey VIFileVersion VIProductVersion WindowIcon WriteINIStr WriteRegBin WriteRegDWORD WriteRegExpandStr WriteRegStr WriteUninstaller XPStyle",literal:"admin all auto both colored current false force hide highest lastused leave listonly none normal notset off on open print show silent silentlog smooth textonly true user "},c:[e.HCM,e.CBCM,{cN:"string",b:'"',e:'"',i:"\\n",c:[{cN:"symbol",b:"\\$(\\\\(n|r|t)|\\$)"},t,n,i,r]},e.C(";","$",{r:0}),{cN:"function",bK:"Function PageEx Section SectionGroup SubSection",e:"$"},l,n,i,r,o,e.NM,{cN:"literal",b:e.IR+"::"+e.IR}]}});hljs.registerLanguage("less",function(e){var r="[\\w-]+",t="("+r+"|@{"+r+"})",a=[],c=[],n=function(e){return{cN:"string",b:"~?"+e+".*?"+e}},i=function(e,r,t){return{cN:e,b:r,r:t}},s=function(r,t,a){return e.inherit({cN:r,b:t+"\\(",e:"\\(",rB:!0,eE:!0,r:0},a)},b={b:"\\(",e:"\\)",c:c,r:0};c.push(e.CLCM,e.CBCM,n("'"),n('"'),e.CSSNM,i("hexcolor","#[0-9A-Fa-f]+\\b"),s("function","(url|data-uri)",{starts:{cN:"string",e:"[\\)\\n]",eE:!0}}),s("function",r),b,i("variable","@@?"+r,10),i("variable","@{"+r+"}"),i("built_in","~?`[^`]*?`"),{cN:"attribute",b:r+"\\s*:",e:":",rB:!0,eE:!0});var o=c.concat({b:"{",e:"}",c:a}),u={bK:"when",eW:!0,c:[{bK:"and not"}].concat(c)},C={cN:"attribute",b:t,e:":",eE:!0,c:[e.CLCM,e.CBCM],i:/\S/,starts:{e:"[;}]",rE:!0,c:c,i:"[<=$]"}},l={cN:"at_rule",b:"@(import|media|charset|font-face|(-[a-z]+-)?keyframes|supports|document|namespace|page|viewport|host)\\b",starts:{e:"[;{}]",rE:!0,c:c,r:0}},d={cN:"variable",v:[{b:"@"+r+"\\s*:",r:15},{b:"@"+r}],starts:{e:"[;}]",rE:!0,c:o}},p={v:[{b:"[\\.#:&\\[]",e:"[;{}]"},{b:t+"[^;]*{",e:"{"}],rB:!0,rE:!0,i:"[<='$\"]",c:[e.CLCM,e.CBCM,u,i("keyword","all\\b"),i("variable","@{"+r+"}"),i("tag",t+"%?",0),i("id","#"+t),i("class","\\."+t,0),i("keyword","&",0),s("pseudo",":not"),s("keyword",":extend"),i("pseudo","::?"+t),{cN:"attr_selector",b:"\\[",e:"\\]"},{b:"\\(",e:"\\)",c:o},{b:"!important"}]};return a.push(e.CLCM,e.CBCM,l,d,p,C),{cI:!0,i:"[=>'/<($\"]",c:a}});hljs.registerLanguage("pf",function(t){var o={cN:"variable",b:/\$[\w\d#@][\w\d_]*/},e={cN:"variable",b:/</,e:/>/};return{aliases:["pf.conf"],l:/[a-z0-9_<>-]+/,k:{built_in:"block match pass load anchor|5 antispoof|10 set table",keyword:"in out log quick on rdomain inet inet6 proto from port os to routeallow-opts divert-packet divert-reply divert-to flags group icmp-typeicmp6-type label once probability recieved-on rtable prio queuetos tag tagged user keep fragment for os dropaf-to|10 binat-to|10 nat-to|10 rdr-to|10 bitmask least-stats random round-robinsource-hash static-portdup-to reply-to route-toparent bandwidth default min max qlimitblock-policy debug fingerprints hostid limit loginterface optimizationreassemble ruleset-optimization basic none profile skip state-defaultsstate-policy timeoutconst counters persistno modulate synproxy state|5 floating if-bound no-sync pflow|10 sloppysource-track global rule max-src-nodes max-src-states max-src-connmax-src-conn-rate overload flushscrub|5 max-mss min-ttl no-df|10 random-id",literal:"all any no-route self urpf-failed egress|5 unknown"},c:[t.HCM,t.NM,t.QSM,o,e]}});hljs.registerLanguage("lasso",function(e){var r="[a-zA-Z_][a-zA-Z0-9_.]*",a="<\\?(lasso(script)?|=)",t="\\]|\\?>",s={literal:"true false none minimal full all void and or not bw nbw ew new cn ncn lt lte gt gte eq neq rx nrx ft",built_in:"array date decimal duration integer map pair string tag xml null boolean bytes keyword list locale queue set stack staticarray local var variable global data self inherited",keyword:"error_code error_msg error_pop error_push error_reset cache database_names database_schemanames database_tablenames define_tag define_type email_batch encode_set html_comment handle handle_error header if inline iterate ljax_target link link_currentaction link_currentgroup link_currentrecord link_detail link_firstgroup link_firstrecord link_lastgroup link_lastrecord link_nextgroup link_nextrecord link_prevgroup link_prevrecord log loop namespace_using output_none portal private protect records referer referrer repeating resultset rows search_args search_arguments select sort_args sort_arguments thread_atomic value_list while abort case else if_empty if_false if_null if_true loop_abort loop_continue loop_count params params_up return return_value run_children soap_definetag soap_lastrequest soap_lastresponse tag_name ascending average by define descending do equals frozen group handle_failure import in into join let match max min on order parent protected provide public require returnhome skip split_thread sum take thread to trait type where with yield yieldhome"},n=e.C("<!--","-->",{r:0}),o={cN:"preprocessor",b:"\\[noprocess\\]",starts:{cN:"markup",e:"\\[/noprocess\\]",rE:!0,c:[n]}},i={cN:"preprocessor",b:"\\[/noprocess|"+a},l={cN:"variable",b:"'"+r+"'"},c=[e.CLCM,{cN:"javadoc",b:"/\\*\\*!",e:"\\*/",c:[e.PWM]},e.CBCM,e.inherit(e.CNM,{b:e.CNR+"|(-?infinity|nan)\\b"}),e.inherit(e.ASM,{i:null}),e.inherit(e.QSM,{i:null}),{cN:"string",b:"`",e:"`"},{cN:"variable",v:[{b:"[#$]"+r},{b:"#",e:"\\d+",i:"\\W"}]},{cN:"tag",b:"::\\s*",e:r,i:"\\W"},{cN:"attribute",v:[{b:"-"+e.UIR,r:0},{b:"(\\.\\.\\.)"}]},{cN:"subst",v:[{b:"->\\s*",c:[l]},{b:":=|/(?!\\w)=?|[-+*%=<>&|!?\\\\]+",r:0}]},{cN:"built_in",b:"\\.\\.?\\s*",r:0,c:[l]},{cN:"class",bK:"define",rE:!0,e:"\\(|=>",c:[e.inherit(e.TM,{b:e.UIR+"(=(?!>))?"})]}];return{aliases:["ls","lassoscript"],cI:!0,l:r+"|&[lg]t;",k:s,c:[{cN:"preprocessor",b:t,r:0,starts:{cN:"markup",e:"\\[|"+a,rE:!0,r:0,c:[n]}},o,i,{cN:"preprocessor",b:"\\[no_square_brackets",starts:{e:"\\[/no_square_brackets\\]",l:r+"|&[lg]t;",k:s,c:[{cN:"preprocessor",b:t,r:0,starts:{cN:"markup",e:"\\[noprocess\\]|"+a,rE:!0,c:[n]}},o,i].concat(c)}},{cN:"preprocessor",b:"\\[",r:0},{cN:"shebang",b:"^#!.+lasso9\\b",r:10}].concat(c)}});hljs.registerLanguage("prolog",function(c){var r={cN:"atom",b:/[a-z][A-Za-z0-9_]*/,r:0},b={cN:"name",v:[{b:/[A-Z][a-zA-Z0-9_]*/},{b:/_[A-Za-z0-9_]*/}],r:0},a={b:/\(/,e:/\)/,r:0},e={b:/\[/,e:/\]/},n={cN:"comment",b:/%/,e:/$/,c:[c.PWM]},t={cN:"string",b:/`/,e:/`/,c:[c.BE]},g={cN:"string",b:/0\'(\\\'|.)/},N={cN:"string",b:/0\'\\s/},o={b:/:-/},s=[r,b,a,o,e,n,c.CBCM,c.QSM,c.ASM,t,g,N,c.CNM];return a.c=s,e.c=s,{c:s.concat([{b:/\.$/}])}});hljs.registerLanguage("oxygene",function(e){var r="abstract add and array as asc aspect assembly async begin break block by case class concat const copy constructor continue create default delegate desc distinct div do downto dynamic each else empty end ensure enum equals event except exit extension external false final finalize finalizer finally flags for forward from function future global group has if implementation implements implies in index inherited inline interface into invariants is iterator join locked locking loop matching method mod module namespace nested new nil not notify nullable of old on operator or order out override parallel params partial pinned private procedure property protected public queryable raise read readonly record reintroduce remove repeat require result reverse sealed select self sequence set shl shr skip static step soft take then to true try tuple type union unit unsafe until uses using var virtual raises volatile where while with write xor yield await mapped deprecated stdcall cdecl pascal register safecall overload library platform reference packed strict published autoreleasepool selector strong weak unretained",t=e.C("{","}",{r:0}),a=e.C("\\(\\*","\\*\\)",{r:10}),n={cN:"string",b:"'",e:"'",c:[{b:"''"}]},o={cN:"string",b:"(#\\d+)+"},i={cN:"function",bK:"function constructor destructor procedure method",e:"[:;]",k:"function constructor|10 destructor|10 procedure|10 method|10",c:[e.TM,{cN:"params",b:"\\(",e:"\\)",k:r,c:[n,o]},t,a]};return{cI:!0,k:r,i:'("|\\$[G-Zg-z]|\\/\\*|</|=>|->)',c:[t,a,e.CLCM,n,o,e.NM,i,{cN:"class",b:"=\\bclass\\b",e:"end;",k:r,c:[n,o,t,a,e.CLCM,i]}]}});hljs.registerLanguage("applescript",function(e){var t=e.inherit(e.QSM,{i:""}),r={cN:"params",b:"\\(",e:"\\)",c:["self",e.CNM,t]},o=e.C("--","$"),n=e.C("\\(\\*","\\*\\)",{c:["self",o]}),a=[o,n,e.HCM];return{aliases:["osascript"],k:{keyword:"about above after against and around as at back before beginning behind below beneath beside between but by considering contain contains continue copy div does eighth else end equal equals error every exit fifth first for fourth from front get given global if ignoring in into is it its last local me middle mod my ninth not of on onto or over prop property put ref reference repeat returning script second set seventh since sixth some tell tenth that the|0 then third through thru timeout times to transaction try until where while whose with without",constant:"AppleScript false linefeed return pi quote result space tab true",type:"alias application boolean class constant date file integer list number real record string text",command:"activate beep count delay launch log offset read round run say summarize write",property:"character characters contents day frontmost id item length month name paragraph paragraphs rest reverse running time version weekday word words year"},c:[t,e.CNM,{cN:"type",b:"\\bPOSIX file\\b"},{cN:"command",b:"\\b(clipboard info|the clipboard|info for|list (disks|folder)|mount volume|path to|(close|open for) access|(get|set) eof|current date|do shell script|get volume settings|random number|set volume|system attribute|system info|time to GMT|(load|run|store) script|scripting components|ASCII (character|number)|localized string|choose (application|color|file|file name|folder|from list|remote application|URL)|display (alert|dialog))\\b|^\\s*return\\b"},{cN:"constant",b:"\\b(text item delimiters|current application|missing value)\\b"},{cN:"keyword",b:"\\b(apart from|aside from|instead of|out of|greater than|isn't|(doesn't|does not) (equal|come before|come after|contain)|(greater|less) than( or equal)?|(starts?|ends|begins?) with|contained by|comes (before|after)|a (ref|reference))\\b"},{cN:"property",b:"\\b(POSIX path|(date|time) string|quoted form)\\b"},{cN:"function_start",bK:"on",i:"[${=;\\n]",c:[e.UTM,r]}].concat(a),i:"//|->|=>"}});hljs.registerLanguage("makefile",function(e){var a={cN:"variable",b:/\$\(/,e:/\)/,c:[e.BE]};return{aliases:["mk","mak"],c:[e.HCM,{b:/^\w+\s*\W*=/,rB:!0,r:0,starts:{cN:"constant",e:/\s*\W*=/,eE:!0,starts:{e:/$/,r:0,c:[a]}}},{cN:"title",b:/^[\w]+:\s*$/},{cN:"phony",b:/^\.PHONY:/,e:/$/,k:".PHONY",l:/[\.\w]+/},{b:/^\t+/,e:/$/,r:0,c:[e.QSM,a]}]}});hljs.registerLanguage("dust",function(e){var a="if eq ne lt lte gt gte select default math sep";return{aliases:["dst"],cI:!0,sL:"xml",subLanguageMode:"continuous",c:[{cN:"expression",b:"{",e:"}",r:0,c:[{cN:"begin-block",b:"#[a-zA-Z- .]+",k:a},{cN:"string",b:'"',e:'"'},{cN:"end-block",b:"\\/[a-zA-Z- .]+",k:a},{cN:"variable",b:"[a-zA-Z-.]+",k:a,r:0}]}]}});hljs.registerLanguage("clojure-repl",function(e){return{c:[{cN:"prompt",b:/^([\w.-]+|\s*#_)=>/,starts:{e:/$/,sL:"clojure",subLanguageMode:"continuous"}}]}});hljs.registerLanguage("dart",function(e){var t={cN:"subst",b:"\\$\\{",e:"}",k:"true false null this is new super"},r={cN:"string",v:[{b:"r'''",e:"'''"},{b:'r"""',e:'"""'},{b:"r'",e:"'",i:"\\n"},{b:'r"',e:'"',i:"\\n"},{b:"'''",e:"'''",c:[e.BE,t]},{b:'"""',e:'"""',c:[e.BE,t]},{b:"'",e:"'",i:"\\n",c:[e.BE,t]},{b:'"',e:'"',i:"\\n",c:[e.BE,t]}]};t.c=[e.CNM,r];var n={keyword:"assert break case catch class const continue default do else enum extends false final finally for if in is new null rethrow return super switch this throw true try var void while with",literal:"abstract as dynamic export external factory get implements import library operator part set static typedef",built_in:"print Comparable DateTime Duration Function Iterable Iterator List Map Match Null Object Pattern RegExp Set Stopwatch String StringBuffer StringSink Symbol Type Uri bool double int num document window querySelector querySelectorAll Element ElementList"};return{k:n,c:[r,{cN:"dartdoc",b:"/\\*\\*",e:"\\*/",sL:"markdown",subLanguageMode:"continuous"},{cN:"dartdoc",b:"///",e:"$",sL:"markdown",subLanguageMode:"continuous"},e.CLCM,e.CBCM,{cN:"class",bK:"class interface",e:"{",eE:!0,c:[{bK:"extends implements"},e.UTM]},e.CNM,{cN:"annotation",b:"@[A-Za-z]+"},{b:"=>"}]}});

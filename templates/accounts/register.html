@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - {{ site_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .register-container {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0faf3;
+    padding: 30px 15px;
+  }
+  .register-card {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    box-shadow: 0 10px 32px rgba(32, 201, 151, 0.25);
+    background: #fff;
+    overflow: hidden;
+  }
+  .register-card .card-header {
+    background: linear-gradient(135deg, #20c997 10%, #28a745 90%);
+    color: #ffffff;
+    padding: 32px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.4px;
+  }
+  .register-card .card-header p {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 6px;
+    opacity: 0.85;
+  }
+  .form-label {
+    font-weight: 600;
+    color: #31785f;
+  }
+  input.form-control, select.form-control {
+    border-radius: 50px;
+    border: 1.8px solid #20c997;
+    padding: 14px 22px;
+    font-size: 1.05rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  input.form-control:focus, select.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+    outline: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #20c997 10%, #28a745 90%);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 16px 0;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0 7px 22px rgba(32, 201, 151, 0.55);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+  }
+  .btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(135deg, #1aa87e 10%, #238535 90%);
+    box-shadow: 0 11px 34px rgba(32, 201, 151, 0.8);
+    transform: translateY(-3px);
+  }
+  .text-muted {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .text-danger {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  .register-footer {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+  .register-footer a {
+    color: #20c997;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .register-footer a:hover {
+    color: #28a745;
+    text-decoration: underline;
+  }
+  .row > .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+  <div class="register-card card">
+    <div class="card-header">
+      <i class="fas fa-user-plus fa-lg me-2"></i> Create Account
+      <p>Join {{ site_name }} community</p>
+    </div>
+    <div class="card-body">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <div class="text-danger">{{ form.email.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.phone.id_for_label }}" class="form-label">Phone Number</label>
+          {{ form.phone }}
+          {% if form.phone.errors %}
+            <div class="text-danger">{{ form.phone.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="row gx-3">
+          <div class="col-md-6 mb-3">
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+              <div class="text-danger">{{ form.first_name.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+              <div class="text-danger">{{ form.last_name.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row gx-3">
+          <div class="col-md-4 mb-3">
+            <label for="{{ form.state.id_for_label }}" class="form-label">State</label>
+            {{ form.state }}
+            {% if form.state.errors %}
+              <div class="text-danger">{{ form.state.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="{{ form.district.id_for_label }}" class="form-label">District</label>
+            {{ form.district }}
+            {% if form.district.errors %}
+              <div class="text-danger">{{ form.district.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="{{ form.village.id_for_label }}" class="form-label">Village</label>
+            {{ form.village }}
+            {% if form.village.errors %}
+              <div class="text-danger">{{ form.village.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+          {{ form.password1 }}
+          {% if form.password1.errors %}
+            <div class="text-danger">{{ form.password1.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm Password</label>
+          {{ form.password2 }}
+          {% if form.password2.errors %}
+            <div class="text-danger">{{ form.password2.errors }}</div>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="fas fa-user-plus me-2"></i> Create Account
+        </button>
+      </form>
+      <div class="register-footer">
+        <p>Already have an account? 
+          <a href="{% url 'accounts:login' %}">Login here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

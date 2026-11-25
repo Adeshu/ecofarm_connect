@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}CropCoin History - {{ site_name }}{% endblock %}
+{% block extra_css %}
+<style>
+.table thead { background: linear-gradient(135deg,#20c997,#28a745); color: white;}
+.card-hover { border-radius: 16px;box-shadow:0 6px 22px rgba(0,0,0,0.07);}
+.card-hover:hover{transform:scale(1.01);}
+.badge-cropcoin {border-radius:30px;padding:4px 10px;}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold"><i class="fas fa-history text-success"></i> CropCoin Ledger</h2>
+  </div>
+  <form method="get" class="row g-3 mb-4">
+    <div class="col-md-5">
+      <select name="type" class="form-select">
+        <option value="">All Types</option>
+        {% for code, name in point_types %}
+        <option value="{{ code }}" {% if current_type == code %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-center">
+      <button class="btn btn-success w-100 rounded-pill"><i class="fas fa-filter me-1"></i> Apply</button>
+    </div>
+  </form>
+  {% if page_obj %}
+  <div class="card card-hover">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead><tr><th>Date</th><th>Description</th><th class="text-center">Change</th><th class="text-end pe-4">Balance (CropCoins)</th></tr></thead>
+          <tbody>
+            {% for entry in page_obj %}
+            <tr>
+              <td>{{ entry.created_at|date:"M d, Y H:i" }}</td>
+              <td>{{ entry.description }}</td>
+              <td class="text-center">
+                {% if entry.points_change > 0 %}
+                <span class="badge bg-success badge-cropcoin">+{{ entry.points_change }} CropCoins</span>
+                {% else %}
+                <span class="badge bg-danger badge-cropcoin">{{ entry.points_change }} CropCoins</span>
+                {% endif %}
+              </td>
+              <td class="text-end fw-bold pe-4">{{ entry.points_after }} CropCoins</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="alert alert-info py-4 text-center mt-3"><i class="fas fa-info-circle me-2"></i> No CropCoins recorded yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

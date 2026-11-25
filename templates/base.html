@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_name }}{% endblock %}</title>
+    <!-- Fonts and Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --emerald-500: #1ec876;
+            --emerald-600: #15a660;
+            --emerald-700: #0d7b47;
+            --sky-400: #38bdf8;
+            --teal-400: #2dd4bf;
+            --leaf-100: #f2fff7;
+            --charcoal-900: #112a25;
+            --glass-bg: rgba(255, 255, 255, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow-elevate: 0 20px 45px rgba(17, 42, 37, 0.09);
+            --gradient-main: linear-gradient(135deg, #1ec876 0%, #38bdf8 100%);
+            --gradient-secondary: linear-gradient(135deg, #112a25 0%, #164331 100%);
+            --card-radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.18) 0%, transparent 60%),
+                radial-gradient(circle at 90% 0%, rgba(45, 212, 191, 0.14) 0%, transparent 55%),
+                linear-gradient(180deg, #f8fffb 0%, #eef8f2 40%, #f6fdf9 100%);
+            color: var(--charcoal-900);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-attachment: fixed;
+        }
+
+        a {
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--emerald-500);
+        }
+
+        .navbar {
+            backdrop-filter: blur(12px);
+            background: var(--glass-bg) !important;
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-elevate);
+            border-radius: 0 0 var(--card-radius) var(--card-radius);
+            animation: fadeDown 0.45s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: 0.04em;
+            color: var(--emerald-600) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-main);
+            color: #fff;
+            box-shadow: 0 14px 28px rgba(30, 200, 118, 0.23);
+        }
+
+        .navbar-brand span {
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.7rem 1rem !important;
+            margin: 0 0.35rem;
+            font-weight: 600;
+            color: var(--charcoal-900) !important;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 4px;
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center;
+            width: 55%;
+            height: 3px;
+            border-radius: 999px;
+            background: var(--gradient-main);
+            transition: transform 0.25s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .dropdown-menu {
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-elevate);
+            border: 1px solid rgba(17, 42, 37, 0.08);
+            padding: 0.6rem;
+            animation: fadeUp 0.25s ease;
+        }
+
+        .dropdown-item {
+            border-radius: 14px;
+            font-weight: 500;
+            padding: 0.7rem 1rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(30, 200, 118, 0.1);
+            color: var(--emerald-600);
+        }
+
+        .cropcoins-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-weight: 600;
+            background: rgba(30, 200, 118, 0.12);
+            color: var(--emerald-600);
+            border: 1px solid rgba(30, 200, 118, 0.3);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(6px);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { box-shadow: inset 0 0 0 rgba(255,255,255,0.4);}
+            50% { box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.35);}
+            100% { box-shadow: inset 0 0 0 rgba(255,255,255,0.4);}
+        }
+
+        main {
+            flex: 1;
+            padding: 2.5rem 0 4rem;
+        }
+
+        .page-shell {
+            animation: fadeUp 0.45s ease;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--card-radius);
+            border: 1px solid rgba(30, 200, 118, 0.08);
+            box-shadow: var(--shadow-elevate);
+            backdrop-filter: blur(10px);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 26px 60px rgba(17, 42, 37, 0.12);
+        }
+
+        .btn-primary,
+        .btn-success,
+        .btn-outline-primary {
+            border-radius: 999px !important;
+            font-weight: 700 !important;
+            padding: 0.7rem 1.8rem !important;
+            letter-spacing: 0.01em;
+            border: none !important;
+            background: var(--gradient-main) !important;
+            box-shadow: 0 16px 32px rgba(30, 200, 118, 0.25) !important;
+        }
+
+        .btn-outline-primary {
+            background: transparent !important;
+            border: 2px solid rgba(56, 189, 248, 0.5) !important;
+            color: var(--emerald-600) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-outline-primary:hover {
+            background: rgba(56, 189, 248, 0.08) !important;
+        }
+
+        .alert {
+            border-radius: var(--card-radius);
+            border: none;
+            box-shadow: var(--shadow-elevate);
+            padding-right: 3rem;
+        }
+
+        .alert-dismissible .btn-close {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .footer-custom {
+            background: var(--gradient-secondary);
+            color: #e4fff0;
+            padding: 4rem 0 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-custom::before,
+        .footer-custom::after {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.12);
+            filter: blur(60px);
+            transform: translate(-50%, -50%);
+        }
+
+        .footer-custom::after {
+            top: 10%;
+            right: -120px;
+            background: rgba(30, 200, 118, 0.12);
+        }
+
+        .footer-custom::before {
+            bottom: -120px;
+            left: 30%;
+        }
+
+        .footer-custom h5 {
+            font-weight: 700;
+            color: #9ff6cb;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-custom a {
+            color: #defee9;
+        }
+
+        .footer-custom a:hover {
+            color: #a5ffcc;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.35rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #defee9;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-logo span {
+            background: linear-gradient(135deg, #9ff6cb 0%, #38bdf8 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.16);
+            padding: 6px 14px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-custom hr {
+            border-color: rgba(222, 254, 233, 0.3);
+        }
+
+        /* Floating AI chat widget (EcoLearn-style, themed for EcoFarm) */
+        .ai-chat-widget {
+            position: fixed !important;
+            right: 1.5rem !important;
+            bottom: 1.5rem !important;
+            z-index: 1050 !important;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.75rem;
+            max-width: 100vw;
+        }
+
+        .ai-chat-widget > * {
+            pointer-events: auto;
+        }
+
+        .ai-chat-toggle {
+            border-radius: 999px;
+            box-shadow: var(--shadow-elevate);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--gradient-main);
+            color: #fff;
+            border: none;
+            padding: 0.65rem 1.2rem;
+            font-weight: 600;
+        }
+
+        .ai-chat-panel {
+            width: 360px !important;
+            max-width: min(360px, 95vw);
+            max-height: 520px;
+            display: none;
+            flex-direction: column;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 20px 45px rgba(17, 42, 37, 0.25);
+            animation: fadeUp 0.25s ease;
+        }
+
+        .ai-chat-panel.open {
+            display: flex;
+        }
+
+        .ai-chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            min-height: 0;
+            max-height: none;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background: #f6fffb;
+        }
+
+        .ai-chat-message {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .ai-chat-message--user {
+            flex-direction: row-reverse;
+        }
+
+        .ai-chat-message-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background-color: var(--leaf-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--emerald-600);
+            flex-shrink: 0;
+        }
+
+        .ai-chat-message--assistant .ai-chat-message-avatar {
+            background: var(--gradient-main);
+            color: #fff;
+        }
+
+        .ai-chat-message-content {
+            max-width: 80%;
+            background-color: #ffffff;
+            border-radius: 0.9rem;
+            padding: 0.6rem 0.8rem;
+            box-shadow: 0 4px 10px rgba(17, 42, 37, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .ai-chat-message--user .ai-chat-message-content {
+            background: var(--gradient-main);
+            color: #fff;
+        }
+
+        .ai-chat-message-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-bottom: 0.2rem;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .ai-chat-role {
+            font-weight: 600;
+        }
+
+        .ai-chat-form textarea {
+            resize: none;
+            max-height: 100px;
+        }
+
+        .ai-chat-typing {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .ai-chat-typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: rgba(15, 118, 110, 0.5);
+            animation: aiChatTyping 1s infinite ease-in-out;
+        }
+
+        .ai-chat-typing-dot:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .ai-chat-typing-dot:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes aiChatTyping {
+            0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+            40% { transform: translateY(-3px); opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            0%   {opacity: 0; transform: translateY(12px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes fadeDown {
+            0%   {opacity: 0; transform: translateY(-12px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+
+        @media (max-width: 991px) {
+            .ai-chat-panel {
+                width: calc(100% - 2rem);
+                right: 1rem;
+            }
+
+            .navbar {
+                margin: 0 0.75rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.15rem;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top navbar-light">
+    <div class="container-xl">
+        <a class="navbar-brand" href="{% url 'core:home' %}">
+            <span class="brand-icon"><i class="fas fa-leaf"></i></span>
+            <span>{{ site_name|default:"EcoFarm Connect" }}</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto fw-semibold align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}"><i class="fas fa-home me-2"></i>Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'quests:quest_list' %}"><i class="fas fa-bolt me-2"></i>Quests</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'courses:course_list' %}"><i class="fas fa-book-open me-2"></i>Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'farms:public_farms' %}"><i class="fas fa-seedling me-2"></i>Farms</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'gamification:badges' %}"><i class="fas fa-award me-2"></i>Badges</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'gamification:leaderboard' %}"><i class="fas fa-trophy me-2"></i>Leaderboard</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+    {% if user.profile.avatar %}
+      <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="rounded-circle me-2" style="width: 32px; height: 32px; object-fit: cover;">
+    {% else %}
+      <i class="fas fa-user me-2"></i>
+    {% endif %}
+    {{ user.get_full_name|default:user.phone }}
+    <span class="cropcoins-chip ms-2"><i class="fas fa-coins"></i> {{ user.total_points|default:0 }} CropCoins</span>
+</a>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg mt-2">
+                        <li><a class="dropdown-item" href="{% url 'core:dashboard' %}"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:profile' %}"><i class="fas fa-user-edit me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'farms:farm_list' %}"><i class="fas fa-tractor me-2"></i>My Farms</a></li>
+                        <li><a class="dropdown-item" href="{% url 'courses:my_courses' %}"><i class="fas fa-book-reader me-2 text-primary"></i>My Courses</a></li>
+                        <li><a class="dropdown-item" href="{% url 'courses:my_certificates' %}"><i class="fas fa-certificate me-2 text-success"></i>My Certificates</a></li>
+                        <li><a class="dropdown-item" href="{% url 'quests:my_quests' %}"><i class="fas fa-tasks me-2 text-info"></i>My Quests</a></li>
+                        <li><a class="dropdown-item" href="{% url 'gamification:my_badges' %}"><i class="fas fa-award me-2 text-warning"></i>My Badges</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt me-2"></i>Login</a></li>
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                    <a class="btn btn-primary" href="{% url 'accounts:register' %}">
+                        Join EcoFarm
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Alerts/Messages -->
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+<main class="page-shell">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- EcoFarm AI Chat Widget (EcoLearn-style) -->
+<div id="ai-chat-widget" class="ai-chat-widget">
+    <button id="ai-chat-toggle" class="ai-chat-toggle">
+        <i class="fas fa-comments"></i>
+        <span class="d-none d-md-inline ms-1">Ask Farm AI</span>
+    </button>
+
+    <div class="ai-chat-panel card shadow-lg">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+                <div class="ai-chat-avatar">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0">EcoFarm AI Guide</h6>
+                    <small class="text-muted">Ask about crops, soil, climate, or quests</small>
+                </div>
+            </div>
+            <button id="ai-chat-close" type="button" class="btn btn-sm btn-light">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="card-body">
+            <div id="ai-chat-messages" class="ai-chat-messages">
+                <div class="ai-chat-message ai-chat-message--assistant">
+                    <div class="ai-chat-message-avatar">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="ai-chat-message-content">
+                        <div class="ai-chat-message-meta">
+                            <span class="ai-chat-role">Farm AI</span>
+                        </div>
+                        <p class="mb-0">
+                            Hi! I’m your EcoFarm AI guide. Ask me about sustainable
+                            farming, crop planning, soil health, or how to progress
+                            through your quests and courses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <form id="ai-chat-form" class="ai-chat-form">
+                <div class="input-group">
+                    <textarea
+                        id="ai-chat-input"
+                        class="form-control"
+                        rows="1"
+                        placeholder="Ask a question about your farm, crops, or platform..."
+                    ></textarea>
+                    <button id="ai-chat-send" class="btn btn-primary" type="submit">
+                        <span class="d-none d-md-inline">Send</span>
+                        <i class="fas fa-paper-plane ms-1"></i>
+                    </button>
+                </div>
+                <small class="text-muted d-block mt-1">
+                    Powered by AI. Responses may not always be perfect.
+                </small>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="footer-custom mt-5">
+    <div class="container position-relative">
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <div class="footer-logo">
+                    <span class="brand-icon"><i class="fas fa-leaf"></i></span>
+                    <span>EcoFarm Connect</span>
+                </div>
+                <p class="mt-3">
+                    Growing a resilient food ecosystem by empowering farmers, learners, and innovators with knowledge, tools, and collaborative CropCoin rewards.
+                </p>
+                <div class="footer-badge mt-3">
+                    <i class="fas fa-globe-asia"></i> Sustainable Futures Network
+                </div>
+            </div>
+            <div class="col-6 col-lg-2">
+                <h5>Explore</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'quests:quest_list' %}">Interactive Quests</a></li>
+                    <li><a href="{% url 'courses:course_list' %}">Learning Hub</a></li>
+                    <li><a href="{% url 'farms:public_farms' %}">Community Farms</a></li>
+                    <li><a href="{% url 'gamification:badges' %}">Badge Gallery</a></li>
+                    <li><a href="{% url 'gamification:leaderboard' %}">CropCoin Leaders</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-lg-3">
+                <h5>Connect</h5>
+                <p><i class="fas fa-envelope me-2"></i>hello@ecofarmconnect.com</p>
+                <p><i class="fas fa-phone me-2"></i>+91 80808 12345</p>
+                <p><i class="fas fa-map-marker-alt me-2"></i>Bengaluru, India</p>
+                <div class="social mt-3">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <h5>Stay in the Loop</h5>
+                <p>Subscribe for regenerative agriculture insights, platform updates, and CropCoin bonus drops.</p>
+                <form class="mt-3">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr class="my-4 border-light">
+        <p class="text-center mb-0">&copy; {{ site_name|default:"EcoFarm Connect" }} {% now "Y" %}. Cultivated with care for a regenerative tomorrow.</p>
+    </div>
+</footer>
+<!-- Bootstrap Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Helper to get CSRF token cookie
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const widget = document.getElementById('ai-chat-widget');
+        const panel = widget ? widget.querySelector('.ai-chat-panel') : null;
+        const toggleBtn = document.getElementById('ai-chat-toggle');
+        const closeBtn = document.getElementById('ai-chat-close');
+        const form = document.getElementById('ai-chat-form');
+        const input = document.getElementById('ai-chat-input');
+        const messagesContainer = document.getElementById('ai-chat-messages');
+        const sendBtn = document.getElementById('ai-chat-send');
+
+        if (!widget || !panel || !toggleBtn || !form || !input || !messagesContainer || !sendBtn) {
+            return;
+        }
+
+        const openPanel = () => {
+            panel.classList.add('open');
+            panel.style.display = 'flex';
+            setTimeout(() => input.focus(), 150);
+        };
+
+        const closePanel = () => {
+            panel.classList.remove('open');
+            panel.style.display = 'none';
+        };
+
+        toggleBtn.addEventListener('click', () => {
+            if (panel.classList.contains('open')) {
+                closePanel();
+            } else {
+                openPanel();
+            }
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closePanel);
+        }
+
+        const appendMessage = (role, text) => {
+            const isUser = role === 'user';
+            const messageEl = document.createElement('div');
+            messageEl.className = 'ai-chat-message ' + (isUser ? 'ai-chat-message--user' : 'ai-chat-message--assistant');
+
+            const avatarEl = document.createElement('div');
+            avatarEl.className = 'ai-chat-message-avatar';
+            avatarEl.innerHTML = isUser ? '<i class="fas fa-user"></i>' : '<i class="fas fa-seedling"></i>';
+
+            const contentEl = document.createElement('div');
+            contentEl.className = 'ai-chat-message-content';
+
+            const metaEl = document.createElement('div');
+            metaEl.className = 'ai-chat-message-meta';
+            const roleEl = document.createElement('span');
+            roleEl.className = 'ai-chat-role';
+            roleEl.textContent = isUser ? 'You' : 'Farm AI';
+            metaEl.appendChild(roleEl);
+
+            const textEl = document.createElement('p');
+            textEl.className = 'mb-0';
+            textEl.textContent = text;
+
+            contentEl.appendChild(metaEl);
+            contentEl.appendChild(textEl);
+
+            messageEl.appendChild(avatarEl);
+            messageEl.appendChild(contentEl);
+
+            messagesContainer.appendChild(messageEl);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        };
+
+        const setLoading = (isLoading) => {
+            sendBtn.disabled = isLoading;
+            if (isLoading) {
+                const typingEl = document.createElement('div');
+                typingEl.className = 'ai-chat-message ai-chat-message--assistant ai-chat-typing-wrapper';
+                typingEl.innerHTML = `
+                    <div class="ai-chat-message-avatar">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="ai-chat-message-content">
+                        <div class="ai-chat-message-meta">
+                            <span class="ai-chat-role">Farm AI</span>
+                        </div>
+                        <div class="ai-chat-typing">
+                            <span class="ai-chat-typing-dot"></span>
+                            <span class="ai-chat-typing-dot"></span>
+                            <span class="ai-chat-typing-dot"></span>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.appendChild(typingEl);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            } else {
+                const typing = messagesContainer.querySelector('.ai-chat-typing-wrapper');
+                if (typing) typing.remove();
+            }
+        };
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const message = (input.value || '').trim();
+            if (!message) return;
+
+            appendMessage('user', message);
+            input.value = '';
+            setLoading(true);
+
+            try {
+                const response = await fetch('/chatbot/api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    },
+                    body: JSON.stringify({ message }),
+                });
+
+                const data = await response.json();
+                if (response.ok && data.reply) {
+                    appendMessage('assistant', data.reply);
+                } else {
+                    let errorText = data.error || 'Something went wrong. Please try again.';
+                    if (data.details) {
+                        errorText += ` (${data.details})`;
+                    }
+                    appendMessage('assistant', errorText);
+                }
+            } catch (error) {
+                appendMessage('assistant', 'I had trouble connecting. Please check your internet and try again.');
+                console.error('AI chat error:', error);
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                form.requestSubmit();
+            }
+        });
+    });
+</script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>
